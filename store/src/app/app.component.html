@@ -23,44 +23,9 @@
 
     <div class="product-cards">
 
-      <article class="product-card">
-        <h2 class="product-card__title">Product</h2>
-        <h3 class="product-card__price">15$</h3>
-        <button class="product-card__button btn">Add to cart</button>
-      </article>
-      <article class="product-card">
-        <h2 class="product-card__title">Product</h2>
-        <h3 class="product-card__price">15$</h3>
-        <button class="product-card__button btn">Add to cart</button>
-      </article>
-      <article class="product-card">
-        <h2 class="product-card__title">Product</h2>
-        <h3 class="product-card__price">15$</h3>
-        <button class="product-card__button btn">Add to cart</button>
-      </article>
-      <article class="product-card">
-        <h2 class="product-card__title">Product</h2>
-        <h3 class="product-card__price">15$</h3>
-        <button class="product-card__button btn">Add to cart</button>
-      </article>
-      <article class="product-card">
-        <h2 class="product-card__title">Product</h2>
-        <h3 class="product-card__price">15$</h3>
-        <button class="product-card__button btn">Add to cart</button>
-      </article>
-      <article class="product-card">
-        <h2 class="product-card__title">Product</h2>
-        <h3 class="product-card__price">15$</h3>
-        <button class="product-card__button btn">Add to cart</button>
-      </article>
-      <article class="product-card">
-        <h2 class="product-card__title">Product</h2>
-        <h3 class="product-card__price">15$</h3>
-        <button class="product-card__button btn">Add to cart</button>
-      </article>
-      <article class="product-card">
-        <h2 class="product-card__title">Product</h2>
-        <h3 class="product-card__price">15$</h3>
+      <article *ngFor="let val of products" class="product-card">
+        <h2 class="product-card__title">{{val.name}}</h2>
+        <h3 class="product-card__price">{{val.price | currency}}</h3>
         <button class="product-card__button btn">Add to cart</button>
       </article>
 
