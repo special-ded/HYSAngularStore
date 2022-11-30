@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --main-text-color: #000000;
+  --header-bg: #03a55f;
+  --main-logo-bg: #d9d9d9;
+  --product-button-bg: #2cfaa1;
+  --product-button-bg-hover: #23d98a;
+  --product-button-bg-active: #28fc24;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -10,6 +19,26 @@ body {
   max-width: 1920px;
 }
 
+.btn {
+  width: 238px;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 21px;
+  line-height: 29px;
+  cursor: pointer;
+  background: var(--product-button-bg);
+  border: 1px;
+}
+
+.btn:hover {
+  background: var(--product-button-bg-hover);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:active {
+  background: var(--product-button-bg-active);
+}
+
 p,
 h1,
 h2,
@@ -18,104 +47,101 @@ h4,
 h5,
 h6,
 ul {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 li {
   list-style: none;
 }
+a {
+  text-decoration: none;
+}
 
 *::-webkit-scrollbar {
-	width: 12px;
+  width: 12px;
 }
 
 *::-webkit-scrollbar-track {
-	background: rgb(213, 208, 200);
-	border-radius: 5px;
+  background: rgb(213, 208, 200);
+  border-radius: 5px;
 }
 
 *::-webkit-scrollbar-thumb {
-	background-color: rgb(105, 105, 131);
-	border-radius: 20px;
-	border: 3px solid rgb(213, 208, 200);
+  background-color: rgba(36, 34, 34, 0.73);
+  border-radius: 20px;
 }
 
 *,
 ::before,
 ::after {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-	-moz-tab-size: 4;
-	tab-size: 4;
+  -moz-tab-size: 4;
+  tab-size: 4;
 }
 
 html {
-	line-height: 1.15;
-	/* 1 */
-	-webkit-text-size-adjust: 100%;
-	/* 2 */
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
 }
 
 hr {
-	height: 0;
-	/* 1 */
-	color: inherit;
-	/* 2 */
+  height: 0;
+  /* 1 */
+  color: inherit;
+  /* 2 */
 }
 
 abbr[title] {
-	text-decoration: underline dotted;
+  text-decoration: underline dotted;
 }
 
 b,
 strong {
-	font-weight: bolder;
+  font-weight: bolder;
 }
 
 code,
 kbd,
 samp,
 pre {
-	font-family:
-		ui-monospace,
-		SFMono-Regular,
-		Consolas,
-		'Liberation Mono',
-		Menlo,
-		monospace;
-	/* 1 */
-	font-size: 1em;
-	/* 2 */
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo,
+    monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
 }
 
 small {
-	font-size: 80%;
+  font-size: 80%;
 }
 
 sub,
 sup {
-	font-size: 75%;
-	line-height: 0;
-	position: relative;
-	vertical-align: baseline;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
 }
 
 sub {
-	bottom: -0.25em;
+  bottom: -0.25em;
 }
 
 sup {
-	top: -0.5em;
+  top: -0.5em;
 }
 
 table {
-	text-indent: 0;
-	/* 1 */
-	border-color: inherit;
-	/* 2 */
+  text-indent: 0;
+  /* 1 */
+  border-color: inherit;
+  /* 2 */
 }
 
 button,
@@ -123,73 +149,69 @@ input,
 optgroup,
 select,
 textarea {
-	font-family: inherit;
-	/* 1 */
-	font-size: 100%;
-	/* 1 */
-	line-height: 1.15;
-	/* 1 */
-	margin: 0;
-	/* 2 */
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
 }
 
 button,
 select {
-	/* 1 */
-	text-transform: none;
+  /* 1 */
+  text-transform: none;
 }
 
 button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-	-webkit-appearance: button;
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
 }
 
 ::-moz-focus-inner {
-	border-style: none;
-	padding: 0;
+  border-style: none;
+  padding: 0;
 }
 
 :-moz-focusring {
-	outline: 1px dotted ButtonText;
+  outline: 1px dotted ButtonText;
 }
 
 :-moz-ui-invalid {
-	box-shadow: none;
+  box-shadow: none;
 }
 
 legend {
-	padding: 0;
+  padding: 0;
 }
 
 progress {
-	vertical-align: baseline;
+  vertical-align: baseline;
 }
 
 ::-webkit-inner-spin-button,
 ::-webkit-outer-spin-button {
-	height: auto;
+  height: auto;
 }
 
-[type='search'] {
-	-webkit-appearance: textfield;
-	/* 1 */
-	outline-offset: -2px;
-	/* 2 */
+[type="search"] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
 }
 
 ::-webkit-search-decoration {
-	-webkit-appearance: none;
+  -webkit-appearance: none;
 }
 
 ::-webkit-file-upload-button {
-	-webkit-appearance: button;
-	/* 1 */
-	font: inherit;
-	/* 2 */
+  -webkit-appearance: button;
+  font: inherit;
 }
 
 summary {
-	display: list-item;
+  display: list-item;
 }
