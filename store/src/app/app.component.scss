@@ -1,0 +1,30 @@
+.container {
+  margin: 0 auto;
+  max-width: 1920px;
+  background-color:green;
+}
+.header{
+  height: 101px;
+  background-color: pink;
+  padding: 0px 98px 0px 97px;
+}
+
+.section-products{
+  padding: 0px auto 0px auto;
+}
+
+.product-cards{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 39px;
+}
+.product-card{
+  height: 271px;  
+  width: 402px;
+
+  background-color: #B3B3B3;
+}
+
+
+
