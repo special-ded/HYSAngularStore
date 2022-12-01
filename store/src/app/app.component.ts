@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 interface Data {
   id: number;
   name: string;
@@ -15,7 +16,7 @@ interface Data {
 export class AppComponent {
   title = 'store';
 
-  products: Data[] = this.generateProducts(8)
+  products: Data[] = this.generateProducts(10)
 
   generateProducts(n: number): Data[] {
     const names: string[] = ['Xiaomi 12', 'AirPods', 'Iphone 14', 'Asus ROG 17',
