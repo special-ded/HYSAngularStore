@@ -1,12 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-:root {
-  --main-text-color: #000000;
-  --header-bg: #03a55f;
-  --main-logo-bg: #d9d9d9;
-  --product-button-bg: #2cfaa1;
-  --product-button-bg-hover: #23d98a;
-  --product-button-bg-active: #28fc24;
-}
+@import "./main-colors.scss";
 
 html {
   scroll-behavior: smooth;
@@ -26,17 +19,16 @@ body {
   font-size: 21px;
   line-height: 29px;
   cursor: pointer;
-  background: var(--product-button-bg);
+  background: $product-button-bg;
   border: 1px;
-}
 
-.btn:hover {
-  background: var(--product-button-bg-hover);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.btn:active {
-  background: var(--product-button-bg-active);
+  &:hover {
+    background: $product-button-bg-hover;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  &:active {
+    background: $product-button-bg-active;
+  }
 }
 
 p,

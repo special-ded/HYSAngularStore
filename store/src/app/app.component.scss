@@ -1,3 +1,5 @@
+@import "../main-colors.scss";
+
 .container {
   margin: 0 auto;
   max-width: 1920px;
@@ -7,12 +9,12 @@
   font-weight: 700;
   font-size: 36px;
   line-height: 44px;
-  color: var(--main-text-color);
+  color: $main-text-color;
 }
 
 .header {
   height: 101px;
-  background-color: var(--header-bg);
+  background-color: $header-bg;
   padding: 0px 98px 0px 97px;
 }
 
@@ -20,66 +22,66 @@
   padding-top: 25px;
   display: flex;
   gap: 47px;
+  .header__item-link {
+    color: $main-text-color;
+  }
+  .main-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: $main-logo-bg;
+  }
 }
+.section-products {
+  .main-title {
+    padding: 0px 98px 0px 97px;
+    margin: 28px 0px 57px 0px;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 58px;
+  }
 
-.header__item-link {
-  color: var(--main-text-color);
-}
+  .product-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 35px;
 
-.main-logo {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: var(--main-logo-bg);
-}
+    .product-card {
+      height: 271px;
+      width: 402px;
+      border-radius: 15px;
+      background-color: #c9d1d9;
+      padding-left: 34px;
 
-.main-title {
-  padding: 0px 98px 0px 97px;
-  margin: 28px 0px 57px 0px;
-  font-weight: 500;
-  font-size: 48px;
-  line-height: 58px;
-}
+      .product-card__title {
+        margin-top: 37px;
+        font-weight: 400;
+        font-size: 36px;
+      }
 
-.product-cards {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 35px;
-}
+      .product-card__price {
+        margin-top: 25px;
+        font-size: 30px;
+        font-weight: 400;
+      }
 
-.product-card {
-  height: 271px;
-  width: 402px;
-  border-radius: 15px;
-  background-color: #c9d1d9;
-  padding-left: 34px;
-}
+      .product-card__button {
+        margin-top: 31px;
+      }
+    }
+  }
 
-.product-card__title {
-  margin-top: 37px;
-  font-weight: 400;
-  font-size: 36px;
-}
+  .section-products__button {
+    display: block;
+    margin: 52px auto 39px auto;
+  }
 
-.product-card__price {
-  margin-top: 25px;
-  font-size: 30px;
-  font-weight: 400;
-}
-.product-card__button {
-  margin-top: 31px;
-}
-
-.section-products__button {
-  display: block;
-  margin: 52px auto 39px auto;
-}
-
-.section-products__link {
-  display: block;
-  color: var(--main-text-color);
-  margin-left: 54px;
-  padding-bottom: 51px;
-  width: 200px;
+  .section-products__link {
+    display: block;
+    color: $main-text-color;
+    margin-left: 54px;
+    padding-bottom: 51px;
+    width: 200px;
+  }
 }

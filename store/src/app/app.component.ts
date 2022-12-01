@@ -16,7 +16,7 @@ interface Data {
 export class AppComponent {
   title = 'store';
 
-  products: Data[] = this.generateProducts(10)
+  products: Data[] = this.generateProducts(8)
 
   generateProducts(n: number): Data[] {
     const names: string[] = ['Xiaomi 12', 'AirPods', 'Iphone 14', 'Asus ROG 17',
