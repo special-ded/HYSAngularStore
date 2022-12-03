@@ -1,12 +1,10 @@
 <div class="container">
-
   <app-header></app-header>
-
   <section class="section-products">
     <h1 class="main-title">Products</h1>
-
-    <app-product-card [products]="products"></app-product-card>
-
+    <div class="product-cards">
+      <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+    </div>
     <button class="section-products__button btn">Load more</button>
     <br>
     <a class="section-products__link" href="#">
