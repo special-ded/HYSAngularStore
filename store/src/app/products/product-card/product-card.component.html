@@ -1,0 +1,7 @@
+<div class="product-cards">
+  <article *ngFor="let val of products" class="product-card">
+    <h2 class="product-card__title">{{val.name}}</h2>
+    <h3 class="product-card__price">{{val.price }}</h3>
+    <button class="product-card__button btn">Add to cart</button>
+  </article>
+</div>

@@ -1,1 +1,33 @@
-<p>products works!</p>
+<div class="container">
+
+  <header class="header">
+    <nav class="header__nav">
+      <ul class="header__list">
+        <li class="header__item">
+          <img class="main-logo">
+        </li>
+        <li class="header__item">
+          <a class="header__item-link" routerLink="/products">Products</a>
+        </li>
+        <li class="header__item">
+          <a class="header__item-link" routerLink="/cart">Cart</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="section-products">
+    <h1 class="main-title">Products</h1>
+
+    <app-product-card [products]="products"></app-product-card>
+
+    <button class="section-products__button btn">Load more</button>
+    <br>
+    <a class="section-products__link" href="#">
+      Admin
+      <img src="/assets/img/arrow-right.svg" alt="arrow">
+    </a>
+
+  </section>
+
+</div>
