@@ -8,8 +8,6 @@ import { Data } from 'src/app/interfaces/products.interface';
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent {
-
-
   @Input() products: Data[] = [];
-
+  buttonName: string = "Add to cart"
 }

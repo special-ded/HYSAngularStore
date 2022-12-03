@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ButtonComponent } from './product-card/button/button.component';
 import { ProductsComponent } from './products.component';
+import { HeaderComponent } from './header/header.component';
 
 
 
@@ -10,7 +11,8 @@ import { ProductsComponent } from './products.component';
   declarations: [
     ProductsComponent,
     ProductCardComponent,
-    ButtonComponent
+    ButtonComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule
