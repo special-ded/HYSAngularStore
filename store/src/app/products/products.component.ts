@@ -17,10 +17,10 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
 
   ngOnInit() {
-    this.getProducts(8);
+    this.initProducts(8);
   }
 
-  getProducts(n: number): void {
+  initProducts(n: number): void {
     this.products = this.productsService.generateProducts(n);
   }
 }
