@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from '../interfaces/products.interface';
 
 @Component({
@@ -7,9 +7,13 @@ import { Product } from '../interfaces/products.interface';
   styleUrls: ['./products.component.scss']
 })
 
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
 
-  products: Product[] = this.generateProducts(8)
+  products: Product[] = [];
+
+  ngOnInit() {
+    this.products = this.generateProducts(8)
+  }
 
   generateProducts(n: number): Product[] {
     const names: string[] = ['Xiaomi 12', 'AirPods', 'Iphone 14', 'Asus ROG 17',
