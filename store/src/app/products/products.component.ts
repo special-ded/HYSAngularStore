@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Data } from '../interfaces/products.interface';
+import { Product } from '../interfaces/products.interface';
 
 @Component({
   selector: 'app-products',
@@ -9,13 +9,13 @@ import { Data } from '../interfaces/products.interface';
 
 export class ProductsComponent {
 
-  products: Data[] = this.generateProducts(8)
+  products: Product[] = this.generateProducts(8)
 
-  generateProducts(n: number): Data[] {
+  generateProducts(n: number): Product[] {
     const names: string[] = ['Xiaomi 12', 'AirPods', 'Iphone 14', 'Asus ROG 17',
       'Mi AirDots', 'Sony WH-1000XM4', 'Power Bank 20000', 'Invertor 12-220',
       'BFG 9000', 'Doom Eternal'];
-    let arr: Data[] = [];
+    let arr: Product[] = [];
 
     for (let i = 0; i < n; i++) {
       const obj = {

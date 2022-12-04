@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Data } from 'src/app/interfaces/products.interface';
+import { Product } from 'src/app/interfaces/products.interface';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { Data } from 'src/app/interfaces/products.interface';
 })
 export class ProductCardComponent {
 
-  @Input() product: Data = {
+  @Input() product: Product = {
     id: 0,
     name: '',
     price: 0
