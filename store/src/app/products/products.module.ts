@@ -5,6 +5,7 @@ import { ButtonComponent } from './product-card/button/button.component';
 import { ProductsComponent } from './products.component';
 import { HeaderComponent } from './header/header.component';
 import { HryvniaPipePipe } from './hryvnia-pipe.pipe';
+import { ColorPriceDirective } from './color-price.directive';
 
 
 
@@ -14,7 +15,8 @@ import { HryvniaPipePipe } from './hryvnia-pipe.pipe';
     ProductCardComponent,
     ButtonComponent,
     HeaderComponent,
-    HryvniaPipePipe
+    HryvniaPipePipe,
+    ColorPriceDirective
   ],
   imports: [
     CommonModule

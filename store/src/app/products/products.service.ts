@@ -16,7 +16,7 @@ export class ProductsService {
       const obj = {
         id: i,
         name: names[Math.floor(Math.random() * 10)],
-        price: Math.floor(Math.random() * 100)
+        price: Math.floor(Math.random() * 1500)
       };
       arr.push(obj);
     }
