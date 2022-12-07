@@ -1,5 +1,4 @@
-@import "../../../scss/main-colors.scss";
-
+@import "../../scss/main-colors.scss";
 .container {
   margin: 0 auto;
   max-width: 1920px;
@@ -12,8 +11,12 @@
   color: $main-text-color;
 }
 
-// .product-info {
-// }
+.product-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 35px;
+}
 
 .section-products {
   .main-title {
@@ -27,13 +30,5 @@
   .section-products__button {
     display: block;
     margin: 52px auto 39px auto;
-  }
-
-  .section-products__link {
-    display: block;
-    color: $main-text-color;
-    margin-left: 54px;
-    padding-bottom: 51px;
-    width: 200px;
   }
 }

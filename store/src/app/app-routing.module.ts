@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductsRoutingModule } from './products-routing/products-routing.module';
+import { LandingRoutingModule } from './landing/landing-routing.module';
+import { PageNotFoundComponent } from './products/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -10,9 +11,10 @@ const routes: Routes = [
   },
   {
     path: 'products',
-    loadChildren: () => import('./products-routing/products-routing.module')
-      .then((m) => ProductsRoutingModule)
-  }
+    loadChildren: () => import('./landing/landing-routing.module')
+      .then((m) => LandingRoutingModule)
+  },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

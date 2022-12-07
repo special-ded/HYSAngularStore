@@ -1,26 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductsComponent } from '../products/products.component';
 import { ProductInfoComponent } from '../products/product-info/product-info.component';
+import { LandingComponent } from './landing.component';
 
-const routes: Routes = [
+const productRoutes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    component: ProductsComponent
-  }, {
-    path: 'product-info/:Productname',
-    pathMatch: 'full',
-    component: ProductInfoComponent
+    component: LandingComponent
   }
-];
+  , {
+    path: ':productId',
+    pathMatch: 'full',
+    children: [
+      { path: ':productId', component: ProductInfoComponent },
+
+    ]
+  }
+]
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(productRoutes)
   ]
 })
-export class ProductsRoutingModule { }
+export class LandingRoutingModule { }

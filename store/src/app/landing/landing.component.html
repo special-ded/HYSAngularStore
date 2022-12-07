@@ -5,10 +5,10 @@
     <div class="product-cards">
       <app-product-card [routerLink]="['/products/',product.id]" *ngFor="let product of products" [product]="product">
       </app-product-card>
+      <router-outlet></router-outlet>
     </div>
     <button class="section-products__button btn">Load more</button>
     <br>
     <app-footer></app-footer>
   </section>
-
 </div>

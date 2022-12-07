@@ -4,7 +4,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductsModule } from './products/products.module';
+
+import { LandingComponent } from './landing/landing.component';
+import { LandingModule } from './landing/landing.module';
+import { ProductCardComponent } from './products/product-card/product-card.component';
+import { ProductsComponent } from './products/products.component';
 
 
 @NgModule({
@@ -15,7 +19,7 @@ import { ProductsModule } from './products/products.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ProductsModule
+    LandingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
