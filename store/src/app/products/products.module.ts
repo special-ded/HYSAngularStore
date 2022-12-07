@@ -6,7 +6,8 @@ import { ProductsComponent } from './products.component';
 import { HeaderComponent } from './header/header.component';
 import { HryvniaPipePipe } from './hryvnia-pipe.pipe';
 import { ColorPriceDirective } from './color-price.directive';
-
+import { ProductInfoComponent } from './product-info/product-info.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -16,10 +17,12 @@ import { ColorPriceDirective } from './color-price.directive';
     ButtonComponent,
     HeaderComponent,
     HryvniaPipePipe,
-    ColorPriceDirective
+    ColorPriceDirective,
+    ProductInfoComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
 export class ProductsModule { }

@@ -1,0 +1,39 @@
+@import "../../../scss/main-colors.scss";
+
+.container {
+  margin: 0 auto;
+  max-width: 1920px;
+  background-color: #b7bfc8;
+  font-family: "Roboto Mono", monospace;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 44px;
+  color: $main-text-color;
+}
+
+.product-info {
+}
+
+.section-products {
+  .main-title {
+    padding: 0px 98px 0px 97px;
+    margin: 28px 0px 57px 0px;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 58px;
+  }
+
+  .section-products__button {
+    display: block;
+    margin: 52px auto 39px auto;
+  }
+
+  .section-products__link {
+    display: block;
+    color: $main-text-color;
+    margin-left: 54px;
+    padding-bottom: 51px;
+    width: 200px;
+  }
+}
