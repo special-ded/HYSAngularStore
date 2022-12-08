@@ -1,5 +1,5 @@
 <article class="product-card">
-  <h2 [routerLink]="[product.id]" class="product-card__title">
+  <h2 [routerLink]="['/products', product.id]" class="product-card__title">
     {{product.name}}
   </h2>
   <h3 appColorPrice [price]="product.price" class="product-card__price">

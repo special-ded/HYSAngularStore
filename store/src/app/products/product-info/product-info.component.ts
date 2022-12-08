@@ -23,7 +23,9 @@ export class ProductInfoComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.paramMap.subscribe(params => {
-      this.id = +params.get('productId')!
+      console.log(params);
+
+      this.id = +params.get('id')!
       console.log(this.id);
 
       console.log(this.service.getProductById(this.id));

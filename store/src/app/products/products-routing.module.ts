@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductInfoComponent } from './product-info/product-info.component';
 import { ProductsComponent } from './products.component';
 import { ProductsListComponent } from './products-list/products-list.component';
+import { CartComponent } from './cart/cart.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const productsRoutes: Routes = [
   {
@@ -11,14 +13,24 @@ const productsRoutes: Routes = [
     component: ProductsComponent,
     children: [
       {
-        path: ':Id',
+        path: '',
+        pathMatch: 'full',
+        component: ProductsListComponent
+      },
+      {
+        path: 'cart',
+        pathMatch: 'full',
+        component: CartComponent
+      },
+      {
+        path: ':id',
         pathMatch: 'full',
         component: ProductInfoComponent
       },
       {
-        path: '',
+        path: '**',
         pathMatch: 'full',
-        component: ProductsListComponent
+        component: PageNotFoundComponent
       }
     ]
   }

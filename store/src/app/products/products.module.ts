@@ -11,6 +11,7 @@ import { HryvniaPipePipe } from './hryvnia-pipe.pipe';
 import { ColorPriceDirective } from './color-price.directive';
 import { ProductsComponent } from './products.component';
 import { ProductsListComponent } from './products-list/products-list.component';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ProductsListComponent } from './products-list/products-list.component';
     HryvniaPipePipe,
     ColorPriceDirective,
     ProductsComponent,
-    ProductsListComponent
+    ProductsListComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,
