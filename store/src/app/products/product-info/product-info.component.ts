@@ -11,6 +11,8 @@ import { ProductsService } from '../products.service';
 })
 export class ProductInfoComponent implements OnInit {
 
+  buttonName: string = 'Add to cart'
+
   constructor(
     private route: ActivatedRoute,
     private service: ProductsService) {

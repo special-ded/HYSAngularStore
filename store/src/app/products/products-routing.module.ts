@@ -16,7 +16,7 @@ const productsRoutes: Routes = [
         component: ProductInfoComponent
       },
       {
-        path: 'products-list',
+        path: '',
         pathMatch: 'full',
         component: ProductsListComponent
       }

@@ -11,25 +11,3 @@
   line-height: 44px;
   color: $main-text-color;
 }
-
-.product-cards {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 35px;
-}
-
-.section-products {
-  .main-title {
-    padding: 0px 98px 0px 97px;
-    margin: 28px 0px 57px 0px;
-    font-weight: 500;
-    font-size: 48px;
-    line-height: 58px;
-  }
-
-  .section-products__button {
-    display: block;
-    margin: 52px auto 39px auto;
-  }
-}

@@ -1,5 +1,13 @@
 <div class="product-info">
 
-  <h1>Product name</h1>
-  <p>{{id}}</p>
+  <h2 class="product-card__title">
+    Products > {{product.id}}
+  </h2>
+
+  <h3>Product {{product.id}}</h3>
+  <h3>Description </h3>
+  <h3 appColorPrice [price]="product.price" class="product-card__price">
+    {{product.price | hryvniaPipe}}
+  </h3>
+  <app-button [buttonName]="buttonName"></app-button>
 </div>
