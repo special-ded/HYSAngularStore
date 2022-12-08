@@ -1,40 +1,32 @@
 @import "../../../scss/main-colors.scss";
 
-.container {
-  margin: 0 auto;
-  max-width: 1920px;
-  background-color: #b7bfc8;
-  font-family: "Roboto Mono", monospace;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 36px;
-  line-height: 44px;
-  color: $main-text-color;
-}
-
 .product-info {
-  padding: 0px 98px 0px 97px;
+  padding: 0px 98px 260px 97px;
 }
 
-.section-products {
-  .main-title {
-    padding: 0px 98px 0px 97px;
-    margin: 28px 0px 57px 0px;
-    font-weight: 500;
-    font-size: 48px;
-    line-height: 58px;
-  }
+.main-title {
+  cursor: pointer;
+  margin: 28px 0px 0px 0px;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 58px;
+}
 
-  .section-products__button {
-    display: block;
-    margin: 52px auto 39px auto;
-  }
+.product-info__id {
+  padding-top: 95px;
+  font-weight: 400;
+  font-size: 36px;
+}
 
-  .section-products__link {
-    display: block;
-    color: $main-text-color;
-    margin-left: 54px;
-    padding-bottom: 51px;
-    width: 200px;
-  }
+.product-info__descr {
+  padding-top: 37px;
+  font-weight: 400;
+  font-size: 36px;
+}
+
+.product-info__price {
+  margin-top: 36px;
+  margin-bottom: 5px;
+  font-size: 30px;
+  font-weight: 400;
 }

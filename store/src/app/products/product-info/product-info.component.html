@@ -1,12 +1,8 @@
 <div class="product-info">
-
-  <h2 class="product-card__title">
-    Products > {{product.id}}
-  </h2>
-
-  <h3>Product {{product.id}}</h3>
-  <h3>Description </h3>
-  <h3 appColorPrice [price]="product.price" class="product-card__price">
+  <h2 routerLink="/products" class="main-title">Products > {{product.id}}</h2>
+  <h3 class="product-info__id">Product {{product.id}}</h3>
+  <h3 class="product-info__descr">Description: </h3>
+  <h3 appColorPrice [price]="product.price" class="product-info__price">
     {{product.price | hryvniaPipe}}
   </h3>
   <app-button [buttonName]="buttonName"></app-button>
