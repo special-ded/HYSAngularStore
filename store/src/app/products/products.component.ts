@@ -9,18 +9,18 @@ import { ProductsService } from './products.service';
   providers: [ProductsService]
 })
 
-@Injectable()
-export class ProductsComponent implements OnInit {
+// @Injectable()
+export class ProductsComponent {
 
-  constructor(private productsService: ProductsService) { };
+  // constructor(private productsService: ProductsService) { };
 
-  products: Product[] = [];
+  // products: Product[] = [];
 
-  ngOnInit() {
-    this.initProducts(8);
-  }
+  // ngOnInit() {
+  //   this.initProducts(8);
+  // }
 
-  initProducts(n: number): void {
-    this.products = this.productsService.generateProducts(n);
-  }
+  // initProducts(n: number): void {
+  //   this.products = this.productsService.generateProducts(n);
+  // }
 }

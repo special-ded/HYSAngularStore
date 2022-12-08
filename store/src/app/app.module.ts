@@ -5,10 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { LandingComponent } from './landing/landing.component';
-import { LandingModule } from './landing/landing.module';
-import { ProductCardComponent } from './products/product-card/product-card.component';
-import { ProductsComponent } from './products/products.component';
+import { ProductsModule } from './products/products.module';
 
 
 @NgModule({
@@ -19,7 +16,7 @@ import { ProductsComponent } from './products/products.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    LandingModule
+    ProductsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
