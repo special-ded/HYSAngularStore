@@ -12,9 +12,11 @@ import { ColorPriceDirective } from './color-price.directive';
 import { ProductsComponent } from './products.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { CartComponent } from './cart/cart.component';
+import { CartService } from './cart/cart.service';
 
 
 @NgModule({
+  providers: [CartService],
   declarations: [
     HeaderComponent,
     FooterComponent,

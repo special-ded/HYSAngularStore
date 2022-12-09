@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/interfaces/products.interface';
+import { CartService } from '../cart/cart.service';
 
 
 @Component({
@@ -7,7 +8,14 @@ import { Product } from 'src/app/interfaces/products.interface';
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss']
 })
-export class ProductCardComponent {
+export class ProductCardComponent implements OnInit {
+  constructor(private cartService: CartService) { };
+
+  ngOnInit(): void {
+    this.setButtonName()
+  }
+
+  buttonName: string = "";
 
   @Input() product: Product = {
     id: 0,
@@ -15,5 +23,26 @@ export class ProductCardComponent {
     price: 0
   };
 
-  buttonName: string = "Add to cart"
+  @Input() cartButtonName: string = ''
+
+  handleCart(product: Product, button: string) {
+    console.log(button);
+    if (button === "Add to cart") {
+      this.cartService.addToCart(product);
+      return
+    }
+
+    this.cartService.removeFromCart(product.id)
+  }
+
+  setButtonName(): void {
+
+    if (this.cartButtonName === '') {
+      this.buttonName = "Add to cart";
+      return
+    }
+
+    this.buttonName = this.cartButtonName
+  }
+
 }
