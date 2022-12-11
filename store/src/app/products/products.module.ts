@@ -14,6 +14,7 @@ import { ProductsListComponent } from './products-list/products-list.component';
 import { CartComponent } from './cart/cart.component';
 import { CartService } from './cart/cart.service';
 import { ProductsService } from './products.service';
+import { ProductsRoutingModule } from './products-routing.module';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ProductsService } from './products.service';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ProductsRoutingModule
   ]
 })
 export class ProductsModule { }
