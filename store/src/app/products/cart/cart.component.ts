@@ -13,7 +13,7 @@ export class CartComponent {
   constructor(private cartService: CartService) { }
 
   cartButtonName: string = 'Remove from cart';
-  totalPrice: number = this.cartService.getTotalPrice();
+  totalPrice: number = this.cartService.total;
 
   products: Product[] = this.cartService.getCartList();
 

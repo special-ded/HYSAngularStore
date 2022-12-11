@@ -1,11 +1,9 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { ProductsService } from './products.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss'],
-  providers: [ProductsService]
+  styleUrls: ['./products.component.scss']
 })
 
 

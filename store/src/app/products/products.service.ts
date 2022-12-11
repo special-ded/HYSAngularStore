@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../interfaces/products.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ProductsService {
 
   generatedProducts: Product[] = [];

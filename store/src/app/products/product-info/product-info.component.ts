@@ -18,6 +18,7 @@ export class ProductInfoComponent implements OnInit {
   }
 
   id: number = 0;
+
   product: Product = {
     id: 0,
     name: 'aaaaa',

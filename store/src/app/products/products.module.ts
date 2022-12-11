@@ -13,10 +13,11 @@ import { ProductsComponent } from './products.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { CartComponent } from './cart/cart.component';
 import { CartService } from './cart/cart.service';
+import { ProductsService } from './products.service';
 
 
 @NgModule({
-  providers: [CartService],
+  providers: [CartService, ProductsService],
   declarations: [
     HeaderComponent,
     FooterComponent,
