@@ -12,7 +12,6 @@ export class ProductsService {
     const names: string[] = ['Xiaomi 12', 'AirPods', 'Iphone 14', 'Asus ROG 17',
       'Mi AirDots', 'Sony WH-1000XM4', 'Power Bank 20000', 'Invertor 12-220',
       'BFG 9000', 'Doom Eternal'];
-    let arr: Product[] = [];
 
     for (let i = 0; i < n; i++) {
       const obj = {
@@ -20,9 +19,8 @@ export class ProductsService {
         name: names[Math.floor(Math.random() * 10)],
         price: Math.floor(Math.random() * 1500)
       };
-      arr.push(obj);
+      this.generatedProducts.push(obj);
     }
-    this.generatedProducts = [...arr]
     console.log(this.generatedProducts);
     return this.generatedProducts;
   }

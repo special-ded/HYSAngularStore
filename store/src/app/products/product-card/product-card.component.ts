@@ -26,12 +26,10 @@ export class ProductCardComponent implements OnInit {
   @Input() cartButtonName: string = ''
 
   handleCart(product: Product, button: string) {
-    console.log(button);
     if (button === "Add to cart") {
       this.cartService.addToCart(product);
       return
     }
-
     this.cartService.removeFromCart(product.id)
   }
 
@@ -41,7 +39,6 @@ export class ProductCardComponent implements OnInit {
       this.buttonName = "Add to cart";
       return
     }
-
     this.buttonName = this.cartButtonName
   }
 

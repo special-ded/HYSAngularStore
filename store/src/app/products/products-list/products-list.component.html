@@ -1,7 +1,6 @@
 <section class="section-products">
   <h1 class="main-title">Products</h1>
   <div class="product-cards">
-    <!-- <p *ngFor="let i of cartI">{{i.name}}</p> -->
     <app-product-card *ngFor="let product of products" [product]="product">
     </app-product-card>
   </div>

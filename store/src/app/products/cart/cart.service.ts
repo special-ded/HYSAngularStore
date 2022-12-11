@@ -6,8 +6,7 @@ import { Product } from 'src/app/interfaces/products.interface';
 })
 
 export class CartService {
-
-  cartList: Product[] = []
+  cartList: Product[] = [];
 
   addToCart(product: Product) {
     this.cartList.push(product)
@@ -17,17 +16,20 @@ export class CartService {
   }
 
   removeFromCart(id: number) {
-    console.log(id);
-    console.log(this.cartList.map(el => el.id === id))
-    this.cartList = this.cartList.filter(e => e.id !== id)
+    let index = this.cartList.findIndex(val => val.id == id)
+    this.cartList.splice(index, 1);
+    this.getTotalPrice()
+  }
 
-    //     Remove 1 element at index 3 
-    // const myFish = ["angel", "clown", "drum", "mandarin", "sturgeon"];
-    // const removed = myFish.splice(3, 1);
+  getTotalPrice(): number {
+    let totalPrice: number = 0
+    this.cartList.map((el: Product) => totalPrice += el.price);
+    console.log(totalPrice);
+
+    return totalPrice
   }
 
   getCartList(): Product[] {
-    console.log(this.cartList);
     return this.cartList
   }
 

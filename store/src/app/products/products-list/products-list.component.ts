@@ -12,24 +12,16 @@ import { ProductsService } from '../products.service';
 export class ProductsListComponent implements OnInit {
 
   constructor(
-    private productsService: ProductsService,
-    private cartService: CartService
+    private productsService: ProductsService
   ) { };
 
   products: Product[] = [];
 
-  // cartI: Product[] = []
-
   ngOnInit() {
     this.initProducts(8);
-    // this.getCart()
   }
 
   initProducts(n: number): void {
     this.products = this.productsService.generateProducts(n);
   }
-
-  // getCart() {
-  //   this.cartI = this.cartService.getCartProductList()
-  // }
 }
