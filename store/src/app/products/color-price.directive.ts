@@ -14,7 +14,7 @@ export class ColorPriceDirective implements OnInit {
     this.setPriceColor(this.price)
   }
 
-  setPriceColor(price: number) {
+  setPriceColor(price: number): void {
 
     if (price > 1000) {
       this.el.nativeElement.style.color = 'red';
