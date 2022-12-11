@@ -17,7 +17,10 @@ export class ProductsListComponent implements OnInit {
   products: Product[] = [];
 
   ngOnInit() {
-    this.initProducts(8);
+    this.products = this.productsService.generatedProducts
+    if (this.products.length === 0) {
+      this.initProducts(8);
+    }
   }
 
   initProducts(n: number): void {

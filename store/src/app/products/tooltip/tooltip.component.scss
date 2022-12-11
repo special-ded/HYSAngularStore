@@ -1,0 +1,51 @@
+@import "../../../scss/main-colors.scss";
+
+.container {
+  width: 535px;
+  height: 428px;
+  background: #776a6a;
+  z-index: 100;
+  border-radius: 20px;
+  position: relative;
+}
+
+.products-list {
+  position: absolute;
+  top: 57px;
+  left: 50px;
+  width: 435px;
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: auto;
+  background: #be3636;
+}
+
+.product__atributes {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.product__title,
+.product__quantity,
+.product__price,
+.btn,
+.products__total {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.btn {
+  width: 177px;
+  height: 50px;
+}
+
+.products__total {
+  position: absolute;
+  top: 365px;
+  left: 310px;
+}

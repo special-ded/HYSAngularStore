@@ -15,6 +15,7 @@ import { CartComponent } from './cart/cart.component';
 import { CartService } from './cart/cart.service';
 import { ProductsService } from './products.service';
 import { ProductsRoutingModule } from './products-routing.module';
+import { TooltipComponent } from './tooltip/tooltip.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ProductsRoutingModule } from './products-routing.module';
     ColorPriceDirective,
     ProductsComponent,
     ProductsListComponent,
-    CartComponent
+    CartComponent,
+    TooltipComponent
   ],
   imports: [
     CommonModule,

@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  isHidden = false;
 
+  showTooltip() {
+    console.log('showTooltip');
+
+  }
+
+  closeTooltip() {
+    console.log('closeTooltip');
+
+  }
 }

@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="products-list">
+    <div *ngFor="let product of products" class="product">
+      <div class="product__atributes">
+        <h1 class="product__title">Product #{{product.id}}</h1>
+        <p class="product__quantity">1</p>
+        <button class="btn">Delete</button>
+      </div>
+      <h2 class="product__price">Price: {{product.price | hryvniaPipe}}</h2>
+    </div>
+  </div>
+  <p class="products__total">Total: {{total | hryvniaPipe}}</p>
+</div>
