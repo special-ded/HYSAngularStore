@@ -6,6 +6,7 @@ import { ProductsComponent } from './products.component';
 import { HeaderComponent } from './header/header.component';
 import { HryvniaPipePipe } from './hryvnia-pipe.pipe';
 import { ColorPriceDirective } from './color-price.directive';
+import { ProductsRoutingModule } from '../products-routing/products-routing.module';
 
 
 
@@ -19,7 +20,8 @@ import { ColorPriceDirective } from './color-price.directive';
     ColorPriceDirective
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ProductsRoutingModule
   ]
 })
 export class ProductsModule { }
