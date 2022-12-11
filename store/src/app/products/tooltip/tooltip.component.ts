@@ -16,9 +16,12 @@ export class TooltipComponent implements OnInit {
   total: number = 0;
 
   ngOnInit(): void {
-    this.products = this.cartService.cartList
-    console.log(this.products);
-    this.total = this.cartService.total
+    this.products = this.cartService.cartList;
+    this.total = this.cartService.getTotalPrice();
+  }
+
+  deleteFromCart(id: number): void {
+    this.cartService.removeFromCart(id)
   }
 
 }

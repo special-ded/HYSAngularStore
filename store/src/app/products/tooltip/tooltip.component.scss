@@ -3,7 +3,7 @@
 .container {
   width: 535px;
   height: 428px;
-  background: #776a6a;
+  background: #8fbcef;
   z-index: 100;
   border-radius: 20px;
   position: relative;
@@ -11,16 +11,16 @@
 
 .products-list {
   position: absolute;
-  top: 57px;
+  top: 50px;
   left: 50px;
-  width: 435px;
+  width: 440px;
   height: 300px;
-  overflow: hidden;
+  overflow: scroll;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   margin: auto;
-  background: #be3636;
 }
 
 .product__atributes {
