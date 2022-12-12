@@ -8,16 +8,14 @@ import { LocalStorageService } from '../local-storage.service';
 
 export class CartService implements OnInit {
 
-  constructor(
-    private lsService: LocalStorageService
-  ) { }
+  constructor(private lsService: LocalStorageService) { }
+
   ngOnInit(): void {
     this.getTotalPrice()
   }
-  cartList: Product[] = [];
 
+  cartList: Product[] = [];
   total: number = 0;
-  // obj or []
 
   addToCart(product: Product) {
     if (!product) {

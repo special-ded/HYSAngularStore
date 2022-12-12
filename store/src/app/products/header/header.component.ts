@@ -8,13 +8,4 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   isHidden = false;
 
-  showTooltip() {
-    console.log('showTooltip');
-
-  }
-
-  closeTooltip() {
-    console.log('closeTooltip');
-
-  }
 }

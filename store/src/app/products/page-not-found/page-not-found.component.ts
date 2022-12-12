@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class PageNotFoundComponent {
 
-  buttonName: string = 'Back to home'
+  buttonName: string = 'Back to home';
 
 }

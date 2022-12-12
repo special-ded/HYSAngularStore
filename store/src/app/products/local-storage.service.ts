@@ -20,6 +20,6 @@ export class LocalStorageService {
       localStorage.setItem('cartList', '[]');
       return [];
     }
-    return JSON.parse(localStorage.getItem('cartList')!)
+    return JSON.parse(localStorage.getItem('cartList')!);
   }
 }
