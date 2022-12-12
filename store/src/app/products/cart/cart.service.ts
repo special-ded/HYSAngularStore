@@ -20,6 +20,10 @@ export class CartService implements OnInit {
   // obj or []
 
   addToCart(product: Product) {
+    if (!product) {
+      return
+    }
+
     this.cartList.push(product);
     this.lsService.setToLS(this.cartList);
     this.getTotalPrice();
@@ -34,16 +38,30 @@ export class CartService implements OnInit {
   }
 
   getTotalPrice(): number {
-    return this.cartList.reduce((acc: number, curV: Product) => acc += curV.price, 0);
+    return this.cartList.reduce((acc: number, curV: Product) => acc += curV.price * curV.quantity, 0);
   }
 
   getCartList(): Product[] {
-
     if (this.cartList.length === 0) {
       this.cartList = this.lsService.checkLS()
     }
 
     this.getTotalPrice()
     return this.cartList
+  }
+
+  addQuantity(id: number) {
+    this.cartList.find(x => x.id === id)!.quantity++;
+    this.lsService.setToLS(this.cartList);
+  }
+
+  subtractQuantity(id: number) {
+    this.cartList.find(x => x.id === id)!.quantity--;
+
+    if (this.cartList.find(x => x.id === id)!.quantity === 0) {
+      this.removeFromCart(id)
+      return
+    }
+    this.lsService.setToLS(this.cartList)
   }
 }

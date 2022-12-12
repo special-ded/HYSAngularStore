@@ -11,31 +11,29 @@ import { CartService } from '../cart/cart.service';
 })
 export class ProductInfoComponent implements OnInit {
 
-  buttonName: string = 'Add to cart';
-
   constructor(
     private route: ActivatedRoute,
     private productService: ProductsService,
     private cartService: CartService) {
   }
 
+  buttonName: string = 'Add to cart';
   id: number = 0;
-
   product: Product = {
     id: 0,
     name: '',
-    price: 0
-  }
+    price: 0,
+    quantity: 1
+  };
 
   ngOnInit(): void {
-
     this.route.paramMap.subscribe(params => {
       this.id = +params.get('id')!
       this.product = this.productService.getProductById(this.id)
     })
   }
 
-  addToCart(product: Product) {
+  addToCart(product: Product): void {
     this.cartService.addToCart(product);
   }
 }

@@ -24,4 +24,11 @@ export class TooltipComponent implements OnInit {
     this.cartService.removeFromCart(id)
   }
 
+  addQuantity(id: number): void {
+    this.cartService.addQuantity(id)
+  }
+
+  subtractQuantity(id: number): void {
+    this.cartService.subtractQuantity(id);
+  }
 }

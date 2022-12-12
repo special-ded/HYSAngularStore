@@ -15,6 +15,11 @@ export class LocalStorageService {
   }
 
   checkLS(): Product[] {
-    return JSON.parse(localStorage.getItem('cartList')!);
+    if (JSON.parse(localStorage.getItem('cartList')!) === null ||
+      JSON.parse(localStorage.getItem('cartList')!)[0] === null) {
+      localStorage.setItem('cartList', '[]');
+      return [];
+    }
+    return JSON.parse(localStorage.getItem('cartList')!)
   }
 }

@@ -12,34 +12,41 @@ export class ProductCardComponent implements OnInit {
   constructor(private cartService: CartService) { };
 
   ngOnInit(): void {
-    this.setButtonName()
+    this.setButtonName();
   }
 
   buttonName: string = "";
-
+  @Input() quantityButtons: boolean = false;
   @Input() product: Product = {
     id: 0,
     name: '',
-    price: 0
+    price: 0,
+    quantity: 1
   };
+  @Input() cartButtonName: string = '';
 
-  @Input() cartButtonName: string = ''
-
-  handleCart(product: Product, button: string) {
+  handleCart(product: Product, button: string): void {
     if (button === "Add to cart") {
       this.cartService.addToCart(product);
       return
     }
-    this.cartService.removeFromCart(product.id)
+    this.cartService.removeFromCart(product.id);
   }
 
   setButtonName(): void {
-
     if (this.cartButtonName === '') {
       this.buttonName = "Add to cart";
       return
     }
-    this.buttonName = this.cartButtonName
+    this.buttonName = this.cartButtonName;
+  }
+
+  addQuantity(id: number): void {
+    this.cartService.addQuantity(id);
+  }
+
+  subtractQuantity(id: number): void {
+    this.cartService.subtractQuantity(id);
   }
 
 }
