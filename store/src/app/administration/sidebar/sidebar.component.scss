@@ -1,0 +1,38 @@
+@import "../../../scss/main-colors.scss";
+
+.sidebar {
+  width: 306px;
+  height: 100vh;
+  background-color: #a2a2a1ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .main-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: $main-logo-bg;
+  }
+
+  .link-list {
+    margin: 0px 0px 0px 58px;
+    padding-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .link,
+  .shop-link {
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 44px;
+    color: $main-text-color;
+  }
+
+  .shop-link {
+    margin-left: 58px;
+    margin-bottom: 50px;
+  }
+}

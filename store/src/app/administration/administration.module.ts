@@ -6,6 +6,7 @@ import { UsersComponent } from './users/users.component';
 import { ProductsComponent } from './products/products.component';
 import { AdministrationComponent } from './administration.component';
 import { RouterModule } from '@angular/router';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 
@@ -14,7 +15,8 @@ import { RouterModule } from '@angular/router';
     LoginComponent,
     UsersComponent,
     ProductsComponent,
-    AdministrationComponent
+    AdministrationComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,

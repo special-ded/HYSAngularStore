@@ -11,7 +11,7 @@ export class CartService implements OnInit {
   constructor(private lsService: LocalStorageService) { }
 
   ngOnInit(): void {
-    this.getTotalPrice()
+    this.getTotalPrice();
   }
 
   cartList: Product[] = [];
