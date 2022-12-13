@@ -3,10 +3,20 @@
 .sidebar {
   width: 306px;
   height: 100vh;
-  background-color: #a2a2a1ff;
+  background-color: $header-bg;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: "Roboto Mono", monospace;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 44px;
+
+  .logo {
+    padding-left: 58px;
+    padding-bottom: 25px;
+  }
 
   .main-logo {
     width: 50px;
@@ -16,18 +26,29 @@
   }
 
   .link-list {
-    margin: 0px 0px 0px 58px;
     padding-top: 28px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+  }
+
+  .link {
+    display: block;
+    width: 306px;
+    height: 67px;
+    padding-left: 58px;
+    padding-top: 10px;
+
+    &:hover {
+      background-color: $product-button-bg-hover;
+    }
+
+    &:active {
+      background-color: $product-button-bg-active;
+    }
   }
 
   .link,
   .shop-link {
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 44px;
     color: $main-text-color;
   }
 

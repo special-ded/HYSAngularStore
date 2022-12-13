@@ -1,0 +1,14 @@
+@import "../../../scss/main-colors.scss";
+
+.header {
+  height: 101px;
+  max-width: 100%;
+  display: block;
+  background-color: $header-bg;
+}
+
+.header__item-link {
+  width: 100%;
+  display: block;
+  color: $main-text-color;
+}
