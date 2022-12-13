@@ -19,7 +19,7 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 
 
 @NgModule({
-  providers: [CartService, ProductsService],
+  providers: [],
   declarations: [
     HeaderComponent,
     FooterComponent,

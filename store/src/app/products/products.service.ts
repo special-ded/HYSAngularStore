@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../interfaces/products.interface';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ProductsService {
-
   generatedProducts: Product[] = [];
 
-  generateProducts(n: number): Product[] {
+  generateProducts(n: number): void {
     const names: string[] = ['Xiaomi 12', 'AirPods', 'Iphone 14', 'Asus ROG 17',
       'Mi AirDots', 'Sony WH-1000XM4', 'Power Bank 200', 'Invertor 12-220',
       'BFG 9000', 'Doom Eternal'];
@@ -20,7 +21,10 @@ export class ProductsService {
       };
       this.generatedProducts.push(obj);
     }
-    return this.generatedProducts;
+  }
+
+  getGeneratedProducts(): Product[] {
+    return this.generatedProducts
   }
 
   getProductById(id: number): Product {

@@ -17,13 +17,14 @@ export class ProductsListComponent implements OnInit {
   products: Product[] = [];
 
   ngOnInit(): void {
-    this.products = this.productsService.generatedProducts
+    this.products = this.productsService.getGeneratedProducts()
     if (this.products.length === 0) {
       this.initProducts(8);
     }
   }
 
-  initProducts(n: number): void {
-    this.products = this.productsService.generateProducts(n);
+  initProducts(id: number): void {
+    this.productsService.generateProducts(id)
+    this.products = this.productsService.getGeneratedProducts()
   }
 }

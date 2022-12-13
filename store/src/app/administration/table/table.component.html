@@ -46,16 +46,20 @@
       <button class="add-btn btn"></button>
     </div>
 
-    <div class="table-row">
-      <p class="table-row__item">1</p>
-      <p class="table-row__item">Product</p>
-      <p class="table-row__item">10/10/2010</p>
-      <div class="table-row__buttons">
-        <button>+</button>
-        <button>-</button>
-      </div>
+    <div *ngFor="let product of products" class="table-row-wrapper">
+      <div class="table-row">
+        <p class="table-row__item">{{product.id}}</p>
+        <p class="table-row__item">{{product.name}}</p>
+        <p class="table-row__item">10/10/2010</p>
+        <div class="table-row__buttons">
+          <button>+</button>
+          <button>-</button>
+        </div>
 
+      </div>
     </div>
+
+
 
   </div>
 
