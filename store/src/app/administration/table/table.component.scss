@@ -1,12 +1,33 @@
-@import "../../../scss/main-colors.scss";
-
-.container {
+.table {
   width: 1508px;
   height: 871px;
   display: block;
-  background: #b3b3b3;
+  background: #543838;
+  margin-left: 52px;
 
-  h1 {
-    font-size: 100px;
+  .table-wrapper {
+    padding: 20px 30px 10px 30px;
+  }
+
+  .filters-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .filters {
+    display: flex;
+    gap: 30px;
+  }
+
+  .table-header {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .table-row {
+    display: flex;
+    justify-content: space-between;
+    background-color: aliceblue;
   }
 }
