@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <div class="table-header">
+    <div class="header">
       <div class="header__item">
         <label for="selectID">ID:</label>
         <select class="selectID">
@@ -46,17 +46,18 @@
       <button class="add-btn btn"></button>
     </div>
 
-    <div *ngFor="let product of products" class="table-row-wrapper">
-      <div class="table-row">
-        <p class="table-row__item">{{product.id}}</p>
-        <p class="table-row__item">{{product.name}}</p>
-        <p class="table-row__item">10/10/2010</p>
-        <div class="table-row__buttons">
-          <button>+</button>
-          <button>-</button>
+    <div class="table-row-wrapper">
+      <ng-container *ngFor="let product of products">
+        <div class="table-row">
+          <p class="table-row__item">{{product.id}}</p>
+          <p class="table-row__item">{{product.name}}</p>
+          <p class="table-row__item">10/10/2010</p>
+          <div class="table-row__buttons">
+            <button class="add-btn btn">+</button>
+            <button class="add-btn btn">-</button>
+          </div>
         </div>
-
-      </div>
+      </ng-container>
     </div>
 
 

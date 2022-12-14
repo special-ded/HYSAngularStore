@@ -19,7 +19,7 @@ export class ProductsListComponent implements OnInit {
   ngOnInit(): void {
     this.products = this.productsService.getGeneratedProducts()
     if (this.products.length === 0) {
-      this.initProducts(8);
+      this.initProducts(80);
     }
   }
 

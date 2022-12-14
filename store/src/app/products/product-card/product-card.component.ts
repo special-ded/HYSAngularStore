@@ -40,7 +40,6 @@ export class ProductCardComponent implements OnInit {
   setButtonName(): void {
     if (this.cartButtonName === ''
       && this.cartService.getCartList().some(el => el.id === this.product.id)) {
-
       this.buttonName = "In cart";
       return
     }
@@ -59,33 +58,5 @@ export class ProductCardComponent implements OnInit {
   subtractQuantity(id: number): void {
     this.cartService.subtractQuantity(id);
   }
-
 }
 
-
-// handleCart(product: Product, button: string): void {
-//   if (button === "Add to cart") {
-//     this.cartService.addToCart({ ...product, quantity: 1 });
-//     this.buttonName = "In cart";
-//     return
-//   }
-//   if (button === "In cart") {
-//     return
-//   }
-//   this.cartService.removeFromCart(product.id);
-// }
-
-// setButtonName(): void {
-//   if (this.cartButtonName === ''
-//     && this.cartService.getCartList().some(el => el.id === this.product.id)) {
-
-//     this.buttonName = "In cart";
-//     return
-//   }
-
-//   if (this.cartButtonName === '') {
-//     this.buttonName = "Add to cart";
-//     return
-//   }
-//   this.buttonName = this.cartButtonName;
-// }
