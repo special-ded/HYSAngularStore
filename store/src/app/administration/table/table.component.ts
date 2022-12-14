@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/interfaces/products.interface';
-import { ProductsService } from 'src/app/services/products.service';
+import { Product } from 'src/app/shared/interfaces/products.interface';
+import { ProductsService } from 'src/app/shared/services/products.service';
 
 @Component({
   selector: 'app-table',

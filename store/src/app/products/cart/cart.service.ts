@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { Product } from 'src/app/interfaces/products.interface';
+import { Product } from 'src/app/shared/interfaces/products.interface';
 import { LocalStorageService } from '../local-storage.service';
 
 @Injectable({
