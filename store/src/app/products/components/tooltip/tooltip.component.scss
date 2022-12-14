@@ -1,9 +1,9 @@
-@import "../../../scss/main-colors.scss";
+@import "../../../../scss/main-colors.scss";
 
 .container {
   width: 535px;
   height: 428px;
-  background: #8fbcef;
+  background: $tooltip-bg;
   z-index: 100;
   border-radius: 20px;
   position: relative;

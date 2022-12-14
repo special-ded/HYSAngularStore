@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './header/header.component';
-import { ProductCardComponent } from './product-card/product-card.component';
-import { ProductInfoComponent } from './product-info/product-info.component';
-import { ButtonComponent } from './button/button.component';
-import { FooterComponent } from './footer/footer.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductInfoComponent } from './components/product-info/product-info.component';
+import { ButtonComponent } from './components/button/button.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
 import { RouterModule } from '@angular/router';
-import { HryvniaPipePipe } from '../pipes/hryvnia-pipe.pipe';
-import { ColorPriceDirective } from '../directives/color-price.directive';
+import { HryvniaPipePipe } from '../shared/pipes/hryvnia-pipe.pipe';
+import { ColorPriceDirective } from '../shared/directives/color-price.directive';
 import { ProductsComponent } from './products.component';
-import { ProductsListComponent } from './products-list/products-list.component';
-import { CartComponent } from './cart/cart.component';
-import { CartService } from './cart/cart.service';
-import { ProductsService } from './products.service';
+import { ProductsListComponent } from './components/products-list/products-list.component';
+import { CartComponent } from './components/cart/cart.component';
+import { CartService } from './services/cart.service';
+import { ProductsService } from './services/products.service';
 import { ProductsRoutingModule } from './products-routing.module';
-import { TooltipComponent } from './tooltip/tooltip.component';
+import { TooltipComponent } from './components/tooltip/tooltip.component';
 
 
 @NgModule({
