@@ -14,6 +14,7 @@ export class CartService implements OnInit {
     this.getTotalPrice()
   }
 
+  rest: Product[] = [];
   cartList: Product[] = [];
   total: number = 0;
 
@@ -21,8 +22,7 @@ export class CartService implements OnInit {
     if (!product) {
       return
     }
-
-    this.cartList.push(product);
+    this.cartList = [...this.cartList, product]
     this.lsService.setToLS(this.cartList);
     this.getTotalPrice();
     return this.cartList;
