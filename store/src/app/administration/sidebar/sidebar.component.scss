@@ -1,5 +1,15 @@
 @import "../../../scss/main-colors.scss";
 
+.activeProducts {
+  background-color: rgb(93, 178, 211);
+}
+.activeUsers {
+  background-color: rgb(202, 93, 35);
+}
+.activeLog {
+  background-color: rgb(56, 79, 88);
+}
+
 .sidebar {
   width: 306px;
   height: 100vh;
