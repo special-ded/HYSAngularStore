@@ -13,8 +13,7 @@ export class TooltipComponent implements OnInit {
   ) { }
 
   products: Product[] = [];
-
-  total: number = 0
+  total: number = 0;
 
   ngOnInit(): void {
     this.products = this.cartService.cartList;
@@ -22,11 +21,11 @@ export class TooltipComponent implements OnInit {
   }
 
   deleteFromCart(id: number): void {
-    this.cartService.removeFromCart(id)
+    this.cartService.removeFromCart(id);
   }
 
   addQuantity(id: number): void {
-    this.cartService.addQuantity(id)
+    this.cartService.addQuantity(id);
   }
 
   subtractQuantity(id: number): void {
