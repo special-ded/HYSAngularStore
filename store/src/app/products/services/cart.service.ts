@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
-import { LocalStorageService } from '../local-storage.service';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,32 +12,36 @@ export class CartService implements OnInit {
   constructor(private lsService: LocalStorageService) { }
 
   ngOnInit(): void {
-    this.getTotalPrice();
+    this.updateTotalPrice();
   }
+
+  cartTotal$ = new BehaviorSubject<number>(0);
 
   cartList: Product[] = [];
   total: number = 0;
+
 
   addToCart(product: Product) {
     if (!product) {
       return
     }
-
     this.cartList.push(product);
     this.lsService.setToLS(this.cartList);
-    this.getTotalPrice();
+    this.updateTotalPrice();
+
     return this.cartList;
   }
 
   removeFromCart(id: number) {
     let index = this.cartList.findIndex(val => val.id == id);
     this.cartList.splice(index, 1);
-    this.getTotalPrice();
+    this.updateTotalPrice();
     this.lsService.setToLS(this.cartList);
   }
 
-  getTotalPrice(): number {
-    return this.cartList.reduce((acc: number, curV: Product) => acc += curV.price * curV.quantity, 0);
+
+  updateTotalPrice() {
+    this.cartTotal$.next(this.cartList.reduce((acc: number, curV: Product) => acc += curV.price * curV.quantity, 0))
   }
 
   getCartList(): Product[] {
@@ -44,12 +49,13 @@ export class CartService implements OnInit {
       this.cartList = this.lsService.checkLS()
     }
 
-    this.getTotalPrice()
+    this.updateTotalPrice()
     return this.cartList
   }
 
   addQuantity(id: number) {
     this.cartList.find(x => x.id === id)!.quantity++;
+    this.updateTotalPrice()
     this.lsService.setToLS(this.cartList);
   }
 
@@ -60,6 +66,7 @@ export class CartService implements OnInit {
       this.removeFromCart(id)
       return
     }
+    this.updateTotalPrice()
     this.lsService.setToLS(this.cartList)
   }
 }

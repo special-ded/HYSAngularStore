@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ProductsService } from '../../shared/services/products.service';
-import { CartService } from './cart.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,12 +14,13 @@ export class CartComponent implements OnInit {
 
   constructor(private cartService: CartService) { }
 
-  cartButtonName: string = 'Remove from cart';
-  totalPrice: number = 0;
-  products: Product[] = this.cartService.getCartList();
-
   ngOnInit(): void {
-    this.totalPrice = this.cartService.getTotalPrice();
+    // this.totalPrice = this.cartService.getTotalPrice();
+    this.cartService.cartTotal$.subscribe((number) => this.totalPrice = number)
   }
+
+  cartButtonName: string = 'Remove from cart';
+  totalPrice: number = 0
+  products: Product[] = this.cartService.getCartList();
 
 }

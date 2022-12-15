@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
-import { CartService } from '../cart/cart.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-tooltip',
@@ -13,11 +13,12 @@ export class TooltipComponent implements OnInit {
   ) { }
 
   products: Product[] = [];
-  total: number = 0;
+
+  total: number = 0
 
   ngOnInit(): void {
     this.products = this.cartService.cartList;
-    this.total = this.cartService.getTotalPrice();
+    this.cartService.cartTotal$.subscribe((number) => this.total = number)
   }
 
   deleteFromCart(id: number): void {
