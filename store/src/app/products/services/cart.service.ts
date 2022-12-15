@@ -38,7 +38,7 @@ export class CartService implements OnInit {
 
     this.updateTotalPrice();
     this.lsService.setToLS(this.cartList);
-    this.cartList$.next(this.cartList)
+    this.cartList$.next(this.cartList);
   }
 
   updateTotalPrice() {
@@ -48,11 +48,11 @@ export class CartService implements OnInit {
 
   getCartList(): Product[] {
     if (this.cartList.length === 0) {
-      this.cartList = this.lsService.checkLS()
+      this.cartList = this.lsService.checkLS();
     }
 
     this.updateTotalPrice();
-    return this.cartList
+    return this.cartList;
   }
 
   addQuantity(id: number) {
@@ -69,6 +69,6 @@ export class CartService implements OnInit {
       return
     }
     this.updateTotalPrice();
-    this.lsService.setToLS(this.cartList)
+    this.lsService.setToLS(this.cartList);
   }
 }

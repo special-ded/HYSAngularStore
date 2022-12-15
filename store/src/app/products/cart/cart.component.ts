@@ -21,5 +21,4 @@ export class CartComponent implements OnInit {
   cartButtonName: string = 'Remove from cart';
   totalPrice: number = 0;
   products: Product[] = this.cartService.getCartList();
-
 }

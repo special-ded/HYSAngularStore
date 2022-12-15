@@ -12,8 +12,8 @@ export class ProductCardComponent implements OnInit {
   constructor(private cartService: CartService) { };
 
   ngOnInit(): void {
-    this.setButtonName()
-    this.cartService.cartList$.subscribe(() => this.setButtonName())
+    this.setButtonName();
+    this.cartService.cartList$.subscribe(() => this.setButtonName());
   }
 
   buttonName: string = "";
