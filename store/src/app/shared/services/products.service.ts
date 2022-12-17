@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Product } from '../interfaces/products.interface';
 
 @Injectable({
@@ -6,6 +7,15 @@ import { Product } from '../interfaces/products.interface';
 })
 export class ProductsService {
   generatedProducts: Product[] = [];
+
+  private _productsList$ = new BehaviorSubject<Product[]>([
+    { id: 1087, name: "Asus ROG 17", price: 111, quantity: 4 },
+    { id: 1132, name: "Iphone 14", price: 111, quantity: 6 },
+    { id: 1143, name: "Doom Eternal", price: 111, quantity: 1 },
+    { id: 1207, name: "Iphone 14", price: 111, quantity: 1 },
+    { id: 1110, name: "Xiaomi 12", price: 111, quantity: 1 }
+  ]);
+  public productList$ = this._productsList$.asObservable();
 
   generateProducts(n: number): void {
     const names: string[] = ['Xiaomi 12', 'AirPods', 'Iphone 14', 'Asus ROG 17',
@@ -21,6 +31,7 @@ export class ProductsService {
       };
       this.generatedProducts.push(obj);
     }
+    this._productsList$.next(this.generatedProducts)
   }
 
   getGeneratedProducts(): Product[] {
