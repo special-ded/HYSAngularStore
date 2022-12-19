@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
-
 import { ProductsService } from '../../shared/services/products.service';
 
 @Component({
@@ -17,14 +16,14 @@ export class ProductsListComponent implements OnInit {
   products: Product[] = [];
 
   ngOnInit(): void {
-    this.products = this.productsService.getGeneratedProducts()
-    if (this.products.length === 0) {
-      this.initProducts(80);
-    }
+    this.productsService.getProductsList().subscribe(data => {
+      data.length === 0 ? this.initProducts(40) : null,
+        this.products = data
+    })
   }
 
   initProducts(id: number): void {
-    this.productsService.generateProducts(id)
-    this.products = this.productsService.getGeneratedProducts()
+    this.productsService.generateProducts(id);
+    this.productsService.getProductsList().subscribe(data => this.products = data);
   }
 }

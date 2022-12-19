@@ -14,6 +14,7 @@ import { ProductsListComponent } from './products-list/products-list.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { TooltipComponent } from './tooltip/tooltip.component';
+import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { TooltipComponent } from './tooltip/tooltip.component';
     ProductsComponent,
     ProductsListComponent,
     CartComponent,
-    TooltipComponent
+    TooltipComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,

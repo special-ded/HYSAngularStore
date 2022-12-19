@@ -28,10 +28,6 @@ export class ProductsService {
     return of(this.generatedProducts).pipe(delay(1000));
   }
 
-  getGeneratedProducts(): Product[] {
-    return this.generatedProducts
-  }
-
   getProductById(id: number): Product {
     return this.generatedProducts.find(x => x.id === id)!;
   }
