@@ -7,7 +7,7 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 export class PaginatorService {
 
   constructor(private productService: ProductsService) {
-    this.productService.productList$.subscribe(data => {
+    this.productService.getProductsList().subscribe(data => {
       this.totalPages = data.length / 5
     })
   }

@@ -1,7 +1,8 @@
-import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
+import { Component, ViewChild, OnInit, ElementRef, OnChanges } from '@angular/core';
+import { take } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ProductsService } from 'src/app/shared/services/products.service';
-import { PaginatorService } from '../services/paginator.service';
+
 
 @Component({
   selector: 'app-table',
@@ -11,18 +12,30 @@ import { PaginatorService } from '../services/paginator.service';
 
 export class TableComponent implements OnInit {
 
-  constructor(private productsService: ProductsService,
-    private paginatorService: PaginatorService) { }
+  constructor(public productsService: ProductsService) { }
 
   products: Product[] = [];
   currentPageProducts: Product[] = [];
-  currentPage: number = this.paginatorService.currentPage
-  totalPages: number = this.paginatorService.totalPages
-  i: number = 0
+  currentPage: number = 1;
+  totalPages: number = 0;
+  startIndex: number = 0;
 
   ngOnInit(): void {
-    this.productsService.productList$.subscribe(data => this.products = data)
-    this.currentPageProducts = this.products.slice(this.i, 5)
+    if (this.products.length === 0) {
+      console.log("spinner");
+
+    }
+
+    this.productsService.getProductsList()
+      .subscribe(data => {
+        console.log(data);
+
+
+
+        this.products = data,
+          this.totalPages = data.length / 5,
+          this.currentPageProducts = this.products.slice(this.startIndex, 5)
+      })
   }
 
   nextPage() {
@@ -31,7 +44,7 @@ export class TableComponent implements OnInit {
     }
 
     this.currentPage++;
-    this.currentPageProducts = this.products.slice(this.i += 5, 5 * this.currentPage);
+    this.currentPageProducts = this.products.slice(this.startIndex += 5, 5 * this.currentPage);
   }
 
   prevPage() {
@@ -40,6 +53,6 @@ export class TableComponent implements OnInit {
     }
 
     this.currentPage--;
-    this.currentPageProducts = this.products.slice(this.i -= 5, 5 * this.currentPage);
+    this.currentPageProducts = this.products.slice(this.startIndex -= 5, 5 * this.currentPage);
   }
 }
