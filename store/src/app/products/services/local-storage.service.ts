@@ -7,7 +7,7 @@ import { Product } from '../../shared/interfaces/products.interface';
 export class LocalStorageService {
 
   constructor() {
-    this.checkLS
+    this.checkLS();
   }
 
   setToLS(products: Product[]): void {
@@ -15,11 +15,13 @@ export class LocalStorageService {
   }
 
   checkLS(): Product[] {
+
     if (JSON.parse(localStorage.getItem('cartList')!) === null ||
       JSON.parse(localStorage.getItem('cartList')!)[0] === null) {
       localStorage.setItem('cartList', '[]');
       return [];
     }
+
     return JSON.parse(localStorage.getItem('cartList')!);
   }
 }

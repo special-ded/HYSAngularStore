@@ -32,9 +32,11 @@ export class ProductCardComponent implements OnInit {
       this.buttonName = "In cart";
       return
     }
+
     if (button === "In cart") {
       return
     }
+
     this.cartService.removeFromCart(product.id);
   }
 

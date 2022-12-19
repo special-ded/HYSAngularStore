@@ -14,7 +14,7 @@ import { ProductsListComponent } from './products-list/products-list.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { TooltipComponent } from './tooltip/tooltip.component';
-import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
+import { AdministrationModule } from '../administration/administration.module';
 
 
 @NgModule({
@@ -31,13 +31,13 @@ import { SpinnerComponent } from '../shared/components/spinner/spinner.component
     ProductsComponent,
     ProductsListComponent,
     CartComponent,
-    TooltipComponent,
-    SpinnerComponent
+    TooltipComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    AdministrationModule
   ]
 })
 export class ProductsModule { }

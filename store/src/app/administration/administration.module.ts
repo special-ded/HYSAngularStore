@@ -26,6 +26,9 @@ import { SpinnerComponent } from '../shared/components/spinner/spinner.component
     CommonModule,
     AdministrationRoutingModule,
     RouterModule
+  ],
+  exports: [
+    SpinnerComponent
   ]
 })
 export class AdministrationModule { }

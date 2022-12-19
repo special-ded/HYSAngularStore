@@ -6,13 +6,11 @@ import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.scss'],
+  styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent implements OnInit {
 
-  constructor(
-    private productsService: ProductsService
-  ) { };
+  constructor(private productsService: ProductsService) { };
 
   products: Product[] = [];
   loading$ = new BehaviorSubject<boolean>(true);
@@ -22,7 +20,6 @@ export class ProductsListComponent implements OnInit {
       data.length === 0 ? this.initProducts(10) : null,
         data.length !== 0 ? this.loading$.next(false) : null,
         this.products = data
-
     })
   }
 
