@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, delay, Observable, of, Subscription } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { Product } from '../interfaces/products.interface';
 
 @Injectable({

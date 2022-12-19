@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnInit, ElementRef, OnChanges } from '@angular/core';
-import { take } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ProductsService } from 'src/app/shared/services/products.service';
 
@@ -19,20 +19,13 @@ export class TableComponent implements OnInit {
   currentPage: number = 1;
   totalPages: number = 0;
   startIndex: number = 0;
+  loading$ = new BehaviorSubject<boolean>(true);
 
   ngOnInit(): void {
-    if (this.products.length === 0) {
-      console.log("spinner");
-
-    }
-
     this.productsService.getProductsList()
       .subscribe(data => {
-        console.log(data);
-
-
-
-        this.products = data,
+        this.loading$.next(false),
+          this.products = data,
           this.totalPages = data.length / 5,
           this.currentPageProducts = this.products.slice(this.startIndex, 5)
       })

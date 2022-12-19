@@ -1,7 +1,7 @@
 <section class="section-products">
   <h1 class="main-title">Products</h1>
   <div class="product-cards">
-    <app-spinner *ngIf="products.length === 0"></app-spinner>
+    <app-spinner *ngIf="loading$ |async"></app-spinner>
     <app-product-card *ngFor="let product of products" [product]="product">
     </app-product-card>
   </div>
