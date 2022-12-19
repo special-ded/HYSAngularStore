@@ -19,9 +19,10 @@ export class ProductsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.productsService.getProductsList().subscribe(data => {
-      data.length === 0 ? this.initProducts(40) : null,
-        this.products = data,
-        this.loading$.next(false)
+      data.length === 0 ? this.initProducts(10) : null,
+        data.length !== 0 ? this.loading$.next(false) : null,
+        this.products = data
+
     })
   }
 

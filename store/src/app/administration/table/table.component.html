@@ -37,7 +37,7 @@
     </div>
 
     <div class="table-row-wrapper">
-      <app-spinner *ngIf="currentPageProducts.length === 0"></app-spinner>
+      <app-spinner *ngIf="loading$ | async"></app-spinner>
       <ng-container *ngFor="let product of currentPageProducts">
         <div class="table-row">
           <p class="table-row__item">{{product.id }}</p>
