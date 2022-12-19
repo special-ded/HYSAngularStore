@@ -8,6 +8,7 @@ import { AdministrationComponent } from './administration.component';
 import { RouterModule } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TableComponent } from './table/table.component';
+import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
 
 
 
@@ -18,7 +19,8 @@ import { TableComponent } from './table/table.component';
     ProductsComponent,
     AdministrationComponent,
     SidebarComponent,
-    TableComponent
+    TableComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
