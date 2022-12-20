@@ -1,7 +1,8 @@
 import { Component, ViewChild, OnInit, ElementRef, OnChanges } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, delay } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ProductsService } from 'src/app/shared/services/products.service';
+import { FilterService } from '../services/filter.service';
 
 
 @Component({
@@ -12,7 +13,10 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 
 export class TableComponent implements OnInit {
 
-  constructor(public productsService: ProductsService) { }
+  constructor(
+    public productsService: ProductsService,
+    private filterService: FilterService
+  ) { }
 
   products: Product[] = [];
   currentPageProducts: Product[] = [];
@@ -22,13 +26,27 @@ export class TableComponent implements OnInit {
   loading$ = new BehaviorSubject<boolean>(true);
 
   ngOnInit(): void {
-    this.productsService.getProductsList()
+    this.productsService.productsList$
+      .pipe(delay(1000))
       .subscribe(data => {
         data.length !== 0 ? this.loading$.next(false) : null,
+          console.log(data),
+          console.log(this.startIndex),
           this.products = data,
-          this.totalPages = data.length / 5,
-          this.currentPageProducts = this.products.slice(this.startIndex, 5)
+          this.pageHandler(data)
+
       })
+  }
+
+  sortById() {
+    this.filterService.sortById()
+  }
+
+  pageHandler(data: Product[]): void {
+    this.totalPages = data.length / 5,
+      this.currentPageProducts = this.products.slice(0, 5),
+      this.currentPage = 1,
+      this.startIndex = 0
   }
 
   nextPage() {

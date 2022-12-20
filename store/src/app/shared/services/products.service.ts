@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { delay, Observable, of } from 'rxjs';
+import { delay, Observable, of, BehaviorSubject } from 'rxjs';
 import { Product } from '../interfaces/products.interface';
 
 @Injectable({
@@ -7,6 +7,7 @@ import { Product } from '../interfaces/products.interface';
 })
 export class ProductsService {
   generatedProducts: Product[] = [];
+  productsList$ = new BehaviorSubject<Product[]>([]);
 
   generateProducts(n: number): void {
     const names: string[] = ['Xiaomi 12', 'AirPods', 'Iphone 14', 'Asus ROG 17',
@@ -22,6 +23,7 @@ export class ProductsService {
       };
       this.generatedProducts.push(obj);
     }
+    this.productsList$.next(this.generatedProducts);
   }
 
   getProductsList(): Observable<Product[]> {
