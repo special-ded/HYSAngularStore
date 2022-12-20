@@ -11,7 +11,6 @@
           </select>
           <input class="price-input" placeholder="10">
         </div>
-
         <button class="apply-btn btn">Apply</button>
       </div>
     </div>
@@ -19,15 +18,18 @@
     <div class="header">
       <div (click)="sortById()" class="header__item">
         <p class="sortID">ID</p>
-        <img class="arrow-left" src="/assets/img/sort-down.png" alt="arrow">
+        <img *ngIf="isIdAscending" class="arrow-left" src="/assets/img/sort-down.png" alt="arrow">
+        <img *ngIf="!isIdAscending" class="arrow-left" src="/assets/img/sort-up.png" alt="arrow">
       </div>
-      <div class="header__item">
+      <div (click)="sortByName()" class="header__item">
         <p class="sortName">Name</p>
-        <img class="arrow-left" src="/assets/img/sort-down.png" alt="arrow">
+        <img *ngIf="isNameAscending" class="arrow-left" src="/assets/img/sort-down.png" alt="arrow">
+        <img *ngIf="!isNameAscending" class="arrow-left" src="/assets/img/sort-up.png" alt="arrow">
       </div>
-      <div class="header__item">
+      <div (click)="sortByPrice()" class="header__item">
         <p class="sortPrice">Price</p>
-        <img class="arrow-left" src="/assets/img/sort-down.png" alt="arrow">
+        <img *ngIf="isPriceAscending" class="arrow-left" src="/assets/img/sort-down.png" alt="arrow">
+        <img *ngIf="!isPriceAscending" class="arrow-left" src="/assets/img/sort-up.png" alt="arrow">
       </div>
       <button class="add-btn btn"></button>
     </div>

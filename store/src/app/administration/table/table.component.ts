@@ -24,6 +24,9 @@ export class TableComponent implements OnInit {
   totalPages: number = 0;
   startIndex: number = 0;
   loading$ = new BehaviorSubject<boolean>(true);
+  isIdAscending: boolean = true;
+  isPriceAscending: boolean = true;
+  isNameAscending: boolean = true;
 
   ngOnInit(): void {
     this.productsService.productsList$
@@ -33,13 +36,21 @@ export class TableComponent implements OnInit {
           console.log(data),
           console.log(this.startIndex),
           this.products = data,
-          this.pageHandler(data)
-
+          this.pageHandler(data),
+          this.isIdAscending = this.filterService.ascendingId
+        this.isPriceAscending = this.filterService.ascendingPrice
+        this.isNameAscending = this.filterService.ascendingName
       })
   }
 
   sortById() {
-    this.filterService.sortById()
+    this.filterService.sortById();
+  }
+  sortByPrice() {
+    this.filterService.sortByPrice();
+  }
+  sortByName() {
+    this.filterService.sortByName();
   }
 
   pageHandler(data: Product[]): void {
