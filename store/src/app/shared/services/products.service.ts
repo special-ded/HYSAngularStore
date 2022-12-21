@@ -6,6 +6,7 @@ import { Product } from '../interfaces/products.interface';
   providedIn: 'root'
 })
 export class ProductsService {
+
   generatedProducts: Product[] = [];
   productsList$ = new BehaviorSubject<Product[]>([]);
 

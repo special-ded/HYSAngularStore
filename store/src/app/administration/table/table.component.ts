@@ -29,7 +29,10 @@ export class TableComponent implements OnInit {
   isNameAscending: boolean = true;
 
   ngOnInit(): void {
-    this.productsService.productsList$
+    this.productsService.productsList$.subscribe(data => this.products = data)
+    this.filterService.filteredProducts$.next(this.products)
+
+    this.filterService.filteredProducts$
       .pipe(delay(1000))
       .subscribe(data => {
         data.length !== 0 ? this.loading$.next(false) : null,
@@ -43,6 +46,10 @@ export class TableComponent implements OnInit {
       })
   }
 
+  textInput(val: Event) {
+    this.filterService.filterByText((val.target as HTMLTextAreaElement).value)
+  }
+
   sortById() {
     this.filterService.sortById();
   }
@@ -54,14 +61,14 @@ export class TableComponent implements OnInit {
   }
 
   pageHandler(data: Product[]): void {
-    this.totalPages = data.length / 5,
+    this.totalPages = Math.round(data.length / 5),
       this.currentPageProducts = this.products.slice(0, 5),
       this.currentPage = 1,
       this.startIndex = 0
   }
 
   nextPage() {
-    if (this.currentPage === this.products.length / 5) {
+    if (this.currentPage >= Math.round(this.products.length / 5)) {
       return
     }
 
