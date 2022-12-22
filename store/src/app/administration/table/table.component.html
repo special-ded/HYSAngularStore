@@ -3,15 +3,12 @@
 
     <div class="filters-wrapper">
       <input type="text" (input)="searchInput($event)" class="search-input" placeholder="Search...">
-      <div class="filters">
-        <div>
-          <select (input)="priceInput($event)" class="select">
-            <option value="More than">More than:</option>
-            <option value="Less than">Less than:</option>
-          </select>
-          <input type="number" class="price-input" (input)="priceInput($event)" placeholder="0">
-        </div>
-        <button class="apply-btn btn">Apply</button>
+      <div class="price-filter">
+        <select (input)="priceInput($event)" class="select">
+          <option value="More than">More than:</option>
+          <option value="Less than">Less than:</option>
+        </select>
+        <input type="number" class="price-input" (input)="priceInput($event)" placeholder="0">
       </div>
     </div>
 
@@ -31,7 +28,7 @@
         <img *ngIf="isPriceAscending" class="arrow-up" src="/assets/img/sort-down.png" alt="arrow">
         <img *ngIf="!isPriceAscending" class="arrow-down" src="/assets/img/sort-up.png" alt="arrow">
       </div>
-      <button class="add-btn btn"></button>
+      <button class="heade-add add-btn btn"></button>
     </div>
 
     <div class="table-row-wrapper">

@@ -36,30 +36,17 @@ export class TableComponent implements OnInit, OnDestroy {
   priceSelectOption: string = "More than";
 
 
-
   ngOnInit(): void {
-    this.filterService.filterByText('');
+    this.resetFilter();
 
     this.filterService.filteredByPrice$
+      .pipe(debounceTime(500))
       .subscribe(data => {
         data.length !== 0 ? this.loading$.next(false) : null,
           this.products = data,
           this.pageHandler(data),
-          this.isIdAscending = this.filterService.ascendingId,
-          this.isPriceAscending = this.filterService.ascendingPrice,
-          this.isNameAscending = this.filterService.ascendingName
+          this.arrowHandler()
       })
-
-    // this.productsService.filteredProducts$
-    //   .pipe(delay(1000))
-    //   .subscribe(data => {
-    //     data.length !== 0 ? this.loading$.next(false) : null,
-    //       this.products = data,
-    //       this.pageHandler(data),
-    //       this.isIdAscending = this.filterService.ascendingId,
-    //       this.isPriceAscending = this.filterService.ascendingPrice,
-    //       this.isNameAscending = this.filterService.ascendingName
-    //   })
   }
 
   ngOnDestroy(): void {
@@ -74,25 +61,24 @@ export class TableComponent implements OnInit, OnDestroy {
         debounceTime(300),
         distinctUntilChanged()
       )
-      .subscribe((text) => this.filterService.filterByText(text));
+      .subscribe((text) => this.filterService.filterByText(text!));
 
     this.searchSubject$.next(searchQuery?.trim());
   }
 
   priceInput(val: Event): void {
+
     if (isNaN(+(val.target as HTMLInputElement).value)) {
-      this.priceSelectOption = (val.target as HTMLInputElement).value
-      this.filterService.priceSelectOption$.next(this.priceSelectOption)
+      this.priceSelectOption = (val.target as HTMLInputElement).value;
+      this.filterService.priceSelectOption$.next(this.priceSelectOption);
     }
 
     if (!isNaN(+(val.target as HTMLInputElement).value)) {
-      this.price = +(val.target as HTMLInputElement).value
-      this.filterService.priceInput$.next(this.price)
+      this.price = +(val.target as HTMLInputElement).value;
+      this.filterService.priceInput$.next(this.price);
     }
 
-    console.log(this.price);
-    console.log(this.priceSelectOption);
-    this.filterService.filterByPrice(this.priceSelectOption, this.price)
+    this.filterService.filterByPrice(this.priceSelectOption, this.price);
   }
 
   sortById(): void {
@@ -111,6 +97,17 @@ export class TableComponent implements OnInit, OnDestroy {
       this.currentPage = 1,
       this.startIndex = 0
   }
+
+  arrowHandler(): void {
+    this.isIdAscending = this.filterService.ascendingId;
+    this.isPriceAscending = this.filterService.ascendingPrice;
+    this.isNameAscending = this.filterService.ascendingName;
+  }
+
+  resetFilter(): void {
+    this.filterService.filterByText('');
+  }
+
 
   nextPage(): void {
     if (this.currentPage >= Math.round(this.products.length / 5)) {
