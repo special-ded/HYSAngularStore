@@ -1,5 +1,8 @@
-import { Component, ViewChild, OnInit, ElementRef, OnChanges } from '@angular/core';
-import { BehaviorSubject, delay } from 'rxjs';
+import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import {
+  BehaviorSubject, Subject, delay, debounceTime, distinctUntilChanged
+  , Subscription
+} from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { FilterService } from '../services/filter.service';
@@ -11,7 +14,7 @@ import { FilterService } from '../services/filter.service';
   styleUrls: ['./table.component.scss']
 })
 
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnDestroy {
 
   constructor(
     public productsService: ProductsService,
@@ -23,40 +26,55 @@ export class TableComponent implements OnInit {
   currentPage: number = 1;
   totalPages: number = 0;
   startIndex: number = 0;
-  loading$ = new BehaviorSubject<boolean>(true);
   isIdAscending: boolean = true;
   isPriceAscending: boolean = true;
   isNameAscending: boolean = true;
+  loading$ = new BehaviorSubject<boolean>(true);
+  searchSubject$ = new Subject<string | undefined>();
+  private searchSubscription?: Subscription;
+
 
   ngOnInit(): void {
-    this.productsService.productsList$.subscribe(data => this.products = data)
-    this.filterService.filteredProducts$.next(this.products)
+    this.filterService.filterByText('');
 
-    this.filterService.filteredProducts$
+    this.productsService.filteredProducts$
       .pipe(delay(1000))
       .subscribe(data => {
+        console.log(data);
         data.length !== 0 ? this.loading$.next(false) : null,
-          console.log(data),
-          console.log(this.startIndex),
           this.products = data,
           this.pageHandler(data),
-          this.isIdAscending = this.filterService.ascendingId
-        this.isPriceAscending = this.filterService.ascendingPrice
-        this.isNameAscending = this.filterService.ascendingName
+          this.isIdAscending = this.filterService.ascendingId,
+          this.isPriceAscending = this.filterService.ascendingPrice,
+          this.isNameAscending = this.filterService.ascendingName
       })
   }
 
-  textInput(val: Event) {
-    this.filterService.filterByText((val.target as HTMLTextAreaElement).value)
+  ngOnDestroy(): void {
+    this.searchSubscription?.unsubscribe()
   }
 
-  sortById() {
+  searchInput(val: Event): void {
+    const searchQuery = (val.target as HTMLInputElement).value;
+    console.log(searchQuery);
+
+    this.searchSubscription = this.searchSubject$
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged()
+      )
+      .subscribe((text) => this.filterService.filterByText(text));
+
+    this.searchSubject$.next(searchQuery?.trim());
+  }
+
+  sortById(): void {
     this.filterService.sortById();
   }
-  sortByPrice() {
+  sortByPrice(): void {
     this.filterService.sortByPrice();
   }
-  sortByName() {
+  sortByName(): void {
     this.filterService.sortByName();
   }
 
@@ -67,7 +85,7 @@ export class TableComponent implements OnInit {
       this.startIndex = 0
   }
 
-  nextPage() {
+  nextPage(): void {
     if (this.currentPage >= Math.round(this.products.length / 5)) {
       return
     }
@@ -76,7 +94,7 @@ export class TableComponent implements OnInit {
     this.currentPageProducts = this.products.slice(this.startIndex += 5, 5 * this.currentPage);
   }
 
-  prevPage() {
+  prevPage(): void {
     if (this.currentPage === 1) {
       return
     }

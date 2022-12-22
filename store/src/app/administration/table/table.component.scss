@@ -56,6 +56,19 @@
       cursor: pointer;
       display: flex;
       align-items: center;
+
+      &:active {
+        .arrow-up {
+          position: relative;
+          top: 5px;
+          right: 0px;
+        }
+        .arrow-down {
+          position: relative;
+          bottom: 5px;
+          left: 0px;
+        }
+      }
     }
   }
 
