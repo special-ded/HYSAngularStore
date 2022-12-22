@@ -32,15 +32,16 @@ export class TableComponent implements OnInit, OnDestroy {
   loading$ = new BehaviorSubject<boolean>(true);
   searchSubject$ = new Subject<string | undefined>();
   private searchSubscription?: Subscription;
+  price: number = 0;
+  priceSelectOption: string = "More than";
+
 
 
   ngOnInit(): void {
     this.filterService.filterByText('');
 
-    this.productsService.filteredProducts$
-      .pipe(delay(1000))
+    this.filterService.filteredByPrice$
       .subscribe(data => {
-        console.log(data);
         data.length !== 0 ? this.loading$.next(false) : null,
           this.products = data,
           this.pageHandler(data),
@@ -48,6 +49,17 @@ export class TableComponent implements OnInit, OnDestroy {
           this.isPriceAscending = this.filterService.ascendingPrice,
           this.isNameAscending = this.filterService.ascendingName
       })
+
+    // this.productsService.filteredProducts$
+    //   .pipe(delay(1000))
+    //   .subscribe(data => {
+    //     data.length !== 0 ? this.loading$.next(false) : null,
+    //       this.products = data,
+    //       this.pageHandler(data),
+    //       this.isIdAscending = this.filterService.ascendingId,
+    //       this.isPriceAscending = this.filterService.ascendingPrice,
+    //       this.isNameAscending = this.filterService.ascendingName
+    //   })
   }
 
   ngOnDestroy(): void {
@@ -56,7 +68,6 @@ export class TableComponent implements OnInit, OnDestroy {
 
   searchInput(val: Event): void {
     const searchQuery = (val.target as HTMLInputElement).value;
-    console.log(searchQuery);
 
     this.searchSubscription = this.searchSubject$
       .pipe(
@@ -66,6 +77,22 @@ export class TableComponent implements OnInit, OnDestroy {
       .subscribe((text) => this.filterService.filterByText(text));
 
     this.searchSubject$.next(searchQuery?.trim());
+  }
+
+  priceInput(val: Event): void {
+    if (isNaN(+(val.target as HTMLInputElement).value)) {
+      this.priceSelectOption = (val.target as HTMLInputElement).value
+      this.filterService.priceSelectOption$.next(this.priceSelectOption)
+    }
+
+    if (!isNaN(+(val.target as HTMLInputElement).value)) {
+      this.price = +(val.target as HTMLInputElement).value
+      this.filterService.priceInput$.next(this.price)
+    }
+
+    console.log(this.price);
+    console.log(this.priceSelectOption);
+    this.filterService.filterByPrice(this.priceSelectOption, this.price)
   }
 
   sortById(): void {

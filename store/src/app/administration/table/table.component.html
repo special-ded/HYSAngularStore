@@ -2,14 +2,14 @@
   <div class="table-wrapper">
 
     <div class="filters-wrapper">
-      <input type="text" (input)="searchInput($event)" class="search" placeholder="Search...">
+      <input type="text" (input)="searchInput($event)" class="search-input" placeholder="Search...">
       <div class="filters">
         <div>
-          <select class="select">
-            <option value="">More than:</option>
-            <option value="dog">Less than:</option>
+          <select (input)="priceInput($event)" class="select">
+            <option value="More than">More than:</option>
+            <option value="Less than">Less than:</option>
           </select>
-          <input class="price-input" placeholder="10">
+          <input type="number" class="price-input" (input)="priceInput($event)" placeholder="0">
         </div>
         <button class="apply-btn btn">Apply</button>
       </div>
