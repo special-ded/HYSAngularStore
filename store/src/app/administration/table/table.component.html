@@ -1,0 +1,67 @@
+<div class="table">
+  <div class="table-wrapper">
+
+    <div class="filters-wrapper">
+      <input type="text" (input)="searchInput($event)" class="search-input" placeholder="Search...">
+      <div class="price-filter">
+        <select (input)="priceInput($event)" class="select">
+          <option value="More than">More than:</option>
+          <option value="Less than">Less than:</option>
+        </select>
+        <input type="number" class="price-input" (input)="priceInput($event)" placeholder="0">
+      </div>
+    </div>
+
+    <div class="header">
+      <div (click)="sortById()" class="header__item">
+        <p class="sortID">ID</p>
+        <img *ngIf="isIdAscending" class="arrow-up" src="/assets/img/sort-down.png" alt="arrow">
+        <img *ngIf="!isIdAscending" class="arrow-down" src="/assets/img/sort-up.png" alt="arrow">
+      </div>
+      <div (click)="sortByName()" class="header__item">
+        <p class="sortName">Name</p>
+        <img *ngIf="isNameAscending" class="arrow-up" src="/assets/img/sort-down.png" alt="arrow">
+        <img *ngIf="!isNameAscending" class="arrow-down" src="/assets/img/sort-up.png" alt="arrow">
+      </div>
+      <div (click)="sortByPrice()" class="header__item">
+        <p class="sortPrice">Price</p>
+        <img *ngIf="isPriceAscending" class="arrow-up" src="/assets/img/sort-down.png" alt="arrow">
+        <img *ngIf="!isPriceAscending" class="arrow-down" src="/assets/img/sort-up.png" alt="arrow">
+      </div>
+      <button class="heade-add add-btn btn"></button>
+    </div>
+
+    <div class="table-row-wrapper">
+      <app-spinner *ngIf="loading$ | async"></app-spinner>
+      <ng-container *ngFor="let product of currentPageProducts">
+        <div class="table-row">
+          <p class="table-row__item">{{product.id }}</p>
+          <p class="table-row__item">{{product.name}}</p>
+          <p class="table-row__item">{{product.price}}</p>
+          <div class="table-row__buttons">
+            <button class="add-btn btn">+</button>
+            <button class="add-btn btn">-</button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="footer">
+      <div class="footer__item">
+        <p class="footer__page">{{currentPage}}/{{totalPages}}</p>
+      </div>
+      <div class="footer__arrows">
+        <a (click)="prevPage()" class="arrow-link">
+          <img class="arrow-left" src="/assets/img/page-left.png" alt="arrow">
+        </a>
+        <a (click)="nextPage()" class="arrow-link">
+          <img class="arrow-right" src="/assets/img/page-right.png" alt="arrow">
+        </a>
+      </div>
+    </div>
+
+
+
+  </div>
+
+</div>
