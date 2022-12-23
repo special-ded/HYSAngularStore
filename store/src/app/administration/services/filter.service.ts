@@ -31,12 +31,12 @@ export class FilterService {
       return acc
     }, []);
 
-    this.productsService.filteredProducts$.next(arr);
+    this.productsService.filteredByText$.next(arr);
     this.filterByPrice(priceSelectOption, priceInput)
   }
 
   filterByPrice(option: string, price: number): void {
-    this.productsService.filteredProducts$.subscribe(data => this.sortedProducts = data);
+    this.productsService.filteredByText$.subscribe(data => this.sortedProducts = data);
 
     const arr = this.sortedProducts.reduce((acc: Product[], curV: Product) => {
       option === 'More than'

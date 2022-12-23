@@ -9,7 +9,7 @@ export class ProductsService {
 
   generatedProducts: Product[] = [];
   productsList$ = new BehaviorSubject<Product[]>([]);
-  filteredProducts$ = new BehaviorSubject<Product[]>([]);
+  filteredByText$ = new BehaviorSubject<Product[]>([]);
 
   generateProducts(n: number): void {
     const names: string[] = ['Xiaomi 12', 'AirPods', 'Iphone 14', 'Asus ROG 17',
@@ -26,7 +26,7 @@ export class ProductsService {
       this.generatedProducts.push(obj);
     }
     this.productsList$.next(this.generatedProducts);
-    this.filteredProducts$.next(this.generatedProducts);
+    this.filteredByText$.next(this.generatedProducts);
   }
 
   getProductsList(): Observable<Product[]> {
