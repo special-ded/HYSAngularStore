@@ -18,7 +18,6 @@ export class SearchComponent implements OnDestroy {
     this.searchSubscription?.unsubscribe()
   }
 
-
   searchInput(val: Event): void {
     const searchQuery = (val.target as HTMLInputElement).value;
 

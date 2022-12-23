@@ -1,6 +1,8 @@
+@import "../../../scss/main-colors.scss";
+
 .table {
   width: 1508px;
-  background: rgb(98, 106, 109);
+  background: $table-bg;
   margin-left: 52px;
 
   .table-wrapper {
@@ -12,29 +14,6 @@
   .filters-wrapper {
     display: flex;
     justify-content: space-between;
-
-    .price-filter {
-      padding-right: 240px;
-    }
-
-    .search-input,
-    .select,
-    .price-input {
-      width: 480px;
-      height: 60px;
-      border-radius: 5px;
-      font-size: 32px;
-      line-height: 39px;
-    }
-
-    .select {
-      width: 200px;
-      margin-right: 20px;
-    }
-
-    .price-input {
-      width: 110px;
-    }
   }
 
   .header {

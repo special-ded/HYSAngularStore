@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Subject, debounceTime, Subscription } from 'rxjs';
+import { BehaviorSubject, debounceTime } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
-import { ProductsService } from 'src/app/shared/services/products.service';
 import { FilterService } from '../services/filter.service';
 
 
@@ -13,10 +12,7 @@ import { FilterService } from '../services/filter.service';
 
 export class TableComponent implements OnInit {
 
-  constructor(
-    public productsService: ProductsService,
-    private filterService: FilterService
-  ) { }
+  constructor(private filterService: FilterService) { }
 
   products: Product[] = [];
   currentPageProducts: Product[] = [];
@@ -27,10 +23,6 @@ export class TableComponent implements OnInit {
   isPriceAscending: boolean = true;
   isNameAscending: boolean = true;
   loading$ = new BehaviorSubject<boolean>(true);
-  searchSubject$ = new Subject<string | undefined>();
-  private searchSubscription?: Subscription;
-  price: number = 0;
-  priceSelectOption: string = "More than";
 
 
   ngOnInit(): void {
@@ -44,22 +36,6 @@ export class TableComponent implements OnInit {
           this.pageHandler(data),
           this.arrowHandler()
       })
-  }
-
-
-  priceInput(val: Event): void {
-
-    if (isNaN(+(val.target as HTMLInputElement).value)) {
-      this.priceSelectOption = (val.target as HTMLInputElement).value;
-      this.filterService.priceSelectOption$.next(this.priceSelectOption);
-    }
-
-    if (!isNaN(+(val.target as HTMLInputElement).value)) {
-      this.price = +(val.target as HTMLInputElement).value;
-      this.filterService.priceInput$.next(this.price);
-    }
-
-    this.filterService.filterByPrice(this.priceSelectOption, this.price);
   }
 
   sortById(): void {
@@ -88,7 +64,6 @@ export class TableComponent implements OnInit {
   resetFilter(): void {
     this.filterService.filterByText('');
   }
-
 
   nextPage(): void {
     if (this.currentPage >= Math.round(this.products.length / 5)) {
