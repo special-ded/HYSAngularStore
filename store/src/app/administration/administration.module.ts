@@ -11,6 +11,9 @@ import { TableComponent } from './table/table.component';
 import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
 import { SearchComponent } from './search/search.component';
 import { PriceFilterComponent } from './price-filter/price-filter.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModalComponent } from './modal/modal.component';
+
 
 
 
@@ -24,14 +27,17 @@ import { PriceFilterComponent } from './price-filter/price-filter.component';
     TableComponent,
     SpinnerComponent,
     SearchComponent,
-    PriceFilterComponent
+    PriceFilterComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
     AdministrationRoutingModule,
-    RouterModule
+    RouterModule,
+    MatDialogModule
   ],
   exports: [
+
     SpinnerComponent
   ]
 })

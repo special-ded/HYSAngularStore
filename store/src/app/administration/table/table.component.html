@@ -22,7 +22,7 @@
         <img *ngIf="isPriceAscending" class="arrow-up" src="/assets/img/sort-down.png" alt="arrow">
         <img *ngIf="!isPriceAscending" class="arrow-down" src="/assets/img/sort-up.png" alt="arrow">
       </div>
-      <button class="heade-add add-btn btn"></button>
+      <button (click)="showModal()" class="heade-add add-btn btn"></button>
     </div>
 
     <div class="table-row-wrapper">

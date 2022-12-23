@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, debounceTime } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
+import { ModalComponent } from '../modal/modal.component';
 import { FilterService } from '../services/filter.service';
 
 
@@ -12,7 +14,10 @@ import { FilterService } from '../services/filter.service';
 
 export class TableComponent implements OnInit {
 
-  constructor(private filterService: FilterService) { }
+  constructor(
+    private filterService: FilterService,
+    private modal: MatDialog
+  ) { }
 
   products: Product[] = [];
   currentPageProducts: Product[] = [];
@@ -81,5 +86,13 @@ export class TableComponent implements OnInit {
 
     this.currentPage--;
     this.currentPageProducts = this.products.slice(this.startIndex -= 5, 5 * this.currentPage);
+  }
+
+  showModal() {
+    this.modal.open(ModalComponent,
+      {
+        height: '547px',
+        width: '570px',
+      })
   }
 }
