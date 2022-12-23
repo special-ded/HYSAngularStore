@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { TableComponent } from './table/table.component';
 import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -20,7 +21,8 @@ import { SpinnerComponent } from '../shared/components/spinner/spinner.component
     AdministrationComponent,
     SidebarComponent,
     TableComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,

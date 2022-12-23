@@ -2,7 +2,8 @@
   <div class="table-wrapper">
 
     <div class="filters-wrapper">
-      <input type="text" (input)="searchInput($event)" class="search-input" placeholder="Search...">
+      <app-search></app-search>
+      <!-- <input type="text" (input)="searchInput($event)" class="search-input" placeholder="Search..."> -->
       <div class="price-filter">
         <select (input)="priceInput($event)" class="select">
           <option value="More than">More than:</option>

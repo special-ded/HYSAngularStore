@@ -1,8 +1,5 @@
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import {
-  BehaviorSubject, Subject, delay, debounceTime, distinctUntilChanged
-  , Subscription
-} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject, Subject, debounceTime, Subscription } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { FilterService } from '../services/filter.service';
@@ -14,7 +11,7 @@ import { FilterService } from '../services/filter.service';
   styleUrls: ['./table.component.scss']
 })
 
-export class TableComponent implements OnInit, OnDestroy {
+export class TableComponent implements OnInit {
 
   constructor(
     public productsService: ProductsService,
@@ -49,22 +46,6 @@ export class TableComponent implements OnInit, OnDestroy {
       })
   }
 
-  ngOnDestroy(): void {
-    this.searchSubscription?.unsubscribe()
-  }
-
-  searchInput(val: Event): void {
-    const searchQuery = (val.target as HTMLInputElement).value;
-
-    this.searchSubscription = this.searchSubject$
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged()
-      )
-      .subscribe((text) => this.filterService.filterByText(text!));
-
-    this.searchSubject$.next(searchQuery?.trim());
-  }
 
   priceInput(val: Event): void {
 
