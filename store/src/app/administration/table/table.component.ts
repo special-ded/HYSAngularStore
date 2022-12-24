@@ -121,10 +121,10 @@ export class TableComponent implements OnInit {
   deleteProduct() {
     let deleteDialog = this.modal.open(ModalComponent,
       {
-        height: '247px',
+        height: '200px',
         width: '570px',
         data: {
-          title: ' You will delete product #243 continue?',
+          title: 'Delete product #243 ?',
           delete: true
         }
       }

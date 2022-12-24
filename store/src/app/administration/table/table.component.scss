@@ -45,15 +45,9 @@
     }
   }
 
-  .add-btn {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #d9d9d9;
-  }
-
   .delete-btn,
-  .edit-btn {
+  .edit-btn,
+  .add-btn {
     cursor: pointer;
   }
 

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -6,23 +6,20 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { title: string, delete: boolean }
   ) { }
 
-  ngOnInit(): void {
-    // this.title = this.dialogRef.
-  }
   nameInput: string = '';
   priceInput: number | string = '';
   descriptionInput: string = '';
 
   ok(): void {
     if (this.data.delete) {
-      this.dialogRef.close({ confirmDelete: true })
+      this.dialogRef.close(true)
       return
     }
 
@@ -35,6 +32,6 @@ export class ModalComponent implements OnInit {
   }
 
   cancel(): void {
-    this.dialogRef.close({})
+    this.dialogRef.close()
   }
 }
