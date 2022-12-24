@@ -38,4 +38,11 @@
       background: #d9d9d9;
     }
   }
+
+  .buttons {
+    margin-top: 35px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+  }
 }

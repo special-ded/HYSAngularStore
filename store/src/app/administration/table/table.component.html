@@ -22,7 +22,7 @@
         <img *ngIf="isPriceAscending" class="arrow-up" src="/assets/img/sort-down.png" alt="arrow">
         <img *ngIf="!isPriceAscending" class="arrow-down" src="/assets/img/sort-up.png" alt="arrow">
       </div>
-      <button (click)="showModal()" class="heade-add add-btn btn"></button>
+      <button (click)="add()" class="heade-add add-btn btn"></button>
     </div>
 
     <div class="table-row-wrapper">
@@ -33,8 +33,8 @@
           <p class="table-row__item">{{product.name}}</p>
           <p class="table-row__item">{{product.price}}</p>
           <div class="table-row__buttons">
-            <button class="add-btn btn">+</button>
-            <button class="add-btn btn">-</button>
+            <img (click)="editProduct()" class="edit-btn" src="../../../assets/img/edit.png">
+            <img (click)="deleteProduct()" class="delete-btn" src="../../../assets/img/trash.png">
           </div>
         </div>
       </ng-container>

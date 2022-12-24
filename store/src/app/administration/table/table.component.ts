@@ -88,17 +88,47 @@ export class TableComponent implements OnInit {
     this.currentPageProducts = this.products.slice(this.startIndex -= 5, 5 * this.currentPage);
   }
 
-  showModal() {
-    let dialog = this.modal.open(ModalComponent,
+  add() {
+    let addDialog = this.modal.open(ModalComponent,
       {
         height: '547px',
         width: '570px',
         data: {
-          title: 'Edit User '
+          title: 'Add Product ',
+          delete: false
         }
       })
 
-    dialog.afterClosed().subscribe(data => console.log(data)
+    addDialog.afterClosed().subscribe(data => console.log(data)
     )
+  }
+
+  editProduct() {
+    let editDialog = this.modal.open(ModalComponent,
+      {
+        height: '547px',
+        width: '570px',
+        data: {
+          title: ' Edit Product',
+          delete: false
+        }
+      }
+    )
+
+    editDialog.afterClosed().subscribe(data => console.log(data))
+  }
+
+  deleteProduct() {
+    let deleteDialog = this.modal.open(ModalComponent,
+      {
+        height: '247px',
+        width: '570px',
+        data: {
+          title: ' You will delete product #243 continue?',
+          delete: true
+        }
+      }
+    )
+    deleteDialog.afterClosed().subscribe(data => console.log(data))
   }
 }
