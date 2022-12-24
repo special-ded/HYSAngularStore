@@ -2,16 +2,25 @@
   <h1>Edit Product</h1>
 
   <form class="modal-form">
-    <label>Name</label>
-    <input class="form__input" class="name-input" type="text" placeholder="Name" />
-    <br>
-    <label>Price</label>
-    <input class="form__input" class="price-input" type="number" placeholder="Price" />
-    <br>
-    <label>Description</label>
-    <input class="form__input" class="description-input" placeholder="Description" />
-    <br>
+
+    <div class="form__item">
+      <label>Name</label>
+      <input [(ngModel)]="nameInput" class="form__input" type="text" name="name" placeholder="Name" />
+    </div>
+
+    <div class="form__item">
+      <label>Price</label>
+      <input [(ngModel)]="priceInput" class="form__input" type="number" name="price" placeholder="Price" />
+    </div>
+
+    <div class="form__item">
+      <label>Description</label>
+      <input [(ngModel)]="descriptionInput" class="form__input" type="text" name="description"
+        placeholder="Description" />
+    </div>
   </form>
-  <button class="send-btn btn">Send</button>
+
+  <button (click)="cancel()" class="send-btn btn">Cancel</button>
+  <button (click)="ok()" class="send-btn btn">Ok</button>
 
 </div>

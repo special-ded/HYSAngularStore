@@ -89,10 +89,16 @@ export class TableComponent implements OnInit {
   }
 
   showModal() {
-    this.modal.open(ModalComponent,
+    let dialog = this.modal.open(ModalComponent,
       {
         height: '547px',
         width: '570px',
+        data: {
+          title: 'Edit User '
+        }
       })
+
+    dialog.afterClosed().subscribe(data => console.log(data)
+    )
   }
 }

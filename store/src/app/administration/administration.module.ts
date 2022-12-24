@@ -13,6 +13,7 @@ import { SearchComponent } from './search/search.component';
 import { PriceFilterComponent } from './price-filter/price-filter.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -34,7 +35,8 @@ import { ModalComponent } from './modal/modal.component';
     CommonModule,
     AdministrationRoutingModule,
     RouterModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
   ],
   exports: [
 
