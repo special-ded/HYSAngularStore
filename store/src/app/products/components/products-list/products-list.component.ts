@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/interfaces/products.interface';
+import { Product } from 'src/app/shared/interfaces/products.interface';
+import { ProductsService } from 'src/app/shared/services/products.service';
 
-import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-products-list',
@@ -17,6 +17,8 @@ export class ProductsListComponent implements OnInit {
   products: Product[] = [];
 
   ngOnInit(): void {
+    console.log('bbbbbbbbbb');
+
     this.products = this.productsService.generatedProducts
     if (this.products.length === 0) {
       this.initProducts(8);

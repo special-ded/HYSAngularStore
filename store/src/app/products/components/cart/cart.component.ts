@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/interfaces/products.interface';
+import { Product } from 'src/app/shared/interfaces/products.interface';
 import { CartService } from '../../services/cart.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class CartComponent implements OnInit {
   products: Product[] = this.cartService.getCartList();
 
   ngOnInit(): void {
-    this.totalPrice = this.cartService.getTotalPrice();
+    this.cartService.cartTotal$.subscribe(data => this.totalPrice = data);
   }
 
 }
