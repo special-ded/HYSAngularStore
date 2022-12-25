@@ -13,6 +13,7 @@ export class ProductCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.setButtonName();
+    this.cartService.cartList$.subscribe(() => this.setButtonName());
   }
 
   buttonName: string = "";
