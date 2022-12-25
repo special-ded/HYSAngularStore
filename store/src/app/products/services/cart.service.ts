@@ -23,7 +23,7 @@ export class CartService implements OnInit {
       return;
     }
     this.cartList.push(product);
-    this.lsService.setToLS(this.cartList);
+    this.lsService.setToLocalStorage(this.cartList);
     this.updateTotalPrice();
 
     return this.cartList;
@@ -34,7 +34,7 @@ export class CartService implements OnInit {
     this.cartList.splice(index, 1);
 
     this.updateTotalPrice();
-    this.lsService.setToLS(this.cartList);
+    this.lsService.setToLocalStorage(this.cartList);
     this.cartList$.next(this.cartList);
   }
 
@@ -49,7 +49,7 @@ export class CartService implements OnInit {
 
   getCartList(): Product[] {
     if (this.cartList.length === 0) {
-      this.cartList = this.lsService.checkLS();
+      this.cartList = this.lsService.checkLocalStorage();
     }
 
     this.updateTotalPrice();
@@ -59,7 +59,7 @@ export class CartService implements OnInit {
   addQuantity(id: number) {
     this.cartList.find((x) => x.id === id)!.quantity++;
     this.updateTotalPrice();
-    this.lsService.setToLS(this.cartList);
+    this.lsService.setToLocalStorage(this.cartList);
   }
 
   subtractQuantity(id: number) {
@@ -70,6 +70,6 @@ export class CartService implements OnInit {
       return;
     }
     this.updateTotalPrice();
-    this.lsService.setToLS(this.cartList);
+    this.lsService.setToLocalStorage(this.cartList);
   }
 }

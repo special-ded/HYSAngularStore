@@ -6,14 +6,14 @@ import { Product } from 'src/app/shared/interfaces/products.interface';
 })
 export class LocalStorageService {
   constructor() {
-    this.checkLS;
+    this.checkLocalStorage();
   }
 
-  setToLS(products: Product[]): void {
+  setToLocalStorage(products: Product[]): void {
     localStorage.setItem('cartList', JSON.stringify(products));
   }
 
-  checkLS(): Product[] {
+  checkLocalStorage(): Product[] {
     if (
       JSON.parse(localStorage.getItem('cartList')!) === null ||
       JSON.parse(localStorage.getItem('cartList')!)[0] === null
