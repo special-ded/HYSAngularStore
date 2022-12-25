@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
-import { CartService } from '../services/cart.service';
+import { CartService } from '../../services/cart.service';
 
 
 @Component({
@@ -13,7 +13,6 @@ export class ProductCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.setButtonName();
-    this.cartService.cartList$.subscribe(() => this.setButtonName());
   }
 
   buttonName: string = "";
@@ -41,6 +40,7 @@ export class ProductCardComponent implements OnInit {
   setButtonName(): void {
     if (this.cartButtonName === ''
       && this.cartService.getCartList().some(el => el.id === this.product.id)) {
+
       this.buttonName = "In cart";
       return
     }
@@ -59,5 +59,5 @@ export class ProductCardComponent implements OnInit {
   subtractQuantity(id: number): void {
     this.cartService.subtractQuantity(id);
   }
-}
 
+}

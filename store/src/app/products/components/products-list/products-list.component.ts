@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
+import { ProductsService } from 'src/app/shared/services/products.service';
 
-import { ProductsService } from '../../shared/services/products.service';
 
 @Component({
   selector: 'app-products-list',
@@ -17,14 +17,14 @@ export class ProductsListComponent implements OnInit {
   products: Product[] = [];
 
   ngOnInit(): void {
-    this.products = this.productsService.getGeneratedProducts()
+    this.products = this.productsService.generatedProducts
     if (this.products.length === 0) {
-      this.initProducts(80);
+      this.initProducts(8);
     }
   }
 
-  initProducts(id: number): void {
-    this.productsService.generateProducts(id)
+  initProducts(n: number): void {
+    this.productsService.generateProducts(n);
     this.products = this.productsService.getGeneratedProducts()
   }
 }
