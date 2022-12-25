@@ -9,6 +9,7 @@ export class ProductsService {
   generatedProducts: Product[] = [];
   products$ = new BehaviorSubject<Product[]>([])
 
+
   generateProducts(n: number): void {
     const names: string[] = ['Xiaomi 12', 'AirPods', 'Iphone 14', 'Asus ROG 17',
       'Mi AirDots', 'Sony WH-1000XM4', 'Power Bank 200', 'Invertor 12-220',
@@ -23,9 +24,7 @@ export class ProductsService {
       };
       this.generatedProducts.push(obj);
     }
-    this.products$.next(this.generatedProducts)
-    this.products$.subscribe(data => console.log(data)
-    )
+    this.products$.next(this.generatedProducts);
   }
 
   getGeneratedProducts(): Product[] {
