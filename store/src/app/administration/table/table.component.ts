@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, debounceTime } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ModalComponent } from '../modal/modal.component';
+import { ProductHttpService } from '../product-http.service';
 import { FilterService } from '../services/filter.service';
 
 
@@ -16,7 +17,8 @@ export class TableComponent implements OnInit {
 
   constructor(
     private filterService: FilterService,
-    private modal: MatDialog
+    private modal: MatDialog,
+    private http: ProductHttpService
   ) { }
 
   products: Product[] = [];
@@ -32,7 +34,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetFilter();
-
+    this.http.ngOnInit()
     this.filterService.filteredByPrice$
       .pipe(debounceTime(500))
       .subscribe(data => {
