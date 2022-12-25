@@ -15,9 +15,19 @@ export class CartComponent implements OnInit {
   cartButtonName: string = 'Remove from cart';
   totalPrice: number = 0;
   products: Product[] = this.cartService.getCartList();
+  cartEmpty: boolean = this.products.length === 0
 
   ngOnInit(): void {
     this.cartService.cartTotal$.subscribe(data => this.totalPrice = data);
+
+    this.cartService.cartList$.subscribe(data => {
+      if (data.length === 0 || data === null) {
+        this.cartEmpty = true
+        return
+      }
+
+      this.cartEmpty = false;
+    })
   }
 
 }
