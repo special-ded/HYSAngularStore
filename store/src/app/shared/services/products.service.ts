@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Product } from '../interfaces/products.interface';
 
 @Injectable({
@@ -6,6 +7,7 @@ import { Product } from '../interfaces/products.interface';
 })
 export class ProductsService {
   generatedProducts: Product[] = [];
+  products$ = new BehaviorSubject<Product[]>([])
 
   generateProducts(n: number): void {
     const names: string[] = ['Xiaomi 12', 'AirPods', 'Iphone 14', 'Asus ROG 17',
@@ -21,6 +23,9 @@ export class ProductsService {
       };
       this.generatedProducts.push(obj);
     }
+    this.products$.next(this.generatedProducts)
+    this.products$.subscribe(data => console.log(data)
+    )
   }
 
   getGeneratedProducts(): Product[] {

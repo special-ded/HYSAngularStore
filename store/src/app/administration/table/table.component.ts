@@ -15,6 +15,10 @@ export class TableComponent implements OnInit {
   products: Product[] = [];
 
   ngOnInit(): void {
-    this.products = this.productsService.getGeneratedProducts();
+    this.productsService.products$.subscribe(data => {
+      this.products = data,
+        console.log(data)
+
+    })
   }
 }
