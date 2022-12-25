@@ -1,0 +1,21 @@
+<div *ngIf="products.length>=1" class="container">
+  <div class="products-list">
+    <div *ngFor="let product of products" class="product">
+      <div class="product__atributes">
+        <h1 class="product__title">Product
+          <span style="font-size: 15px;">
+            {{product.id}}
+          </span>
+        </h1>
+        <p class="product__quantity">
+          <button (click)="subtractQuantity(product.id)">-</button>
+          {{product.quantity}}
+          <button (click)="addQuantity(product.id)">+</button>
+        </p>
+        <button (click)="deleteFromCart(product.id)" class="btn">Delete</button>
+      </div>
+      <h2 class="product__price">Price: {{product.price * product.quantity | hryvniaPipe}}</h2>
+    </div>
+  </div>
+  <p class="products__total">Total: {{total | hryvniaPipe}}</p>
+</div>
