@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalStorageService {
-
   constructor() {
-    this.checkLS
+    this.checkLS;
   }
 
   setToLS(products: Product[]): void {
@@ -15,8 +14,10 @@ export class LocalStorageService {
   }
 
   checkLS(): Product[] {
-    if (JSON.parse(localStorage.getItem('cartList')!) === null ||
-      JSON.parse(localStorage.getItem('cartList')!)[0] === null) {
+    if (
+      JSON.parse(localStorage.getItem('cartList')!) === null ||
+      JSON.parse(localStorage.getItem('cartList')!)[0] === null
+    ) {
       localStorage.setItem('cartList', '[]');
       return [];
     }

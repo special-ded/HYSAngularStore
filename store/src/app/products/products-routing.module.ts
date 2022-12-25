@@ -15,32 +15,29 @@ const productsRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: ProductsListComponent
+        component: ProductsListComponent,
       },
       {
         path: 'cart',
         pathMatch: 'full',
-        component: CartComponent
+        component: CartComponent,
       },
       {
         path: ':id',
         pathMatch: 'full',
-        component: ProductInfoComponent
+        component: ProductInfoComponent,
       },
       {
         path: '**',
         pathMatch: 'full',
-        component: PageNotFoundComponent
-      }
-    ]
-  }
-]
+        component: PageNotFoundComponent,
+      },
+    ],
+  },
+];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(productsRoutes)
-  ]
+  imports: [CommonModule, RouterModule.forChild(productsRoutes)],
 })
-export class ProductsRoutingModule { }
+export class ProductsRoutingModule {}

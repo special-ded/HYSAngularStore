@@ -1,12 +1,13 @@
 <ng-container *ngIf="cartEmpty; else cartNotEmpty">
   <div class="container">
     <h1 class="title">Cart</h1>
-    <p>Total: {{totalPrice | hryvniaPipe}}</p>
+    <p>Total: {{ totalPrice | hryvniaPipe }}</p>
     <div class="products-cards">
       <div>
         <h1 class="title">Your Cart is Empty</h1>
-        <br>
-        <h1 class="title">Go to All
+        <br />
+        <h1 class="title">
+          Go to All
           <span class="link" routerLink="/products">Products</span>
           ?;)
         </h1>
@@ -18,12 +19,16 @@
 <ng-template #cartNotEmpty>
   <div class="container">
     <h1 class="title">Cart</h1>
-    <p>Total: {{totalPrice | hryvniaPipe}}</p>
+    <p>Total: {{ totalPrice | hryvniaPipe }}</p>
     <div class="products-cards">
-      <app-product-card [quantityButtons]="true" *ngFor="let item of products" [product]="item"
-        [cartButtonName]="cartButtonName">
+      <app-product-card
+        *ngFor="let item of products"
+        [quantityButtons]="true"
+        [product]="item"
+        [cartButtonName]="cartButtonName"
+      >
       </app-product-card>
-      <br>
+      <br />
     </div>
   </div>
 </ng-template>

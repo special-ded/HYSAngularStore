@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
-
 import { ButtonComponent } from './components/button/button.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
@@ -15,7 +14,6 @@ import { CartComponent } from './components/cart/cart.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { ProductInfoComponent } from './components/product-info/product-info.component';
-
 
 @NgModule({
   providers: [],
@@ -31,13 +29,8 @@ import { ProductInfoComponent } from './components/product-info/product-info.com
     ProductsComponent,
     ProductsListComponent,
     CartComponent,
-    TooltipComponent
+    TooltipComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    ProductsRoutingModule
-  ]
+  imports: [CommonModule, RouterModule, ProductsRoutingModule],
 })
-export class ProductsModule { }
-
+export class ProductsModule {}

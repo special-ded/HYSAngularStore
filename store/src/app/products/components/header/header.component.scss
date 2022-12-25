@@ -9,9 +9,18 @@
 .header__list {
   padding-top: 25px;
   display: flex;
-  gap: 47px;
+  gap: 10px;
+
   .header__item-link {
     color: $main-text-color;
+    padding: 23px 20px 30px 20px;
+    border-radius: 10px;
+
+    &:hover,
+    &:active {
+      background-color: $product-button-bg-hover;
+      border-radius: 10px;
+    }
   }
   .main-logo {
     width: 50px;
@@ -19,4 +28,11 @@
     border-radius: 50%;
     background: $main-logo-bg;
   }
+}
+
+.activeProducts {
+  background-color: $product-button-bg;
+}
+.activeCart {
+  background-color: $product-button-bg;
 }
