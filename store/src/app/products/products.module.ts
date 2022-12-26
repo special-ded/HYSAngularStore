@@ -16,7 +16,6 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { TooltipComponent } from './tooltip/tooltip.component';
 import { AdministrationModule } from '../administration/administration.module';
 
-
 @NgModule({
   providers: [],
   declarations: [
@@ -31,14 +30,13 @@ import { AdministrationModule } from '../administration/administration.module';
     ProductsComponent,
     ProductsListComponent,
     CartComponent,
-    TooltipComponent
+    TooltipComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     ProductsRoutingModule,
-    AdministrationModule
-  ]
+    AdministrationModule,
+  ],
 })
-export class ProductsModule { }
-
+export class ProductsModule {}

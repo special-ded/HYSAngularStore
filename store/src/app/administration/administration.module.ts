@@ -10,8 +10,6 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { TableComponent } from './table/table.component';
 import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
 
-
-
 @NgModule({
   declarations: [
     LoginComponent,
@@ -20,15 +18,9 @@ import { SpinnerComponent } from '../shared/components/spinner/spinner.component
     AdministrationComponent,
     SidebarComponent,
     TableComponent,
-    SpinnerComponent
+    SpinnerComponent,
   ],
-  imports: [
-    CommonModule,
-    AdministrationRoutingModule,
-    RouterModule
-  ],
-  exports: [
-    SpinnerComponent
-  ]
+  imports: [CommonModule, AdministrationRoutingModule, RouterModule],
+  exports: [SpinnerComponent],
 })
-export class AdministrationModule { }
+export class AdministrationModule {}
