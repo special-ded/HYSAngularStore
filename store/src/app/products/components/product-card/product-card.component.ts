@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
-import { CartService } from '../services/cart.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -32,11 +32,9 @@ export class ProductCardComponent implements OnInit {
       this.buttonName = 'In cart';
       return;
     }
-
     if (button === 'In cart') {
       return;
     }
-
     this.cartService.removeFromCart(product.id);
   }
 

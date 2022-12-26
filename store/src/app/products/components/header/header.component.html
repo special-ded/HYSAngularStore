@@ -5,11 +5,18 @@
         <img class="main-logo" />
       </li>
       <li class="header__item">
-        <a class="header__item-link" routerLink="/products">Products</a>
+        <a
+          routerLinkActive="activeProducts"
+          routerLink="/products"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="header__item-link"
+          >Products</a
+        >
       </li>
       <li class="header__item">
         <a
           (mouseenter)="visible = !visible"
+          routerLinkActive="activeCart"
           class="header__item-link"
           routerLink="/products/cart"
           >Cart</a

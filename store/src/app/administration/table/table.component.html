@@ -1,15 +1,14 @@
 <div class="table">
   <div class="table-wrapper">
-
     <div class="filters-wrapper">
-      <input class="search" placeholder="Search...">
+      <input class="search" placeholder="Search..." />
       <div class="filters">
         <div>
           <select class="select">
             <option value="">More than:</option>
             <option value="dog">Less than:</option>
           </select>
-          <input class="price-input" placeholder="10">
+          <input class="price-input" placeholder="10" />
         </div>
 
         <button class="apply-btn btn">Apply</button>
@@ -19,19 +18,15 @@
     <div class="header">
       <div class="header__item">
         <label for="selectID">ID</label>
-        <select class="selectID">
-        </select>
+        <select class="selectID"></select>
       </div>
       <div class="header__item">
         <label for="selectName">Name</label>
-        <select class="selectName">
-
-        </select>
+        <select class="selectName"></select>
       </div>
       <div class="header__item">
         <label for="selectCreated">Price</label>
-        <select class="selectCreated">
-        </select>
+        <select class="selectCreated"></select>
       </div>
       <button class="add-btn btn"></button>
     </div>
@@ -40,9 +35,9 @@
       <app-spinner *ngIf="loading$ | async"></app-spinner>
       <ng-container *ngFor="let product of currentPageProducts">
         <div class="table-row">
-          <p class="table-row__item">{{product.id }}</p>
-          <p class="table-row__item">{{product.name}}</p>
-          <p class="table-row__item">{{product.price}}</p>
+          <p class="table-row__item">{{ product.id }}</p>
+          <p class="table-row__item">{{ product.name }}</p>
+          <p class="table-row__item">{{ product.price }}</p>
           <div class="table-row__buttons">
             <button class="add-btn btn">+</button>
             <button class="add-btn btn">-</button>
@@ -53,20 +48,20 @@
 
     <div class="footer">
       <div class="footer__item">
-        <p class="footer__page">{{currentPage}}/{{totalPages}}</p>
+        <p class="footer__page">{{ currentPage }}/{{ totalPages }}</p>
       </div>
       <div class="footer__arrows">
         <a (click)="prevPage()" class="arrow-link">
-          <img class="arrow-left" src="/assets/img/page-left.png" alt="arrow">
+          <img class="arrow-left" src="/assets/img/page-left.png" alt="arrow" />
         </a>
         <a (click)="nextPage()" class="arrow-link">
-          <img class="arrow-right" src="/assets/img/page-right.png" alt="arrow">
+          <img
+            class="arrow-right"
+            src="/assets/img/page-right.png"
+            alt="arrow"
+          />
         </a>
       </div>
     </div>
-
-
-
   </div>
-
 </div>
