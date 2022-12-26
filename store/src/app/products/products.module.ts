@@ -14,6 +14,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { ProductInfoComponent } from './components/product-info/product-info.component';
+import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
 
 @NgModule({
   providers: [],
@@ -30,6 +31,7 @@ import { ProductInfoComponent } from './components/product-info/product-info.com
     ProductsListComponent,
     CartComponent,
     TooltipComponent,
+    SpinnerComponent,
   ],
   imports: [CommonModule, RouterModule, ProductsRoutingModule],
 })

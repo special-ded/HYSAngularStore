@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { delay, Observable, of, BehaviorSubject } from 'rxjs';
 import { Product } from '../interfaces/products.interface';
 
 @Injectable({
@@ -35,8 +35,8 @@ export class ProductsService {
     this.products$.next(this.generatedProducts);
   }
 
-  getGeneratedProducts(): Product[] {
-    return this.generatedProducts;
+  getProductsList(): Observable<Product[]> {
+    return of(this.generatedProducts).pipe(delay(1000));
   }
 
   getProductById(id: number): Product {

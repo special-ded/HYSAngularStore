@@ -20,7 +20,7 @@ export class TableComponent implements OnInit {
   constructor(public productsService: ProductsService) {}
 
   ngOnInit(): void {
-    this.productsService.getProductsList().subscribe((data) => {
+    this.productsService.getProductsList().subscribe((data: Product[]) => {
       data.length !== 0 ? this.loading$.next(false) : null,
         (this.totalPages = data.length / 5),
         (this.currentPageProducts = this.products.slice(this.startIndex, 5));
