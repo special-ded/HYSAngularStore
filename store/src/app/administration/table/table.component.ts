@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ProductsService } from 'src/app/shared/services/products.service';
@@ -9,7 +9,8 @@ import { ProductsService } from 'src/app/shared/services/products.service';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  products: Product[] = [];
+  @Input() products: Product[] = [];
+
   currentPageProducts: Product[] = [];
   currentPage: number = 1;
   totalPages: number = 0;
@@ -21,7 +22,6 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.productsService.getProductsList().subscribe((data) => {
       data.length !== 0 ? this.loading$.next(false) : null,
-        (this.products = data),
         (this.totalPages = data.length / 5),
         (this.currentPageProducts = this.products.slice(this.startIndex, 5));
     });
