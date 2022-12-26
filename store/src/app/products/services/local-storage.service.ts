@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../../interfaces/products.interface';
+import { Product } from 'src/app/shared/interfaces/products.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalStorageService {
-
   constructor() {
-    this.checkLS
+    this.checkLocalStorage();
   }
 
-  setToLS(products: Product[]): void {
+  setToLocalStorage(products: Product[]): void {
     localStorage.setItem('cartList', JSON.stringify(products));
   }
 
-  checkLS(): Product[] {
-    if (JSON.parse(localStorage.getItem('cartList')!) === null ||
-      JSON.parse(localStorage.getItem('cartList')!)[0] === null) {
+  checkLocalStorage(): Product[] {
+    if (
+      JSON.parse(localStorage.getItem('cartList')!) === null ||
+      JSON.parse(localStorage.getItem('cartList')!)[0] === null
+    ) {
       localStorage.setItem('cartList', '[]');
       return [];
     }

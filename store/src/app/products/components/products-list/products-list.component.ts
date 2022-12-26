@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/interfaces/products.interface';
-
-import { ProductsService } from '../../services/products.service';
+import { Product } from 'src/app/shared/interfaces/products.interface';
+import { ProductsService } from 'src/app/shared/services/products.service';
 
 @Component({
   selector: 'app-products-list',
@@ -9,21 +8,19 @@ import { ProductsService } from '../../services/products.service';
   styleUrls: ['./products-list.component.scss'],
 })
 export class ProductsListComponent implements OnInit {
-
-  constructor(
-    private productsService: ProductsService
-  ) { };
-
   products: Product[] = [];
 
+  constructor(private productsService: ProductsService) {}
+
   ngOnInit(): void {
-    this.products = this.productsService.generatedProducts
+    this.products = this.productsService.generatedProducts;
     if (this.products.length === 0) {
       this.initProducts(8);
     }
   }
 
   initProducts(n: number): void {
-    this.products = this.productsService.generateProducts(n);
+    this.productsService.generateProducts(n);
+    this.products = this.productsService.getGeneratedProducts();
   }
 }

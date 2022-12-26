@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductInfoComponent } from './components/product-info/product-info.component';
 import { ProductsComponent } from './products.component';
-import { ProductsListComponent } from './components/products-list/products-list.component';
 import { CartComponent } from './components/cart/cart.component';
 import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
+import { ProductsListComponent } from './components/products-list/products-list.component';
 
 const productsRoutes: Routes = [
   {
@@ -15,32 +15,29 @@ const productsRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: ProductsListComponent
+        component: ProductsListComponent,
       },
       {
         path: 'cart',
         pathMatch: 'full',
-        component: CartComponent
+        component: CartComponent,
       },
       {
         path: ':id',
         pathMatch: 'full',
-        component: ProductInfoComponent
+        component: ProductInfoComponent,
       },
       {
         path: '**',
         pathMatch: 'full',
-        component: PageNotFoundComponent
-      }
-    ]
-  }
-]
+        component: PageNotFoundComponent,
+      },
+    ],
+  },
+];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(productsRoutes)
-  ]
+  imports: [CommonModule, RouterModule.forChild(productsRoutes)],
 })
-export class ProductsRoutingModule { }
+export class ProductsRoutingModule {}

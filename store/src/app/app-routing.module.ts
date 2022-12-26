@@ -5,19 +5,26 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/products',
-    pathMatch: 'full'
+    redirectTo: 'products',
+    pathMatch: 'full',
   },
   {
     path: 'products',
-    loadChildren: () => import('./products/products.module')
-      .then(m => m.ProductsModule)
+    loadChildren: () =>
+      import('./products/products.module').then((m) => m.ProductsModule),
   },
-  { path: '**', component: PageNotFoundComponent }
+  {
+    path: 'administration',
+    loadChildren: () =>
+      import('./administration/administration.module').then(
+        (m) => m.AdministrationModule
+      ),
+  },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
