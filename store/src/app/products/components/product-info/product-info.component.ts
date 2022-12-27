@@ -12,6 +12,7 @@ import { CartService } from '../../services/cart.service';
 export class ProductInfoComponent implements OnInit {
   buttonName: string = 'Add to cart';
   id: string = '';
+
   product: Product = {
     id: '',
     name: '',
@@ -33,10 +34,38 @@ export class ProductInfoComponent implements OnInit {
         .getProductById(this.id)
         .subscribe((data) => (this.product = data));
     });
+
+    this.setButtonName();
   }
 
   addToCart(product: Product): void {
     console.log(product);
-    this.cartService.addToCart({ ...product, quantity: 1 });
+
+    if (this.buttonName === 'Add to cart') {
+      this.cartService.addToCart({ ...product, quantity: 1 });
+      this.buttonName = 'In cart';
+      return;
+    }
+
+    if (this.buttonName === 'In cart') {
+      return;
+    }
+  }
+
+  setButtonName(): void {
+    console.log(this.id);
+
+    console.log(this.cartService.getCartList().some((el) => el.id === this.id));
+
+    if (this.cartService.getCartList().some((el) => el.id === this.id)) {
+      this.buttonName = 'In cart';
+      return;
+    }
+
+    // if (this.cartButtonName === '') {
+    //   this.buttonName = 'Add to cart';
+    //   return;
+    // }
+    // this.buttonName = this.cartButtonName;
   }
 }
