@@ -3,23 +3,22 @@ import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, debounceTime } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ModalComponent } from '../modal/modal.component';
-import { ProductHttpService } from '../product-http.service';
+import { ProductHttpService } from '../../shared/services/product-http.service';
 import { FilterService } from '../services/filter.service';
-
+import { ProductsService } from 'src/app/shared/services/products.service';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  styleUrls: ['./table.component.scss'],
 })
-
 export class TableComponent implements OnInit {
-
   constructor(
     private filterService: FilterService,
     private modal: MatDialog,
-    private http: ProductHttpService
-  ) { }
+    private http: ProductHttpService,
+    private productService: ProductsService
+  ) {}
 
   products: Product[] = [];
   currentPageProducts: Product[] = [];
@@ -31,18 +30,18 @@ export class TableComponent implements OnInit {
   isNameAscending: boolean = true;
   loading$ = new BehaviorSubject<boolean>(true);
 
-
   ngOnInit(): void {
     this.resetFilter();
-    this.http.ngOnInit()
+    this.productService.generateProducts();
+
     this.filterService.filteredByPrice$
       .pipe(debounceTime(500))
-      .subscribe(data => {
+      .subscribe((data) => {
         data.length !== 0 ? this.loading$.next(false) : null,
-          this.products = data,
+          (this.products = data),
           this.pageHandler(data),
-          this.arrowHandler()
-      })
+          this.arrowHandler();
+      });
   }
 
   sortById(): void {
@@ -56,10 +55,10 @@ export class TableComponent implements OnInit {
   }
 
   pageHandler(data: Product[]): void {
-    this.totalPages = Math.round(data.length / 5),
-      this.currentPageProducts = this.products.slice(0, 5),
-      this.currentPage = 1,
-      this.startIndex = 0
+    (this.totalPages = Math.round(data.length / 5)),
+      (this.currentPageProducts = this.products.slice(0, 5)),
+      (this.currentPage = 1),
+      (this.startIndex = 0);
   }
 
   arrowHandler(): void {
@@ -74,63 +73,63 @@ export class TableComponent implements OnInit {
 
   nextPage(): void {
     if (this.currentPage >= Math.round(this.products.length / 5)) {
-      return
+      return;
     }
 
     this.currentPage++;
-    this.currentPageProducts = this.products.slice(this.startIndex += 5, 5 * this.currentPage);
+    this.currentPageProducts = this.products.slice(
+      (this.startIndex += 5),
+      5 * this.currentPage
+    );
   }
 
   prevPage(): void {
     if (this.currentPage === 1) {
-      return
+      return;
     }
 
     this.currentPage--;
-    this.currentPageProducts = this.products.slice(this.startIndex -= 5, 5 * this.currentPage);
+    this.currentPageProducts = this.products.slice(
+      (this.startIndex -= 5),
+      5 * this.currentPage
+    );
   }
 
   add() {
-    let addDialog = this.modal.open(ModalComponent,
-      {
-        height: '547px',
-        width: '570px',
-        data: {
-          title: 'Add Product ',
-          delete: false
-        }
-      })
+    let addDialog = this.modal.open(ModalComponent, {
+      height: '547px',
+      width: '570px',
+      data: {
+        title: 'Add Product ',
+        delete: false,
+      },
+    });
 
-    addDialog.afterClosed().subscribe(data => console.log(data)
-    )
+    addDialog.afterClosed().subscribe((data) => console.log(data));
   }
 
   editProduct() {
-    let editDialog = this.modal.open(ModalComponent,
-      {
-        height: '547px',
-        width: '570px',
-        data: {
-          title: ' Edit Product',
-          delete: false
-        }
-      }
-    )
+    let editDialog = this.modal.open(ModalComponent, {
+      height: '547px',
+      width: '570px',
+      data: {
+        title: ' Edit Product',
+        delete: false,
+      },
+    });
 
-    editDialog.afterClosed().subscribe(data => console.log(data))
+    editDialog.afterClosed().subscribe((data) => console.log(data));
   }
 
   deleteProduct() {
-    let deleteDialog = this.modal.open(ModalComponent,
-      {
-        height: '200px',
-        width: '570px',
-        data: {
-          title: 'Delete product #243 ?',
-          delete: true
-        }
-      }
-    )
-    deleteDialog.afterClosed().subscribe(data => console.log(data))
+    let deleteDialog = this.modal.open(ModalComponent, {
+      height: '200px',
+      width: '570px',
+      data: {
+        title: 'Delete product #243 ?',
+        delete: true,
+      },
+    });
+    deleteDialog.afterClosed().subscribe((data) => console.log(data));
   }
 }

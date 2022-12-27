@@ -4,12 +4,10 @@ import { Product } from 'src/app/shared/interfaces/products.interface';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class CartService implements OnInit {
-
-  constructor(private lsService: LocalStorageService) { }
+  constructor(private lsService: LocalStorageService) {}
 
   ngOnInit(): void {
     this.updateTotalPrice();
@@ -23,7 +21,7 @@ export class CartService implements OnInit {
 
   addToCart(product: Product) {
     if (!product) {
-      return
+      return;
     }
 
     this.cartList.push(product);
@@ -33,18 +31,23 @@ export class CartService implements OnInit {
     return this.cartList;
   }
 
-  removeFromCart(id: number) {
-    this.cartList
-      .splice(this.cartList.findIndex(val => val.id == id), 1);
+  removeFromCart(id: string) {
+    this.cartList.splice(
+      this.cartList.findIndex((val) => val.id == id),
+      1
+    );
     this.updateTotalPrice();
     this.lsService.setToLS(this.cartList);
     this.cartList$.next(this.cartList);
   }
 
   updateTotalPrice() {
-    this.cartTotal$
-      .next(this.cartList
-        .reduce((acc: number, curV: Product) => acc += curV.price * curV.quantity, 0));
+    this.cartTotal$.next(
+      this.cartList.reduce(
+        (acc: number, curV: Product) => (acc += curV.price * curV.quantity),
+        0
+      )
+    );
   }
 
   getCartList(): Product[] {
@@ -56,18 +59,18 @@ export class CartService implements OnInit {
     return this.cartList;
   }
 
-  addQuantity(id: number) {
-    this.cartList.find(x => x.id === id)!.quantity++;
+  addQuantity(id: string) {
+    this.cartList.find((x) => x.id === id)!.quantity++;
     this.updateTotalPrice();
     this.lsService.setToLS(this.cartList);
   }
 
-  subtractQuantity(id: number) {
-    this.cartList.find(x => x.id === id)!.quantity--;
+  subtractQuantity(id: string) {
+    this.cartList.find((x) => x.id === id)!.quantity--;
 
-    if (this.cartList.find(x => x.id === id)!.quantity === 0) {
+    if (this.cartList.find((x) => x.id === id)!.quantity === 0) {
       this.removeFromCart(id);
-      return
+      return;
     }
 
     this.updateTotalPrice();

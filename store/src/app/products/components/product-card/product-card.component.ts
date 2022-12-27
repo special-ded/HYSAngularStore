@@ -8,22 +8,23 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./product-card.component.scss'],
 })
 export class ProductCardComponent implements OnInit {
+  @Input() quantityButtons: boolean = false;
+  @Input() product: Product = {
+    id: '',
+    name: '',
+    price: 0,
+    quantity: 1,
+  };
+  @Input() cartButtonName: string = '';
+
+  buttonName: string = '';
+
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.setButtonName();
     this.cartService.cartList$.subscribe(() => this.setButtonName());
   }
-
-  buttonName: string = '';
-  @Input() quantityButtons: boolean = false;
-  @Input() product: Product = {
-    id: 0,
-    name: '',
-    price: 0,
-    quantity: 1,
-  };
-  @Input() cartButtonName: string = '';
 
   handleCart(product: Product, button: string): void {
     if (button === 'Add to cart') {
@@ -55,11 +56,11 @@ export class ProductCardComponent implements OnInit {
     this.buttonName = this.cartButtonName;
   }
 
-  addQuantity(id: number): void {
+  addQuantity(id: string): void {
     this.cartService.addQuantity(id);
   }
 
-  subtractQuantity(id: number): void {
+  subtractQuantity(id: string): void {
     this.cartService.subtractQuantity(id);
   }
 }

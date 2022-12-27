@@ -18,15 +18,15 @@ export class TooltipComponent implements OnInit {
     this.cartService.cartTotal$.subscribe((number) => (this.total = number));
   }
 
-  deleteFromCart(id: number): void {
+  deleteFromCart(id: string): void {
     this.cartService.removeFromCart(id);
   }
 
-  addQuantity(id: number): void {
+  addQuantity(id: string): void {
     this.cartService.addQuantity(id);
   }
 
-  subtractQuantity(id: number): void {
+  subtractQuantity(id: string): void {
     this.cartService.subtractQuantity(id);
   }
 }

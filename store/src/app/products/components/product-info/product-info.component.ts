@@ -10,29 +10,33 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./product-info.component.scss'],
 })
 export class ProductInfoComponent implements OnInit {
+  buttonName: string = 'Add to cart';
+  id: string = '';
+  product: Product = {
+    id: '',
+    name: '',
+    price: 0,
+    quantity: 1,
+  };
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductsService,
     private cartService: CartService
   ) {}
 
-  buttonName: string = 'Add to cart';
-  id: number = 0;
-  product: Product = {
-    id: 0,
-    name: '',
-    price: 0,
-    quantity: 1,
-  };
-
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.id = +params.get('id')!;
-      this.product = this.productService.getProductById(this.id);
+      this.id = params.get('id')!;
+
+      this.productService
+        .getProductById(this.id)
+        .subscribe((data) => (this.product = data));
     });
   }
 
   addToCart(product: Product): void {
-    this.cartService.addToCart(product);
+    console.log(product);
+    this.cartService.addToCart({ ...product, quantity: 1 });
   }
 }
