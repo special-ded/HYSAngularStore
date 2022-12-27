@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductInfoComponent } from './product-info/product-info.component';
+import { ProductInfoComponent } from '../products/components/product-info/product-info.component';
 import { ProductsComponent } from './products.component';
-import { ProductsListComponent } from './products-list/products-list.component';
-import { CartComponent } from './cart/cart.component';
+import { ProductsListComponent } from '../products/components/products-list/products-list.component';
+import { CartComponent } from '../products/components/cart/cart.component';
 import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
 import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
 
@@ -16,32 +16,29 @@ const productsRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: ProductsListComponent
+        component: ProductsListComponent,
       },
       {
         path: 'cart',
         pathMatch: 'full',
-        component: CartComponent
+        component: CartComponent,
       },
       {
         path: ':id',
         pathMatch: 'full',
-        component: ProductInfoComponent
+        component: ProductInfoComponent,
       },
       {
         path: '**',
         pathMatch: 'full',
-        component: PageNotFoundComponent
-      }
-    ]
-  }
-]
+        component: PageNotFoundComponent,
+      },
+    ],
+  },
+];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(productsRoutes)
-  ]
+  imports: [CommonModule, RouterModule.forChild(productsRoutes)],
 })
-export class ProductsRoutingModule { }
+export class ProductsRoutingModule {}

@@ -6,23 +6,25 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'products',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'products',
-    loadChildren: () => import('./products/products.module')
-      .then(m => m.ProductsModule)
+    loadChildren: () =>
+      import('./products/products.module').then((m) => m.ProductsModule),
   },
   {
     path: 'administration',
-    loadChildren: () => import('./administration/administration.module')
-      .then(m => m.AdministrationModule)
+    loadChildren: () =>
+      import('./administration/administration.module').then(
+        (m) => m.AdministrationModule
+      ),
   },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

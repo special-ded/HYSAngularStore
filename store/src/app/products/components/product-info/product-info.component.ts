@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ActivatedRoute } from '@angular/router';
-import { ProductsService } from '../../shared/services/products.service';
-import { CartService } from '../services/cart.service';
+import { ProductsService } from '../../../shared/services/products.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-info',
   templateUrl: './product-info.component.html',
-  styleUrls: ['./product-info.component.scss']
+  styleUrls: ['./product-info.component.scss'],
 })
 export class ProductInfoComponent implements OnInit {
-
   constructor(
     private route: ActivatedRoute,
     private productService: ProductsService,
-    private cartService: CartService) {
-  }
+    private cartService: CartService
+  ) {}
 
   buttonName: string = 'Add to cart';
   id: number = 0;
@@ -23,14 +22,14 @@ export class ProductInfoComponent implements OnInit {
     id: 0,
     name: '',
     price: 0,
-    quantity: 1
+    quantity: 1,
   };
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.id = +params.get('id')!
-      this.product = this.productService.getProductById(this.id)
-    })
+    this.route.paramMap.subscribe((params) => {
+      this.id = +params.get('id')!;
+      this.product = this.productService.getProductById(this.id);
+    });
   }
 
   addToCart(product: Product): void {
