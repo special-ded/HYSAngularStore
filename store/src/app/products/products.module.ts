@@ -7,7 +7,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
 import { RouterModule } from '@angular/router';
-import { HryvniaPipePipe } from '../shared/pipes/hryvnia-pipe.pipe';
+
 import { ColorPriceDirective } from '../shared/directives/color-price.directive';
 import { ProductsComponent } from './products.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
@@ -15,6 +15,8 @@ import { CartComponent } from './components/cart/cart.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { AdministrationModule } from '../administration/administration.module';
+import { HryvniaPipe } from '../shared/pipes/hryvnia.pipe';
+import { ShortPipe } from '../shared/pipes/short.pipe';
 
 @NgModule({
   providers: [],
@@ -25,7 +27,8 @@ import { AdministrationModule } from '../administration/administration.module';
     ProductInfoComponent,
     ButtonComponent,
     PageNotFoundComponent,
-    HryvniaPipePipe,
+    HryvniaPipe,
+    ShortPipe,
     ColorPriceDirective,
     ProductsComponent,
     ProductsListComponent,

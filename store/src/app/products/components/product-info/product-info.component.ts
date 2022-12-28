@@ -39,8 +39,6 @@ export class ProductInfoComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
-    console.log(product);
-
     if (this.buttonName === 'Add to cart') {
       this.cartService.addToCart({ ...product, quantity: 1 });
       this.buttonName = 'In cart';
@@ -53,19 +51,9 @@ export class ProductInfoComponent implements OnInit {
   }
 
   setButtonName(): void {
-    console.log(this.id);
-
-    console.log(this.cartService.getCartList().some((el) => el.id === this.id));
-
     if (this.cartService.getCartList().some((el) => el.id === this.id)) {
       this.buttonName = 'In cart';
       return;
     }
-
-    // if (this.cartButtonName === '') {
-    //   this.buttonName = 'Add to cart';
-    //   return;
-    // }
-    // this.buttonName = this.cartButtonName;
   }
 }
