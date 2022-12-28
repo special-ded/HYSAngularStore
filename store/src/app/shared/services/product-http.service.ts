@@ -10,6 +10,21 @@ import { Product } from '../interfaces/products.interface';
 export class ProductHttpService implements OnInit {
   URL = 'https://hys-fe-course-api.vercel.app/products';
   products: Product[] = [];
+  create: Product = {
+    name: '',
+    id: '',
+    price: 0,
+    description: '',
+    quantity: 1,
+  };
+
+  update: Object = {
+    price: 11450,
+    extraInfo: {
+      Bluetooth: 'Yes',
+      image: 'https://gagadget.com.jpg',
+    },
+  };
 
   constructor(private http: HttpClient) {}
 
@@ -23,9 +38,15 @@ export class ProductHttpService implements OnInit {
     return this.http.get<Product>(this.URL + '/' + id);
   }
 
-  createProduct() {}
+  createProduct() {
+    this.http.post<Product>(this.URL, this.create);
+  }
 
-  updateProduct() {}
+  updateProduct(id: string) {
+    this.http.put(this.URL + '/' + id, this.update);
+  }
 
-  deleteProduct() {}
+  deleteProduct(id: string) {
+    this.http.delete<Product>(this.URL + '/' + id);
+  }
 }
