@@ -19,41 +19,46 @@ export class FilterService {
 
   filterByText(text: string): void {
     let priceInput = 0;
-    let priceSelectOption = '';
+    let priceSelectOption = 'More than';
     this.priceInput$.subscribe((price) => (priceInput = price));
     this.priceSelectOption$.subscribe((option) => (priceSelectOption = option));
-    this.productsService.productsList$.subscribe(
-      (data) => ((this.sortedProducts = data), console.log(data))
-    );
+    this.productsService.productsList$.subscribe((data) => {
+      this.sortedProducts = data;
 
-    const arr = this.sortedProducts.reduce((acc: Product[], curV: Product) => {
-      curV.name.toLowerCase().search(text!.toLowerCase()) !== -1
-        ? acc.push(curV)
-        : null;
-      return acc;
-    }, []);
-
-    this.productsService.filteredByText$.next(arr);
-    this.filterByPrice(priceSelectOption, priceInput);
+      const arr = this.sortedProducts.reduce(
+        (acc: Product[], curV: Product) => {
+          curV.name.toLowerCase().search(text!.toLowerCase()) !== -1
+            ? acc.push(curV)
+            : null;
+          return acc;
+        },
+        []
+      );
+      this.productsService.filteredByText$.next(arr);
+      this.filterByPrice(priceSelectOption, priceInput);
+    });
   }
 
   filterByPrice(option: string, price: number): void {
-    this.productsService.filteredByText$.subscribe(
-      (data) => (this.sortedProducts = data)
-    );
+    this.productsService.filteredByText$.subscribe((data) => {
+      this.sortedProducts = data;
 
-    const arr = this.sortedProducts.reduce((acc: Product[], curV: Product) => {
-      option === 'More than'
-        ? curV.price > price
-          ? acc.push(curV)
-          : null
-        : curV.price < price
-        ? acc.push(curV)
-        : null;
-      return acc;
-    }, []);
+      const arr = this.sortedProducts.reduce(
+        (acc: Product[], curV: Product) => {
+          option === 'More than'
+            ? curV.price > price
+              ? acc.push(curV)
+              : null
+            : curV.price < price
+            ? acc.push(curV)
+            : null;
+          return acc;
+        },
+        []
+      );
 
-    this.filteredByPrice$.next(arr);
+      this.filteredByPrice$.next(arr);
+    });
   }
 
   sortById(): void {

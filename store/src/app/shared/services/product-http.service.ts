@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Create } from '../interfaces/create.interface';
 import { Product } from '../interfaces/products.interface';
+import { Update } from '../interfaces/update.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -12,52 +12,44 @@ export class ProductHttpService {
   URL = 'https://hys-fe-course-api.vercel.app/products';
   products: Product[] = [];
 
-  create: Object = {
-    name: 'Honda INH3000 ',
-    author: 'draganov',
-    price: 1200,
-    description: 'Industry-leading generator',
-    extraInfo: {
-      ololo: 1,
-      image: 'https://d13o3tuo14g2wf.cloudfront.net/',
-    },
-  };
-
-  update: Object = {
-    price: 1000,
-    extraInfo: {
-      Bluetooth: 'Y',
-      image: 'Y',
-    },
-  };
   authHeaders = new HttpHeaders({
-    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI0MmIwZjVkYi0wMjFmLTQ4NzMtODRkYS1hYmIyY2MwYTRiZjEiLCJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkTVZRZS93SlBGN1QuaDV4UzdBb0guLmtwTTdCcEZHYm9CWUNLZC5IUkJqd1dQclRzdEJsSmkiLCJjcmVhdGVkQXQiOiIyMDIyLTEyLTI0VDEyOjE5OjA0LjI2OVoiLCJ1cGRhdGVkQXQiOiIyMDIyLTEyLTI0VDEyOjE5OjA0LjI2OVoiLCJpYXQiOjE2NzIyMTYxNTQsImV4cCI6MTY3MjMwMjU1NH0.Seb172javMCoR-aI51IZ6_CrSJAHDlrxXnnNngD_rqY`,
+    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmMjc4ODU3Ny1lMTllLTQzMGUtYTAyZC1lNWU0MTNhMDdkZGIiLCJ1c2VybmFtZSI6ImRyYWdhbm92IiwicGFzc3dvcmQiOiIkMmIkMTAkMUpQRWhWNzd6YnhWalR5UVhySkpUdXI4Z3M2TVlTbTRNTGZqWElFRU1tMDc1SU5YUlg2Vk8iLCJjcmVhdGVkQXQiOiIyMDIyLTEyLTI4VDA5OjI1OjE4LjE3MFoiLCJ1cGRhdGVkQXQiOiIyMDIyLTEyLTI4VDA5OjI1OjE4LjE3MFoiLCJpYXQiOjE2NzIzMDM1MDQsImV4cCI6MTY3MjM4OTkwNH0.0AoM-ucCr6kqMI3N6lwXiqRoLjmOL9SddEJk_ePRouE`,
   });
 
   constructor(private http: HttpClient) {}
 
-  getProductsList() {
+  getProductsList(): Observable<Product[]> {
     return this.http.get<Product[]>(this.URL);
   }
 
-  getById(id: string) {
+  getById(id: string): Observable<Product> {
     return this.http.get<Product>(this.URL + '/' + id);
   }
 
-  updateProduct(id: string) {
-    return this.http.put(this.URL + '/' + id, this.update, {
-      headers: this.authHeaders,
-    });
+  updateProduct(data: Update, id: string): Observable<Object> {
+    return this.http.put(
+      this.URL + '/' + id,
+      {
+        price: data.price,
+        extraInfo: {
+          Bluetooth: 'Y',
+          image: 'Y',
+        },
+      },
+      {
+        headers: this.authHeaders,
+      }
+    );
   }
 
-  createProduct(data: Create) {
+  createProduct(data: Create): Observable<Object> {
     return this.http.post(
       this.URL,
       {
-        name: 'data.name',
+        name: data.name,
         author: 'draganov',
-        price: 100,
-        description: 'data.description',
+        price: data.price,
+        description: data.description,
         extraInfo: {
           ololo: 1,
           image: 'https://d13o3tuo14g2wf.cloudfront.net/',
@@ -69,7 +61,7 @@ export class ProductHttpService {
     );
   }
 
-  deleteProduct(id: string) {
+  deleteProduct(id: string): Observable<Object> {
     return this.http.delete(this.URL + '/' + id, {
       headers: this.authHeaders,
     });

@@ -20,12 +20,6 @@ export class ModalComponent {
   descriptionInput: string = '';
 
   ok(): void {
-    console.log('aaaaaaaaaaaaa');
-
-    // this.http
-    //   .updateProduct('236d5f45-b465-4385-a4c7-b9b195cda9b8')
-    //   .subscribe((data) => console.log(data));
-
     if (this.data.delete) {
       this.dialogRef.close(this.data.id);
       return;

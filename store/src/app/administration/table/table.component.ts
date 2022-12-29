@@ -33,7 +33,6 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.resetFilter();
     this.productService.generateProducts();
-
     this.filterService.filteredByPrice$
       .pipe(debounceTime(500))
       .subscribe((data) => {
@@ -106,7 +105,6 @@ export class TableComponent implements OnInit {
     });
 
     addDialog.afterClosed().subscribe((data) => {
-      console.log(data);
       this.http.createProduct(data).subscribe((data) => console.log(data));
     });
   }
@@ -122,7 +120,9 @@ export class TableComponent implements OnInit {
       },
     });
 
-    editDialog.afterClosed().subscribe((data) => console.log(data));
+    editDialog.afterClosed().subscribe((data) => {
+      this.http.updateProduct(data, id).subscribe((data) => console.log(data));
+    });
   }
 
   deleteProduct(id: string) {
