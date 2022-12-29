@@ -1,17 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  CreateProduct,
-  Product,
-  UpdateProduct,
-} from '../interfaces/products.interface';
+import { Product } from '../interfaces/products.interface';
+import { CreateUser, UpdateUser, User } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductHttpService {
-  URL = 'https://hys-fe-course-api.vercel.app/products';
+export class UserHttpService {
+  URL = 'https://hys-fe-course-api.vercel.app/users';
   products: Product[] = [];
 
   authHeaders = new HttpHeaders({
@@ -20,23 +17,20 @@ export class ProductHttpService {
 
   constructor(public http: HttpClient) {}
 
-  getProductsList(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.URL);
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.URL);
   }
 
-  getById(id: string): Observable<Product> {
-    return this.http.get<Product>(this.URL + '/' + id);
+  getUserById(id: string): Observable<User> {
+    return this.http.get<User>(this.URL + '/' + id);
   }
 
-  updateProduct(data: UpdateProduct, id: string): Observable<Object> {
+  updateUser(data: UpdateUser, id: string): Observable<Object> {
     return this.http.put(
       this.URL + '/' + id,
       {
-        price: data.price,
-        extraInfo: {
-          Bluetooth: 'Y',
-          image: 'Y',
-        },
+        name: data.name,
+        password: data.password,
       },
       {
         headers: this.authHeaders,
@@ -44,18 +38,12 @@ export class ProductHttpService {
     );
   }
 
-  createProduct(data: CreateProduct): Observable<Object> {
+  createUser(data: CreateUser): Observable<Object> {
     return this.http.post(
       this.URL,
       {
-        name: data.name,
-        author: 'draganov',
-        price: data.price,
-        description: data.description,
-        extraInfo: {
-          ololo: 1,
-          image: 'https://d13o3tuo14g2wf.cloudfront.net/',
-        },
+        name: data.username,
+        password: data.password,
       },
       {
         headers: this.authHeaders,
@@ -63,7 +51,7 @@ export class ProductHttpService {
     );
   }
 
-  deleteProduct(id: string): Observable<Object> {
+  deleteUser(id: string): Observable<Object> {
     return this.http.delete(this.URL + '/' + id, {
       headers: this.authHeaders,
     });
