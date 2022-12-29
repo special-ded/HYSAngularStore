@@ -9,7 +9,7 @@ export class PaginatorService {
   totalPages: number = 1;
 
   constructor(private productService: ProductsService) {
-    this.productService.getProductsList().subscribe((data) => {
+    this.productService.productsList$.subscribe((data) => {
       this.totalPages = data.length / 5;
     });
   }

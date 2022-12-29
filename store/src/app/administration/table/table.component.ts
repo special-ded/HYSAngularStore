@@ -55,7 +55,7 @@ export class TableComponent implements OnInit {
   }
 
   pageHandler(data: Product[]): void {
-    (this.totalPages = Math.round(data.length / 5)),
+    (this.totalPages = Math.ceil(data.length / 5)),
       (this.currentPageProducts = this.products.slice(0, 5)),
       (this.currentPage = 1),
       (this.startIndex = 0);
@@ -72,7 +72,7 @@ export class TableComponent implements OnInit {
   }
 
   nextPage(): void {
-    if (this.currentPage >= Math.round(this.products.length / 5)) {
+    if (this.currentPage >= Math.ceil(this.products.length / 5)) {
       return;
     }
 
@@ -105,31 +105,39 @@ export class TableComponent implements OnInit {
       },
     });
 
-    addDialog.afterClosed().subscribe((data) => console.log(data));
+    addDialog.afterClosed().subscribe((data) => {
+      console.log(data);
+      this.http.createProduct(data).subscribe((data) => console.log(data));
+    });
   }
 
-  editProduct() {
+  editProduct(id: string) {
     let editDialog = this.modal.open(ModalComponent, {
       height: '547px',
       width: '570px',
       data: {
         title: ' Edit Product',
         delete: false,
+        id: id,
       },
     });
 
     editDialog.afterClosed().subscribe((data) => console.log(data));
   }
 
-  deleteProduct() {
+  deleteProduct(id: string) {
     let deleteDialog = this.modal.open(ModalComponent, {
       height: '200px',
       width: '570px',
       data: {
         title: 'Delete product #243 ?',
         delete: true,
+        id: id,
       },
     });
-    deleteDialog.afterClosed().subscribe((data) => console.log(data));
+
+    deleteDialog.afterClosed().subscribe((data) => {
+      this.http.deleteProduct(data).subscribe((data) => data);
+    });
   }
 }

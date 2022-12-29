@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { Create } from '../interfaces/create.interface';
 import { Product } from '../interfaces/products.interface';
 
 @Injectable({
@@ -10,12 +11,16 @@ import { Product } from '../interfaces/products.interface';
 export class ProductHttpService {
   URL = 'https://hys-fe-course-api.vercel.app/products';
   products: Product[] = [];
-  create: Product = {
-    name: '',
-    id: '',
-    price: 0,
-    description: '',
-    quantity: 1,
+
+  create: Object = {
+    name: 'Honda INH3000 ',
+    author: 'draganov',
+    price: 1200,
+    description: 'Industry-leading generator',
+    extraInfo: {
+      ololo: 1,
+      image: 'https://d13o3tuo14g2wf.cloudfront.net/',
+    },
   };
 
   update: Object = {
@@ -31,12 +36,6 @@ export class ProductHttpService {
 
   constructor(private http: HttpClient) {}
 
-  updateProduct(id: string) {
-    return this.http.put(this.URL + '/' + id, this.update, {
-      headers: this.authHeaders,
-    });
-  }
-
   getProductsList() {
     return this.http.get<Product[]>(this.URL);
   }
@@ -45,11 +44,34 @@ export class ProductHttpService {
     return this.http.get<Product>(this.URL + '/' + id);
   }
 
-  createProduct() {
-    this.http.post<Product>(this.URL, this.create);
+  updateProduct(id: string) {
+    return this.http.put(this.URL + '/' + id, this.update, {
+      headers: this.authHeaders,
+    });
+  }
+
+  createProduct(data: Create) {
+    return this.http.post(
+      this.URL,
+      {
+        name: 'data.name',
+        author: 'draganov',
+        price: 100,
+        description: 'data.description',
+        extraInfo: {
+          ololo: 1,
+          image: 'https://d13o3tuo14g2wf.cloudfront.net/',
+        },
+      },
+      {
+        headers: this.authHeaders,
+      }
+    );
   }
 
   deleteProduct(id: string) {
-    this.http.delete<Product>(this.URL + '/' + id);
+    return this.http.delete(this.URL + '/' + id, {
+      headers: this.authHeaders,
+    });
   }
 }
