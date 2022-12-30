@@ -14,9 +14,8 @@ import { PriceFilterComponent } from './price-filter/price-filter.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
 import { FormsModule } from '@angular/forms';
-
-
-
+import { UsersTableComponent } from './users-table/users-table.component';
+import { UserModalComponent } from './user-modal/user-modal.component';
 
 @NgModule({
   declarations: [
@@ -26,21 +25,20 @@ import { FormsModule } from '@angular/forms';
     AdministrationComponent,
     SidebarComponent,
     TableComponent,
+    UsersTableComponent,
     SpinnerComponent,
     SearchComponent,
     PriceFilterComponent,
-    ModalComponent
+    ModalComponent,
+    UserModalComponent,
   ],
   imports: [
     CommonModule,
     AdministrationRoutingModule,
     RouterModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
   ],
-  exports: [
-
-    SpinnerComponent
-  ]
+  exports: [SpinnerComponent],
 })
-export class AdministrationModule { }
+export class AdministrationModule {}

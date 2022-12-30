@@ -1,20 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, debounceTime } from 'rxjs';
-import { Product } from 'src/app/shared/interfaces/products.interface';
-import { ModalComponent } from '../modal/modal.component';
-import { ProductHttpService } from '../../shared/services/product-http.service';
+import { User } from 'src/app/shared/interfaces/user.interface';
 import { FilterService } from '../services/filter.service';
-import { ProductsService } from 'src/app/shared/services/products.service';
+import { UserHttpService } from '../../shared/services/user-http.service';
+import { UserModalComponent } from '../user-modal/user-modal.component';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss'],
+  selector: 'app-users-table',
+  templateUrl: './users-table.component.html',
+  styleUrls: ['./users-table.component.scss'],
 })
-export class TableComponent implements OnInit {
-  products: Product[] = [];
-  currentPageProducts: Product[] = [];
+export class UsersTableComponent implements OnInit {
+  users: User[] = [];
+  currentPageUsers: User[] = [];
   currentPage: number = 1;
   totalPages: number = 0;
   startIndex: number = 0;
@@ -26,21 +25,19 @@ export class TableComponent implements OnInit {
   constructor(
     private filterService: FilterService,
     private modal: MatDialog,
-    private http: ProductHttpService,
-    private productService: ProductsService
+    private userHttp: UserHttpService
   ) {}
 
   ngOnInit(): void {
     this.resetFilter();
-    this.productService.generateProducts();
-    this.filterService.filteredByPrice$
-      .pipe(debounceTime(500))
-      .subscribe((data) => {
-        data.length !== 0 ? this.loading$.next(false) : null,
-          (this.products = data),
-          this.pageHandler(data),
-          this.arrowHandler();
-      });
+
+    this.userHttp.getAllUsers().subscribe((data) => {
+      data.length !== 0 ? this.loading$.next(false) : null,
+        (this.users = data),
+        this.pageHandler(data),
+        this.arrowHandler();
+      console.log(data);
+    });
   }
 
   sortById(): void {
@@ -53,9 +50,9 @@ export class TableComponent implements OnInit {
     this.filterService.sortByName();
   }
 
-  pageHandler(data: Product[]): void {
+  pageHandler(data: User[]): void {
     (this.totalPages = Math.ceil(data.length / 5)),
-      (this.currentPageProducts = this.products.slice(0, 5)),
+      (this.currentPageUsers = this.users.slice(0, 5)),
       (this.currentPage = 1),
       (this.startIndex = 0);
   }
@@ -71,12 +68,12 @@ export class TableComponent implements OnInit {
   }
 
   nextPage(): void {
-    if (this.currentPage >= Math.ceil(this.products.length / 5)) {
+    if (this.currentPage >= Math.ceil(this.users.length / 5)) {
       return;
     }
 
     this.currentPage++;
-    this.currentPageProducts = this.products.slice(
+    this.currentPageUsers = this.users.slice(
       (this.startIndex += 5),
       5 * this.currentPage
     );
@@ -88,37 +85,35 @@ export class TableComponent implements OnInit {
     }
 
     this.currentPage--;
-    this.currentPageProducts = this.products.slice(
+    this.currentPageUsers = this.users.slice(
       (this.startIndex -= 5),
       5 * this.currentPage
     );
   }
 
   add() {
-    let addDialog = this.modal.open(ModalComponent, {
-      height: '547px',
+    let addDialog = this.modal.open(UserModalComponent, {
+      height: '447px',
       width: '570px',
       data: {
-        title: 'Add Product ',
+        title: 'Add User ',
         delete: false,
       },
     });
 
     addDialog.afterClosed().subscribe((data) => {
-      if (data) {
-        this.http.createProduct(data).subscribe((data) => {
-          this.ngOnInit();
-        });
-      }
+      this.userHttp.createUser(data).subscribe(() => {
+        this.ngOnInit();
+      });
     });
   }
 
   editProduct(id: string) {
-    let editDialog = this.modal.open(ModalComponent, {
-      height: '447px',
+    let editDialog = this.modal.open(UserModalComponent, {
+      height: '347px',
       width: '570px',
       data: {
-        title: ' Edit Product',
+        title: ' Edit User',
         delete: false,
         edit: true,
         id: id,
@@ -126,31 +121,27 @@ export class TableComponent implements OnInit {
     });
 
     editDialog.afterClosed().subscribe((data) => {
-      if (data) {
-        this.http.updateProduct(data, id).subscribe(() => {
-          this.ngOnInit();
-        });
-      }
+      this.userHttp.updateUser(data, id).subscribe(() => {
+        this.ngOnInit();
+      });
     });
   }
 
   deleteProduct(id: string, name: string) {
-    let deleteDialog = this.modal.open(ModalComponent, {
+    let deleteDialog = this.modal.open(UserModalComponent, {
       height: '200px',
       width: '570px',
       data: {
-        title: `Delete product "${name.slice(0, 10)}" ?`,
+        title: `Delete User "${name}" ?`,
         delete: true,
         id: id,
       },
     });
 
     deleteDialog.afterClosed().subscribe((data) => {
-      if (data) {
-        this.http.deleteProduct(data).subscribe((data) => {
-          this.ngOnInit();
-        });
-      }
+      this.userHttp.deleteUser(data).subscribe(() => {
+        this.ngOnInit();
+      });
     });
   }
 }

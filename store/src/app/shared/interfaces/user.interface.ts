@@ -12,6 +12,6 @@ export interface CreateUser {
 }
 
 export interface UpdateUser {
-  name: string;
+  username: string;
   password: string;
 }

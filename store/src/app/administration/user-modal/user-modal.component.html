@@ -3,35 +3,24 @@
 
   <form *ngIf="!data.delete" class="modal-form">
     <div *ngIf="!data.edit" class="form__item">
-      <label>Name</label>
+      <label>Username</label>
       <input
         [(ngModel)]="nameInput"
         class="form__input"
         type="text"
-        name="name"
-        placeholder="Name"
+        name="username"
+        placeholder="Username"
       />
     </div>
 
     <div class="form__item">
-      <label>Price</label>
+      <label>Password</label>
       <input
-        [(ngModel)]="priceInput"
-        class="form__input"
-        type="number"
-        name="price"
-        placeholder="Price"
-      />
-    </div>
-
-    <div class="form__item">
-      <label>Description</label>
-      <input
-        [(ngModel)]="descriptionInput"
+        [(ngModel)]="passwordInput"
         class="form__input"
         type="text"
-        name="description"
-        placeholder="Description"
+        name="password"
+        placeholder="Password"
       />
     </div>
   </form>

@@ -12,24 +12,27 @@ export class UserHttpService {
   products: Product[] = [];
 
   authHeaders = new HttpHeaders({
-    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmMjc4ODU3Ny1lMTllLTQzMGUtYTAyZC1lNWU0MTNhMDdkZGIiLCJ1c2VybmFtZSI6ImRyYWdhbm92IiwicGFzc3dvcmQiOiIkMmIkMTAkMUpQRWhWNzd6YnhWalR5UVhySkpUdXI4Z3M2TVlTbTRNTGZqWElFRU1tMDc1SU5YUlg2Vk8iLCJjcmVhdGVkQXQiOiIyMDIyLTEyLTI4VDA5OjI1OjE4LjE3MFoiLCJ1cGRhdGVkQXQiOiIyMDIyLTEyLTI4VDA5OjI1OjE4LjE3MFoiLCJpYXQiOjE2NzIzMDM1MDQsImV4cCI6MTY3MjM4OTkwNH0.0AoM-ucCr6kqMI3N6lwXiqRoLjmOL9SddEJk_ePRouE`,
+    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJmMjc4ODU3Ny1lMTllLTQzMGUtYTAyZC1lNWU0MTNhMDdkZGIiLCJ1c2VybmFtZSI6ImRyYWdhbm92IiwicGFzc3dvcmQiOiIkMmIkMTAkMUpQRWhWNzd6YnhWalR5UVhySkpUdXI4Z3M2TVlTbTRNTGZqWElFRU1tMDc1SU5YUlg2Vk8iLCJjcmVhdGVkQXQiOiIyMDIyLTEyLTI4VDA5OjI1OjE4LjE3MFoiLCJ1cGRhdGVkQXQiOiIyMDIyLTEyLTI4VDA5OjI1OjE4LjE3MFoiLCJpYXQiOjE2NzIzODYxMjksImV4cCI6MTY3MjQ3MjUyOX0.ArkYEq25jMrOUi8iTo9aBoeAlSykAr6vbsYriJlYT7o`,
   });
 
   constructor(public http: HttpClient) {}
 
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.URL);
+    return this.http.get<User[]>(this.URL, {
+      headers: this.authHeaders,
+    });
   }
 
   getUserById(id: string): Observable<User> {
-    return this.http.get<User>(this.URL + '/' + id);
+    return this.http.get<User>(this.URL + '/' + id, {
+      headers: this.authHeaders,
+    });
   }
 
   updateUser(data: UpdateUser, id: string): Observable<Object> {
     return this.http.put(
       this.URL + '/' + id,
       {
-        name: data.name,
         password: data.password,
       },
       {
@@ -39,10 +42,12 @@ export class UserHttpService {
   }
 
   createUser(data: CreateUser): Observable<Object> {
+    console.log(data);
+
     return this.http.post(
       this.URL,
       {
-        name: data.username,
+        username: data.username,
         password: data.password,
       },
       {

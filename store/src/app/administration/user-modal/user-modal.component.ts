@@ -1,23 +1,22 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProductHttpService } from 'src/app/shared/services/product-http.service';
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss'],
+  selector: 'app-user-modal',
+  templateUrl: './user-modal.component.html',
+  styleUrls: ['./user-modal.component.scss'],
 })
-export class ModalComponent {
+export class UserModalComponent {
   constructor(
     private http: ProductHttpService,
-    public dialogRef: MatDialogRef<ModalComponent>,
+    public dialogRef: MatDialogRef<UserModalComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: { title: string; delete: boolean; edit: boolean; id: string }
   ) {}
 
   nameInput: string = '';
-  priceInput: number | string = '';
-  descriptionInput: string = '';
+  passwordInput: number | string = '';
 
   ok(): void {
     if (this.data.delete) {
@@ -26,9 +25,8 @@ export class ModalComponent {
     }
 
     this.dialogRef.close({
-      name: this.nameInput,
-      price: this.priceInput,
-      description: this.descriptionInput,
+      username: this.nameInput,
+      password: this.passwordInput,
     });
   }
 
