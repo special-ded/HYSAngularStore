@@ -7,6 +7,7 @@ import { ProductsListComponent } from './components/products-list/products-list.
 import { CartComponent } from './components/cart/cart.component';
 import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
 import { ProductInfoComponent } from './components/product-info/product-info.component';
+import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
 
 const productsRoutes: Routes = [
   {
