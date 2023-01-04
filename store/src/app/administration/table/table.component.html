@@ -56,7 +56,8 @@
 
     <div class="table-row-wrapper">
       <app-spinner *ngIf="loading$ | async"></app-spinner>
-      <ng-container *ngFor="let product of currentPageProducts">
+
+      <ng-container *ngFor="let product of pageProducts$ | async">
         <div class="table-row">
           <p class="table-row__item">{{ product.id }}</p>
           <p class="table-row__item">{{ product.name }}</p>
@@ -77,22 +78,6 @@
       </ng-container>
     </div>
 
-    <div class="footer">
-      <div class="footer__item">
-        <p class="footer__page">{{ currentPage }}/{{ totalPages }}</p>
-      </div>
-      <div class="footer__arrows">
-        <a (click)="prevPage()" class="arrow-link">
-          <img class="arrow-left" src="/assets/img/page-left.png" alt="arrow" />
-        </a>
-        <a (click)="nextPage()" class="arrow-link">
-          <img
-            class="arrow-right"
-            src="/assets/img/page-right.png"
-            alt="arrow"
-          />
-        </a>
-      </div>
-    </div>
+    <app-paginator></app-paginator>
   </div>
 </div>

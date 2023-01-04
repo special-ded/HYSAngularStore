@@ -6,6 +6,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { ProductHttpService } from '../../shared/services/product-http.service';
 import { FilterService } from '../services/filter.service';
 import { ProductsService } from 'src/app/shared/services/products.service';
+import { PaginatorService } from '../services/paginator.service';
 
 @Component({
   selector: 'app-table',
@@ -14,7 +15,6 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 })
 export class TableComponent implements OnInit {
   products: Product[] = [];
-  currentPageProducts: Product[] = [];
   currentPage: number = 1;
   totalPages: number = 0;
   startIndex: number = 0;
@@ -22,12 +22,13 @@ export class TableComponent implements OnInit {
   isPriceAscending: boolean = true;
   isNameAscending: boolean = true;
   loading$ = new BehaviorSubject<boolean>(true);
-
+  pageProducts$ = this.paginatorService.currentPageProducts$;
   constructor(
     private filterService: FilterService,
     private modal: MatDialog,
     private http: ProductHttpService,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private paginatorService: PaginatorService
   ) {}
 
   ngOnInit(): void {
@@ -37,9 +38,9 @@ export class TableComponent implements OnInit {
       .pipe(debounceTime(500))
       .subscribe((data) => {
         data.length !== 0 ? this.loading$.next(false) : null,
-          (this.products = data),
-          this.pageHandler(data),
-          this.arrowHandler();
+          (this.products = data);
+        this.pageHandler(data);
+        this.arrowHandler();
       });
   }
 
@@ -55,7 +56,9 @@ export class TableComponent implements OnInit {
 
   pageHandler(data: Product[]): void {
     (this.totalPages = Math.ceil(data.length / 5)),
-      (this.currentPageProducts = this.products.slice(0, 5)),
+      this.paginatorService.currentPageProducts$.next(
+        this.products.slice(0, 5)
+      ),
       (this.currentPage = 1),
       (this.startIndex = 0);
   }
@@ -70,29 +73,29 @@ export class TableComponent implements OnInit {
     this.filterService.filterByText('');
   }
 
-  nextPage(): void {
-    if (this.currentPage >= Math.ceil(this.products.length / 5)) {
-      return;
-    }
+  // nextPage(): void {
+  //   if (this.currentPage >= Math.ceil(this.products.length / 5)) {
+  //     return;
+  //   }
 
-    this.currentPage++;
-    this.currentPageProducts = this.products.slice(
-      (this.startIndex += 5),
-      5 * this.currentPage
-    );
-  }
+  //   this.currentPage++;
+  //   this.currentPageProducts = this.products.slice(
+  //     (this.startIndex += 5),
+  //     5 * this.currentPage
+  //   );
+  // }
 
-  prevPage(): void {
-    if (this.currentPage === 1) {
-      return;
-    }
+  // prevPage(): void {
+  //   if (this.currentPage === 1) {
+  //     return;
+  //   }
 
-    this.currentPage--;
-    this.currentPageProducts = this.products.slice(
-      (this.startIndex -= 5),
-      5 * this.currentPage
-    );
-  }
+  //   this.currentPage--;
+  //   this.currentPageProducts = this.products.slice(
+  //     (this.startIndex -= 5),
+  //     5 * this.currentPage
+  //   );
+  // }
 
   add() {
     let addDialog = this.modal.open(ModalComponent, {

@@ -16,6 +16,7 @@ import { ModalComponent } from './modal/modal.component';
 import { FormsModule } from '@angular/forms';
 import { UsersTableComponent } from './users-table/users-table.component';
 import { UserModalComponent } from './user-modal/user-modal.component';
+import { PaginatorComponent } from './paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UserModalComponent } from './user-modal/user-modal.component';
     PriceFilterComponent,
     ModalComponent,
     UserModalComponent,
+    PaginatorComponent,
   ],
   imports: [
     CommonModule,
