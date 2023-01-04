@@ -7,10 +7,11 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 export class PaginatorService {
   currentPage: number = 1;
   totalPages: number = 1;
+  productsOnPage: number = 5;
 
   constructor(private productService: ProductsService) {
     this.productService.getProductsList().subscribe((data) => {
-      this.totalPages = data.length / 5;
+      this.totalPages = data.length / this.productsOnPage;
     });
   }
 }
