@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, debounceTime } from 'rxjs';
-import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ModalComponent } from '../modal/modal.component';
 import { ProductHttpService } from '../../shared/services/product-http.service';
 import { FilterService } from '../services/filter.service';
@@ -14,21 +13,17 @@ import { PaginatorService } from '../services/paginator.service';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  products: Product[] = [];
-  currentPage: number = 1;
-  totalPages: number = 0;
   startIndex: number = 0;
   isIdAscending: boolean = true;
   isPriceAscending: boolean = true;
   isNameAscending: boolean = true;
   loading$ = new BehaviorSubject<boolean>(true);
-  pageProducts$ = this.paginatorService.currentPageProducts$;
   constructor(
     private filterService: FilterService,
     private modal: MatDialog,
     private http: ProductHttpService,
     private productService: ProductsService,
-    private paginatorService: PaginatorService
+    public paginatorService: PaginatorService
   ) {}
 
   ngOnInit(): void {
@@ -36,8 +31,7 @@ export class TableComponent implements OnInit {
     this.productService.generateProducts();
     this.filterService.filteredByPrice$.subscribe((data) => {
       data.length !== 0 ? this.loading$.next(false) : null,
-        (this.products = data);
-      this.pageHandler(data);
+        this.paginatorService.currentPageProducts$.next(data.slice(0, 5));
       this.arrowHandler();
     });
   }
@@ -52,12 +46,6 @@ export class TableComponent implements OnInit {
     this.filterService.sortByName();
   }
 
-  pageHandler(data: Product[]): void {
-    this.paginatorService.currentPageProducts$.next(this.products.slice(0, 5)),
-      (this.currentPage = 1),
-      (this.startIndex = 0);
-  }
-
   arrowHandler(): void {
     this.isIdAscending = this.filterService.ascendingId;
     this.isPriceAscending = this.filterService.ascendingPrice;
@@ -67,30 +55,6 @@ export class TableComponent implements OnInit {
   resetFilter(): void {
     this.filterService.filterByText('');
   }
-
-  // nextPage(): void {
-  //   if (this.currentPage >= Math.ceil(this.products.length / 5)) {
-  //     return;
-  //   }
-
-  //   this.currentPage++;
-  //   this.currentPageProducts = this.products.slice(
-  //     (this.startIndex += 5),
-  //     5 * this.currentPage
-  //   );
-  // }
-
-  // prevPage(): void {
-  //   if (this.currentPage === 1) {
-  //     return;
-  //   }
-
-  //   this.currentPage--;
-  //   this.currentPageProducts = this.products.slice(
-  //     (this.startIndex -= 5),
-  //     5 * this.currentPage
-  //   );
-  // }
 
   add() {
     let addDialog = this.modal.open(ModalComponent, {
