@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AdministrationComponent } from './administration.component';
 import { UsersComponent } from './users/users.component';
-import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './products/products.component';
 
 const administrationRoutes: Routes = [
@@ -16,11 +15,6 @@ const administrationRoutes: Routes = [
     path: '',
     component: AdministrationComponent,
     children: [
-      {
-        path: 'login',
-        pathMatch: 'full',
-        component: LoginComponent,
-      },
       {
         path: 'users',
         pathMatch: 'full',

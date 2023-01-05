@@ -12,6 +12,7 @@ export class PaginatorComponent implements OnInit {
   products: Product[] = [];
   currentPage: number = 1;
   startIndex: number = 0;
+  productsOnPage: number = 5;
 
   constructor(
     private filterService: FilterService,
@@ -25,13 +26,18 @@ export class PaginatorComponent implements OnInit {
   }
 
   nextPage(): void {
-    if (this.currentPage >= Math.ceil(this.products.length / 5)) {
+    if (
+      this.currentPage >= Math.ceil(this.products.length / this.productsOnPage)
+    ) {
       return;
     }
 
     this.currentPage++;
     this.paginatorService.currentPageProducts$.next(
-      this.products.slice((this.startIndex += 5), 5 * this.currentPage)
+      this.products.slice(
+        (this.startIndex += this.productsOnPage),
+        this.productsOnPage * this.currentPage
+      )
     );
   }
 
@@ -42,7 +48,10 @@ export class PaginatorComponent implements OnInit {
 
     this.currentPage--;
     this.paginatorService.currentPageProducts$.next(
-      this.products.slice((this.startIndex -= 5), 5 * this.currentPage)
+      this.products.slice(
+        (this.startIndex -= this.productsOnPage),
+        this.productsOnPage * this.currentPage
+      )
     );
   }
 }
