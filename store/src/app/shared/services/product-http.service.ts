@@ -6,7 +6,6 @@ import {
   Product,
   UpdateProduct,
 } from '../interfaces/products.interface';
-import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root',

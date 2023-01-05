@@ -18,20 +18,20 @@ export class AuthInterceptorService {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const authReq = req.clone({
-      headers: req.headers.set('Session', '123456789'),
       setHeaders: {
-        Authorization: this.localStorageService.getToken(),
+        Authorization: this.localStorageService.getToken() || '',
       },
     });
 
     return next.handle(authReq).pipe(
       tap(
         (event) => {
-          if (event instanceof HttpResponse) {
-            console.log(event);
+          console.log('aaaaaaaaaa');
 
+          if (event instanceof HttpResponse) {
             console.log('Server Response');
           }
+          console.log('aaaaaaaaaa');
         },
         (err) => {
           console.log(err);
