@@ -34,14 +34,12 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.resetFilter();
     this.productService.generateProducts();
-    this.filterService.filteredByPrice$
-      .pipe(debounceTime(500))
-      .subscribe((data) => {
-        data.length !== 0 ? this.loading$.next(false) : null,
-          (this.products = data);
-        this.pageHandler(data);
-        this.arrowHandler();
-      });
+    this.filterService.filteredByPrice$.subscribe((data) => {
+      data.length !== 0 ? this.loading$.next(false) : null,
+        (this.products = data);
+      this.pageHandler(data);
+      this.arrowHandler();
+    });
   }
 
   sortById(): void {
@@ -55,10 +53,7 @@ export class TableComponent implements OnInit {
   }
 
   pageHandler(data: Product[]): void {
-    (this.totalPages = Math.ceil(data.length / 5)),
-      this.paginatorService.currentPageProducts$.next(
-        this.products.slice(0, 5)
-      ),
+    this.paginatorService.currentPageProducts$.next(this.products.slice(0, 5)),
       (this.currentPage = 1),
       (this.startIndex = 0);
   }

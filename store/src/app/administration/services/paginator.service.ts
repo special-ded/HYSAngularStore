@@ -7,13 +7,12 @@ import { Product } from 'src/app/shared/interfaces/products.interface';
   providedIn: 'root',
 })
 export class PaginatorService {
-  currentPage: number = 1;
-  totalPages: number = 1;
+  totalPages$ = new BehaviorSubject<number>(0);
   currentPageProducts$ = new BehaviorSubject<Product[]>([]);
 
   constructor(private productService: ProductsService) {
     this.productService.productsList$.subscribe((data) => {
-      this.totalPages = data.length / 5;
+      this.totalPages$.next(Math.ceil(data.length / 5));
     });
   }
 }

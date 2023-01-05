@@ -1,6 +1,8 @@
 <div class="footer">
   <div class="footer__item">
-    <p class="footer__page">{{ currentPage }}/{{ totalPages }}</p>
+    <p class="footer__page">
+      {{ currentPage }}/{{ this.paginatorService.totalPages$ | async }}
+    </p>
   </div>
   <div class="footer__arrows">
     <a (click)="prevPage()" class="arrow-link">

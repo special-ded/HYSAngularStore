@@ -10,14 +10,12 @@ import { PaginatorService } from '../services/paginator.service';
 })
 export class PaginatorComponent implements OnInit {
   products: Product[] = [];
-  currentPageProducts: Product[] = [];
   currentPage: number = 1;
-  totalPages: number = 0;
   startIndex: number = 0;
 
   constructor(
     private filterService: FilterService,
-    private paginatorService: PaginatorService
+    public paginatorService: PaginatorService
   ) {}
 
   ngOnInit(): void {
