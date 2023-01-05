@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdministrationComponent } from './administration.component';
 import { UsersComponent } from './users/users.component';
 import { ProductsComponent } from './products/products.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const administrationRoutes: Routes = [
   {
@@ -14,6 +15,7 @@ const administrationRoutes: Routes = [
   {
     path: '',
     component: AdministrationComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: 'users',

@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject, debounceTime } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { ModalComponent } from '../modal/modal.component';
 import { ProductHttpService } from '../../shared/services/product-http.service';
 import { FilterService } from '../services/filter.service';
@@ -51,6 +51,13 @@ export class TableComponent implements OnInit {
     this.isPriceAscending = this.filterService.ascendingPrice;
     this.isNameAscending = this.filterService.ascendingName;
   }
+
+  // pageHandler(data: User[]): void {
+  //   (this.totalPages = Math.ceil(data.length / 5)),
+  //     (this.currentPageUsers = this.users.slice(0, 5)),
+  //     (this.currentPage = 1),
+  //     (this.startIndex = 0);
+  // }
 
   resetFilter(): void {
     this.filterService.filterByText('');
