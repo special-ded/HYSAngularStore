@@ -33,7 +33,11 @@ export class LocalStorageService {
     );
   }
 
-  getToken() {
+  getToken(): string {
     return JSON.parse(localStorage.getItem('token')!);
+  }
+
+  deleteToken(): void {
+    localStorage.removeItem('token');
   }
 }

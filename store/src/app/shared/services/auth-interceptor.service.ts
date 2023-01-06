@@ -34,12 +34,14 @@ export class AuthInterceptorService {
             console.log('Server Response');
           }
         },
-        (err) => {
-          if (err) {
+        (error) => {
+          if (error.status === 401) {
+            console.log(error);
+            this.localStorageService.deleteToken();
             // show Modal and then Redirect
             this.router.navigate(['login']);
           }
-          console.log(err);
+          console.log(error);
         }
       )
     );
