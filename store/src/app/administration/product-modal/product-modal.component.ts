@@ -1,23 +1,27 @@
 import { Component, Inject } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProductHttpService } from 'src/app/shared/services/product-http.service';
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss'],
+  selector: 'app-product-modal',
+  templateUrl: './product-modal.component.html',
+  styleUrls: ['./product-modal.component.scss'],
 })
-export class ModalComponent {
+export class ProductModalComponent {
+  form: FormGroup = this.fb.group({
+    name: null,
+    price: null,
+    description: null,
+  });
+
   constructor(
+    private fb: FormBuilder,
     private http: ProductHttpService,
-    public dialogRef: MatDialogRef<ModalComponent>,
+    public dialogRef: MatDialogRef<ProductModalComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: { title: string; delete: boolean; edit: boolean; id: string }
   ) {}
-
-  nameInput: string = '';
-  priceInput: number | string = '';
-  descriptionInput: string = '';
 
   ok(): void {
     if (this.data.delete) {
@@ -26,9 +30,9 @@ export class ModalComponent {
     }
 
     this.dialogRef.close({
-      name: this.nameInput,
-      price: this.priceInput,
-      description: this.descriptionInput,
+      name: this.form.getRawValue().name,
+      price: this.form.getRawValue().price,
+      description: this.form.getRawValue().description,
     });
   }
 

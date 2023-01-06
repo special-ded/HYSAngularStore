@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
-import { ModalComponent } from '../modal/modal.component';
+import { ProductModalComponent } from '../product-modal/product-modal.component';
 import { ProductHttpService } from '../../shared/services/product-http.service';
 import { FilterService } from '../services/filter.service';
 import { ProductsService } from 'src/app/shared/services/products.service';
@@ -64,7 +64,7 @@ export class TableComponent implements OnInit {
   }
 
   add() {
-    let addDialog = this.modal.open(ModalComponent, {
+    let addDialog = this.modal.open(ProductModalComponent, {
       height: '547px',
       width: '570px',
       data: {
@@ -83,7 +83,7 @@ export class TableComponent implements OnInit {
   }
 
   editProduct(id: string) {
-    let editDialog = this.modal.open(ModalComponent, {
+    let editDialog = this.modal.open(ProductModalComponent, {
       height: '447px',
       width: '570px',
       data: {
@@ -104,7 +104,7 @@ export class TableComponent implements OnInit {
   }
 
   deleteProduct(id: string, name: string) {
-    let deleteDialog = this.modal.open(ModalComponent, {
+    let deleteDialog = this.modal.open(ProductModalComponent, {
       height: '200px',
       width: '570px',
       data: {

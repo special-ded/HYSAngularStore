@@ -1,14 +1,13 @@
 <div class="modal-container">
   <h1>{{ data.title }}</h1>
 
-  <form *ngIf="!data.delete" class="modal-form">
+  <form [formGroup]="form" *ngIf="!data.delete" class="modal-form">
     <div *ngIf="!data.edit" class="form__item">
       <label>Name</label>
       <input
-        [(ngModel)]="nameInput"
         class="form__input"
         type="text"
-        name="name"
+        formControlName="name"
         placeholder="Name"
       />
     </div>
@@ -16,10 +15,9 @@
     <div class="form__item">
       <label>Price</label>
       <input
-        [(ngModel)]="priceInput"
+        formControlName="price"
         class="form__input"
         type="number"
-        name="price"
         placeholder="Price"
       />
     </div>
@@ -27,10 +25,9 @@
     <div class="form__item">
       <label>Description</label>
       <input
-        [(ngModel)]="descriptionInput"
+        formControlName="description"
         class="form__input"
         type="text"
-        name="description"
         placeholder="Description"
       />
     </div>
