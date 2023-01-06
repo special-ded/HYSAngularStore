@@ -37,7 +37,6 @@ import { PaginatorComponent } from './paginator/paginator.component';
     AdministrationRoutingModule,
     RouterModule,
     MatDialogModule,
-    FormsModule,
     ReactiveFormsModule,
   ],
   exports: [SpinnerComponent],

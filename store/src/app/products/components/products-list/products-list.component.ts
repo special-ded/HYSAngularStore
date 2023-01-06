@@ -10,10 +10,7 @@ import { ProductHttpService } from 'src/app/shared/services/product-http.service
   styleUrls: ['./products-list.component.scss'],
 })
 export class ProductsListComponent implements OnInit {
-  constructor(
-    private productsService: ProductsService,
-    private http: ProductHttpService
-  ) {}
+  constructor(private productsService: ProductsService) {}
 
   products: Product[] = [];
   loading$ = new BehaviorSubject<boolean>(true);

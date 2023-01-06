@@ -3,41 +3,42 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../interfaces/products.interface';
 import { CreateUser, UpdateUser, User } from '../interfaces/user.interface';
-import { LocalStorageService } from './local-storage.service';
+import { BaseHttpService } from './base-http.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserHttpService {
-  URL = 'https://hys-fe-course-api.vercel.app/users';
+export class UserHttpService extends BaseHttpService {
   products: Product[] = [];
 
-  constructor(public http: HttpClient) {}
-
-  getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.URL);
+  override getURL() {
+    return this.URL + '/users';
   }
 
-  getUserById(id: string): Observable<User> {
-    return this.http.get<User>(this.URL + '/' + id);
-  }
+  // getAllUsers(): Observable<User[]> {
+  //   return this.http.get<User[]>(this.URL);
+  // }
 
-  updateUser(data: UpdateUser, id: string): Observable<Object> {
-    return this.http.put(this.URL + '/' + id, {
-      password: data.password,
-    });
-  }
+  // getUserById(id: string): Observable<User> {
+  //   return this.http.get<User>(this.URL + '/' + id);
+  // }
 
-  createUser(data: CreateUser): Observable<Object> {
-    console.log(data);
+  // updateUser(data: UpdateUser, id: string): Observable<Object> {
+  //   return this.http.put(this.URL + '/' + id, {
+  //     password: data.password,
+  //   });
+  // }
 
-    return this.http.post(this.URL, {
-      username: data.username,
-      password: data.password,
-    });
-  }
+  // createUser(data: CreateUser): Observable<Object> {
+  //   console.log(data);
 
-  deleteUser(id: string): Observable<Object> {
-    return this.http.delete(this.URL + '/' + id);
-  }
+  //   return this.http.post(this.URL, {
+  //     username: data.username,
+  //     password: data.password,
+  //   });
+  // }
+
+  // deleteUser(id: string): Observable<Object> {
+  //   return this.http.delete(this.URL + '/' + id);
+  // }
 }

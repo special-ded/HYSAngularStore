@@ -6,48 +6,50 @@ import {
   Product,
   UpdateProduct,
 } from '../interfaces/products.interface';
+import { BaseHttpService } from './base-http.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductHttpService {
-  URL = 'https://hys-fe-course-api.vercel.app/products';
+export class ProductHttpService extends BaseHttpService {
   products: Product[] = [];
 
-  constructor(public http: HttpClient) {}
-
-  getProductsList(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.URL);
+  override getURL(): string {
+    return this.URL + '/products';
   }
 
-  getById(id: string): Observable<Product> {
-    return this.http.get<Product>(this.URL + '/' + id);
-  }
+  // getProductsList(): Observable<Product[]> {
+  //   return this.http.get<Product[]>(this.URL);
+  // }
 
-  updateProduct(data: UpdateProduct, id: string): Observable<Object> {
-    return this.http.put(this.URL + '/' + id, {
-      price: data.price,
-      extraInfo: {
-        Bluetooth: 'Y',
-        image: 'Y',
-      },
-    });
-  }
+  // getById(id: string): Observable<Product> {
+  //   return this.http.get<Product>(this.URL + '/' + id);
+  // }
 
-  createProduct(data: CreateProduct): Observable<Object> {
-    return this.http.post(this.URL, {
-      name: data.name,
-      author: 'draganov',
-      price: data.price,
-      description: data.description,
-      extraInfo: {
-        ololo: 1,
-        image: 'https://d13o3tuo14g2wf.cloudfront.net/',
-      },
-    });
-  }
+  // updateProduct(data: UpdateProduct, id: string): Observable<Object> {
+  //   return this.http.put(this.URL + '/' + id, {
+  //     price: data.price,
+  //     extraInfo: {
+  //       Bluetooth: 'Y',
+  //       image: 'Y',
+  //     },
+  //   });
+  // }
 
-  deleteProduct(id: string): Observable<Object> {
-    return this.http.delete(this.URL + '/' + id);
-  }
+  // createProduct(data: CreateProduct): Observable<Object> {
+  //   return this.http.post(this.URL, {
+  //     name: data.name,
+  //     author: 'draganov',
+  //     price: data.price,
+  //     description: data.description,
+  //     extraInfo: {
+  //       ololo: 1,
+  //       image: 'https://d13o3tuo14g2wf.cloudfront.net/',
+  //     },
+  //   });
+  // }
+
+  // deleteProduct(id: string): Observable<Object> {
+  //   return this.http.delete(this.URL + '/' + id);
+  // }
 }

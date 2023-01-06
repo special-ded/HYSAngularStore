@@ -1,14 +1,13 @@
 <div class="modal-container">
   <h1>{{ data.title }}</h1>
 
-  <form *ngIf="!data.delete" class="modal-form">
+  <form [formGroup]="form" *ngIf="!data.delete" class="modal-form">
     <div *ngIf="!data.edit" class="form__item">
       <label>Username</label>
       <input
-        [(ngModel)]="nameInput"
+        formControlName="name"
         class="form__input"
         type="text"
-        name="username"
         placeholder="Username"
       />
     </div>
@@ -16,10 +15,9 @@
     <div class="form__item">
       <label>Password</label>
       <input
-        [(ngModel)]="passwordInput"
+        formControlName="password"
         class="form__input"
         type="text"
-        name="password"
         placeholder="Password"
       />
     </div>
