@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ProductHttpService } from 'src/app/shared/services/product-http.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-modal',
@@ -10,19 +10,31 @@ import { ProductHttpService } from 'src/app/shared/services/product-http.service
 })
 export class ModalComponent {
   constructor(
+    private ls: LocalStorageService,
     private router: Router,
     public dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public data: { login: boolean }
+    public data: { title: string; login: boolean }
   ) {}
 
   ok(): void {
+    if (!this.data.login) {
+      this.ls.deleteToken();
+      this.dialogRef.close();
+      this.router.navigate(['login']);
+      return;
+    }
+
     this.dialogRef.close({
-      login: true,
+      login: this.data.title,
     });
   }
 
   cancel(): void {
+    if (!this.data.login) {
+      this.dialogRef.close();
+      return;
+    }
     this.router.navigate(['products']);
     this.dialogRef.close();
   }

@@ -40,8 +40,18 @@ export class AuthInterceptorService {
         (error) => {
           if (error.status === 401) {
             console.log(error);
+
+            if (
+              error.url === 'https://hys-fe-course-api.vercel.app/auth/login'
+            ) {
+              this.showModal('Login or Password is incorrect!');
+              return;
+            }
+
             this.localStorageService.deleteToken();
-            this.ok();
+            this.showModal(
+              'You are Logged out and will be redirected to Login page!'
+            );
           }
           console.log(error);
         }
@@ -49,10 +59,14 @@ export class AuthInterceptorService {
     );
   }
 
-  ok() {
+  showModal(title: string) {
     let addDialog = this.modal.open(ModalComponent, {
       height: '247px',
       width: '570px',
+      data: {
+        title: title,
+        login: true,
+      },
     });
 
     addDialog.afterClosed().subscribe((data) => {

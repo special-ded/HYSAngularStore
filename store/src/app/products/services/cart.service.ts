@@ -7,17 +7,16 @@ import { LocalStorageService } from '../../shared/services/local-storage.service
   providedIn: 'root',
 })
 export class CartService implements OnInit {
+  cartTotal$ = new BehaviorSubject<number>(0);
+  cartList$ = new Subject<Product[]>();
+  cartList: Product[] = [];
+  total: number = 0;
+
   constructor(private lsService: LocalStorageService) {}
 
   ngOnInit(): void {
     this.updateTotalPrice();
   }
-
-  cartTotal$ = new BehaviorSubject<number>(0);
-  cartList$ = new Subject<Product[]>();
-
-  cartList: Product[] = [];
-  total: number = 0;
 
   addToCart(product: Product) {
     if (!product) {
