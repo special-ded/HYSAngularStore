@@ -1,7 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, debounceTime } from 'rxjs';
-import { User } from 'src/app/shared/interfaces/user.interface';
+import {
+  CreateUser,
+  UpdateUser,
+  User,
+} from 'src/app/shared/interfaces/user.interface';
 import { FilterService } from '../services/filter.service';
 import { UserHttpService } from '../../shared/services/user-http.service';
 import { UserModalComponent } from '../user-modal/user-modal.component';
@@ -31,7 +35,7 @@ export class UsersTableComponent implements OnInit {
   ngOnInit(): void {
     this.resetFilter();
 
-    this.userHttp.getAllUsers().subscribe((data) => {
+    this.userHttp.getList<User[]>().subscribe((data) => {
       data.length !== 0 ? this.loading$.next(false) : null,
         (this.users = data),
         this.pageHandler(data),
@@ -102,7 +106,11 @@ export class UsersTableComponent implements OnInit {
     });
 
     addDialog.afterClosed().subscribe((data) => {
-      this.userHttp.createUser(data).subscribe(() => {
+      let createdUser: CreateUser = {
+        username: data.username,
+        password: data.password,
+      };
+      this.userHttp.create<CreateUser>(createdUser).subscribe(() => {
         this.ngOnInit();
       });
     });
@@ -121,7 +129,12 @@ export class UsersTableComponent implements OnInit {
     });
 
     editDialog.afterClosed().subscribe((data) => {
-      this.userHttp.updateUser(data, id).subscribe(() => {
+      console.log(data);
+      let updatedUser: UpdateUser = {
+        password: data.password,
+      };
+
+      this.userHttp.update<UpdateUser>(updatedUser, id).subscribe(() => {
         this.ngOnInit();
       });
     });
@@ -139,7 +152,7 @@ export class UsersTableComponent implements OnInit {
     });
 
     deleteDialog.afterClosed().subscribe((data) => {
-      this.userHttp.deleteUser(data).subscribe(() => {
+      this.userHttp.delete(data).subscribe(() => {
         this.ngOnInit();
       });
     });

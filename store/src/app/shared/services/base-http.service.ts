@@ -1,11 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  CreateProduct,
-  Product,
-  UpdateProduct,
-} from '../interfaces/products.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,37 +15,22 @@ export class BaseHttpService {
   }
 
   getList<T>(): Observable<T> {
-    return this.http.get<T>(this.URL);
+    return this.http.get<T>(this.getURL());
   }
 
-  getById<T>(id: string): Observable<T> {
-    return this.http.get<T>(this.URL + '/' + id);
+  getById<I>(id: string): Observable<I> {
+    return this.http.get<I>(this.getURL());
   }
 
-  update(data: UpdateProduct, id: string): Observable<Object> {
-    return this.http.put(this.URL + '/' + id, {
-      price: data.price,
-      extraInfo: {
-        Bluetooth: 'Y',
-        image: 'Y',
-      },
-    });
+  update<U>(data: U, id: string): Observable<Object> {
+    return this.http.put(this.getURL() + '/' + id, data);
   }
 
-  create(data: CreateProduct): Observable<Object> {
-    return this.http.post(this.URL, {
-      name: data.name,
-      author: 'draganov',
-      price: data.price,
-      description: data.description,
-      extraInfo: {
-        ololo: 1,
-        image: 'https://d13o3tuo14g2wf.cloudfront.net/',
-      },
-    });
+  create<C>(data: C): Observable<Object> {
+    return this.http.post(this.getURL(), data);
   }
 
   delete(id: string): Observable<Object> {
-    return this.http.delete(this.URL + '/' + id);
+    return this.http.delete(this.getURL() + '/' + id);
   }
 }

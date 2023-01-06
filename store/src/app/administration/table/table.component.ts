@@ -6,6 +6,10 @@ import { ProductHttpService } from '../../shared/services/product-http.service';
 import { FilterService } from '../services/filter.service';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { PaginatorService } from '../services/paginator.service';
+import {
+  CreateProduct,
+  UpdateProduct,
+} from 'src/app/shared/interfaces/products.interface';
 
 @Component({
   selector: 'app-table',
@@ -75,7 +79,17 @@ export class TableComponent implements OnInit {
 
     addDialog.afterClosed().subscribe((data) => {
       if (data) {
-        this.http.createProduct(data).subscribe((data) => {
+        let createdProduct: CreateProduct = {
+          name: data.name,
+          author: 'draganov',
+          price: data.price,
+          description: data.description,
+          extraInfo: {
+            ololo: 1,
+            image: 'https://d13o3tuo14g2wf.cloudfront.net/',
+          },
+        };
+        this.http.create<CreateProduct>(createdProduct).subscribe((data) => {
           this.ngOnInit();
         });
       }
@@ -96,7 +110,14 @@ export class TableComponent implements OnInit {
 
     editDialog.afterClosed().subscribe((data) => {
       if (data) {
-        this.http.updateProduct(data, id).subscribe(() => {
+        let updatedProduct: UpdateProduct = {
+          price: data.price,
+          extraInfo: {
+            Bluetooth: 'Y',
+            image: 'Y',
+          },
+        };
+        this.http.update<UpdateProduct>(updatedProduct, id).subscribe(() => {
           this.ngOnInit();
         });
       }
@@ -116,7 +137,7 @@ export class TableComponent implements OnInit {
 
     deleteDialog.afterClosed().subscribe((data) => {
       if (data) {
-        this.http.deleteProduct(data).subscribe((data) => {
+        this.http.delete(data).subscribe((data) => {
           this.ngOnInit();
         });
       }
