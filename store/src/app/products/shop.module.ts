@@ -2,19 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductInfoComponent } from './components/product-info/product-info.component';
 import { ButtonComponent } from './components/button/button.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
 import { RouterModule } from '@angular/router';
-import { HryvniaPipePipe } from '../shared/pipes/hryvnia-pipe.pipe';
 import { ColorPriceDirective } from '../shared/directives/color-price.directive';
-import { ProductsComponent } from './products.component';
+import { ShopComponent } from './shop.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { CartComponent } from './components/cart/cart.component';
-import { ProductsRoutingModule } from './products-routing.module';
+import { ProductsRoutingModule } from './shop-routing.module';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
-import { ProductInfoComponent } from './components/product-info/product-info.component';
 import { AdministrationModule } from '../administration/administration.module';
+import { HryvniaPipe } from '../shared/pipes/hryvnia.pipe';
+import { ShortPipe } from '../shared/pipes/short.pipe';
 
 @NgModule({
   providers: [],
@@ -25,9 +26,10 @@ import { AdministrationModule } from '../administration/administration.module';
     ProductInfoComponent,
     ButtonComponent,
     PageNotFoundComponent,
-    HryvniaPipePipe,
+    HryvniaPipe,
+    ShortPipe,
     ColorPriceDirective,
-    ProductsComponent,
+    ShopComponent,
     ProductsListComponent,
     CartComponent,
     TooltipComponent,
@@ -39,4 +41,4 @@ import { AdministrationModule } from '../administration/administration.module';
     AdministrationModule,
   ],
 })
-export class ProductsModule {}
+export class ShopModule {}

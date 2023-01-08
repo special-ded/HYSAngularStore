@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ActivatedRoute } from '@angular/router';
-
+import { ProductsService } from '../../../shared/services/products.service';
 import { CartService } from '../../services/cart.service';
-import { ProductsService } from 'src/app/shared/services/products.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-product-info',
@@ -12,13 +12,15 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 })
 export class ProductInfoComponent implements OnInit {
   buttonName: string = 'Add to cart';
-  id: number = 0;
+  id: string = '';
+
   product: Product = {
-    id: 0,
+    id: '',
     name: '',
     price: 0,
     quantity: 1,
   };
+  product$ = new BehaviorSubject<Product[]>([]);
 
   constructor(
     private route: ActivatedRoute,
@@ -28,12 +30,32 @@ export class ProductInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.id = +params.get('id')!;
-      this.product = this.productService.getProductById(this.id);
+      this.id = params.get('id')!;
+
+      this.productService
+        .getProductById(this.id)
+        .subscribe((data) => (this.product = data));
     });
+
+    this.setButtonName();
   }
 
   addToCart(product: Product): void {
-    this.cartService.addToCart(product);
+    if (this.buttonName === 'Add to cart') {
+      this.cartService.addToCart({ ...product, quantity: 1 });
+      this.buttonName = 'In cart';
+      return;
+    }
+
+    if (this.buttonName === 'In cart') {
+      return;
+    }
+  }
+
+  setButtonName(): void {
+    if (this.cartService.getCartList().some((el) => el.id === this.id)) {
+      this.buttonName = 'In cart';
+      return;
+    }
   }
 }

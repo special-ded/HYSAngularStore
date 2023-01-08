@@ -8,23 +8,15 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  cartButtonName: string = 'Remove from cart';
-  totalPrice: number = 0;
-  products: Product[] = this.cartService.getCartList();
-  cartEmpty: boolean = this.products.length === 0;
-
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.cartService.cartTotal$.subscribe((data) => (this.totalPrice = data));
-
-    this.cartService.cartList$.subscribe((data) => {
-      if (!data?.length) {
-        this.cartEmpty = true;
-        return;
-      }
-
-      this.cartEmpty = false;
-    });
+    this.cartService.cartTotal$.subscribe(
+      (number) => (this.totalPrice = number)
+    );
   }
+
+  cartButtonName: string = 'Remove from cart';
+  totalPrice: number = 0;
+  products: Product[] = this.cartService.getCartList();
 }

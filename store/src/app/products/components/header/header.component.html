@@ -7,7 +7,7 @@
       <li class="header__item">
         <a
           routerLinkActive="activeProducts"
-          routerLink="/products"
+          routerLink="/shop"
           [routerLinkActiveOptions]="{ exact: true }"
           class="header__item-link"
           >Products</a
@@ -18,7 +18,7 @@
           (mouseenter)="visible = !visible"
           routerLinkActive="activeCart"
           class="header__item-link"
-          routerLink="/products/cart"
+          routerLink="/shop/cart"
           >Cart</a
         >
         <app-tooltip

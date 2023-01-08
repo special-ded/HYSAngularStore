@@ -10,7 +10,7 @@ import { CartService } from '../../services/cart.service';
 export class ProductCardComponent implements OnInit {
   @Input() quantityButtons: boolean = false;
   @Input() product: Product = {
-    id: 0,
+    id: '',
     name: '',
     price: 0,
     quantity: 1,
@@ -32,9 +32,11 @@ export class ProductCardComponent implements OnInit {
       this.buttonName = 'In cart';
       return;
     }
+
     if (button === 'In cart') {
       return;
     }
+
     this.cartService.removeFromCart(product.id);
   }
 
@@ -54,11 +56,11 @@ export class ProductCardComponent implements OnInit {
     this.buttonName = this.cartButtonName;
   }
 
-  addQuantity(id: number): void {
+  addQuantity(id: string): void {
     this.cartService.addQuantity(id);
   }
 
-  subtractQuantity(id: number): void {
+  subtractQuantity(id: string): void {
     this.cartService.subtractQuantity(id);
   }
 }

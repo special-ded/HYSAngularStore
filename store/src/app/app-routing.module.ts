@@ -5,13 +5,13 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'products',
+    redirectTo: 'shop',
     pathMatch: 'full',
   },
   {
-    path: 'products',
+    path: 'shop',
     loadChildren: () =>
-      import('./products/products.module').then((m) => m.ProductsModule),
+      import('./products/shop.module').then((m) => m.ShopModule),
   },
   {
     path: 'administration',
@@ -19,6 +19,11 @@ const routes: Routes = [
       import('./administration/administration.module').then(
         (m) => m.AdministrationModule
       ),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule),
   },
   { path: '**', component: PageNotFoundComponent },
 ];

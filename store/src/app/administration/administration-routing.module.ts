@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AdministrationComponent } from './administration.component';
 import { UsersComponent } from './users/users.component';
-import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './products/products.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const administrationRoutes: Routes = [
   {
@@ -15,12 +15,8 @@ const administrationRoutes: Routes = [
   {
     path: '',
     component: AdministrationComponent,
+    canActivate: [AuthGuardService],
     children: [
-      {
-        path: 'login',
-        pathMatch: 'full',
-        component: LoginComponent,
-      },
       {
         path: 'users',
         pathMatch: 'full',

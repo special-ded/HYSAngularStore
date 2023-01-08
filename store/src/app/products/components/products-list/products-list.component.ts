@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
-import { ProductsService } from 'src/app/shared/services/products.service';
+import { ProductsService } from '../../../shared/services/products.service';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -9,23 +9,25 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./products-list.component.scss'],
 })
 export class ProductsListComponent implements OnInit {
-  products: Product[] = [];
-  loading$ = new BehaviorSubject<boolean>(true);
-
   constructor(private productsService: ProductsService) {}
 
+  allProducts: Product[] = [];
+  slicedProducts$ = new BehaviorSubject<Product[]>([]);
+  loading$ = new BehaviorSubject<boolean>(true);
+  productsOnPage: number = 8;
+
   ngOnInit(): void {
-    this.productsService.getProductsList().subscribe((data) => {
-      data.length === 0 ? this.initProducts(10) : null,
-        data.length !== 0 ? this.loading$.next(false) : null,
-        (this.products = data);
+    this.productsService.generateProducts();
+
+    this.productsService.productsList$.subscribe((data) => {
+      data.length !== 0 ? this.loading$.next(false) : null,
+        (this.allProducts = data);
+      this.slicedProducts$.next(data.slice(0, this.productsOnPage));
     });
   }
 
-  initProducts(n: number): void {
-    this.productsService.generateProducts(n);
-    this.productsService
-      .getProductsList()
-      .subscribe((data) => (this.products = data));
+  loadMore(): void {
+    this.productsOnPage += 8;
+    this.slicedProducts$.next(this.allProducts.slice(0, this.productsOnPage));
   }
 }

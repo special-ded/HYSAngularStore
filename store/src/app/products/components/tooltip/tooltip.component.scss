@@ -1,9 +1,9 @@
 @import "../../../../scss/main-colors.scss";
 
 .container {
-  width: 535px;
+  width: 585px;
   height: 428px;
-  background: $tooltip-bg;
+  background: #8fbcef;
   z-index: 100;
   border-radius: 20px;
   position: relative;
@@ -13,7 +13,7 @@
   position: absolute;
   top: 50px;
   left: 50px;
-  width: 440px;
+  width: 485px;
   height: 300px;
   overflow-x: hidden;
   display: flex;

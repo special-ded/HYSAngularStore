@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
-import { LocalStorageService } from './local-storage.service';
+import { LocalStorageService } from '../../shared/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +18,7 @@ export class CartService implements OnInit {
     this.updateTotalPrice();
   }
 
-  addToCart(product: Product): Product[] | undefined {
+  addToCart(product: Product) {
     if (!product) {
       return;
     }
@@ -30,7 +30,7 @@ export class CartService implements OnInit {
     return this.cartList;
   }
 
-  removeFromCart(id: number): void {
+  removeFromCart(id: string) {
     this.cartList.splice(
       this.cartList.findIndex((val) => val.id == id),
       1
@@ -40,7 +40,7 @@ export class CartService implements OnInit {
     this.cartList$.next(this.cartList);
   }
 
-  updateTotalPrice(): void {
+  updateTotalPrice() {
     this.cartTotal$.next(
       this.cartList.reduce(
         (acc: number, curV: Product) => (acc += curV.price * curV.quantity),
@@ -58,13 +58,13 @@ export class CartService implements OnInit {
     return this.cartList;
   }
 
-  addQuantity(id: number): void {
+  addQuantity(id: string) {
     this.cartList.find((x) => x.id === id)!.quantity++;
     this.updateTotalPrice();
     this.lsService.setToLocalStorage(this.cartList);
   }
 
-  subtractQuantity(id: number): void {
+  subtractQuantity(id: string) {
     this.cartList.find((x) => x.id === id)!.quantity--;
 
     if (this.cartList.find((x) => x.id === id)!.quantity === 0) {
