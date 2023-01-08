@@ -3,6 +3,7 @@ import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../../shared/services/products.service';
 import { CartService } from '../../services/cart.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-product-info',
@@ -19,6 +20,7 @@ export class ProductInfoComponent implements OnInit {
     price: 0,
     quantity: 1,
   };
+  product$ = new BehaviorSubject<Product[]>([]);
 
   constructor(
     private route: ActivatedRoute,
@@ -29,11 +31,10 @@ export class ProductInfoComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id')!;
-      console.log(this.id);
 
       this.productService
         .getProductById(this.id)
-        .subscribe((data) => (console.log(data), (this.product = data)));
+        .subscribe((data) => (this.product = data));
     });
 
     this.setButtonName();

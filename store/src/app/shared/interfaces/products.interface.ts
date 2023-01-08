@@ -8,7 +8,6 @@ export interface Product {
 
 export interface CreateProduct {
   name: string;
-  author: string;
   price: number;
   description: string;
   extraInfo: {

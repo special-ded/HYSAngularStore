@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ProductsService } from '../../../shared/services/products.service';
 import { BehaviorSubject } from 'rxjs';
-import { ProductHttpService } from 'src/app/shared/services/product-http.service';
 
 @Component({
   selector: 'app-products-list',

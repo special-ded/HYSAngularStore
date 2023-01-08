@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { ModalComponent } from 'src/app/login/modal/modal.component';
 import { LocalStorageService } from './local-storage.service';
-import { MatDialogModule } from '@angular/material/dialog';
 
 @Injectable()
 export class AuthInterceptorService {

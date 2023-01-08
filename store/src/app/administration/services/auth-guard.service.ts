@@ -2,12 +2,9 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
-  CanActivateChild,
   Router,
   RouterStateSnapshot,
-  UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Injectable({

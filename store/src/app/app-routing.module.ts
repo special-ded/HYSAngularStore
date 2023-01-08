@@ -5,11 +5,11 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'products',
+    redirectTo: 'shop',
     pathMatch: 'full',
   },
   {
-    path: 'products',
+    path: 'shop',
     loadChildren: () =>
       import('./products/shop.module').then((m) => m.ShopModule),
   },

@@ -81,7 +81,6 @@ export class TableComponent implements OnInit {
       if (data) {
         let createdProduct: CreateProduct = {
           name: data.name,
-          author: 'draganov',
           price: data.price,
           description: data.description,
           extraInfo: {

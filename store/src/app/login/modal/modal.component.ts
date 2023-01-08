@@ -35,7 +35,7 @@ export class ModalComponent {
       this.dialogRef.close();
       return;
     }
-    this.router.navigate(['products']);
+    this.router.navigate(['shop']);
     this.dialogRef.close();
   }
 }
