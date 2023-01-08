@@ -1,13 +1,10 @@
 @import "../../../scss/main-colors.scss";
 
-.activeProducts {
-  background-color: rgb(93, 178, 211);
-}
-.activeUsers {
-  background-color: rgb(202, 93, 35);
-}
+.activeProducts,
+.activeUsers,
 .activeLog {
-  background-color: rgb(56, 79, 88);
+  background-color: $product-button-bg;
+  border-radius: 10px;
 }
 
 .sidebar {
@@ -48,12 +45,10 @@
     padding-left: 58px;
     padding-top: 10px;
 
-    &:hover {
-      background-color: $product-button-bg-hover;
-    }
-
+    &:hover,
     &:active {
-      background-color: $product-button-bg-active;
+      background-color: $product-button-bg-hover;
+      border-radius: 10px;
     }
   }
   .logout {
