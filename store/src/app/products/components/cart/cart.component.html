@@ -1,12 +1,16 @@
 <ng-container *ngIf="products.length >= 1">
   <div class="container">
     <h1 class="title">Cart</h1>
-    <p>Total: {{totalPrice | hryvniaPipe}}</p>
+    <p>Total: {{ totalPrice | hryvniaPipe }}</p>
     <div class="products-cards">
-      <app-product-card [quantityButtons]="true" *ngFor="let item of products" [product]="item"
-        [cartButtonName]="cartButtonName">
+      <app-product-card
+        [quantityButtons]="true"
+        *ngFor="let item of products"
+        [product]="item"
+        [cartButtonName]="cartButtonName"
+      >
       </app-product-card>
-      <br>
+      <br />
     </div>
   </div>
 </ng-container>
@@ -14,12 +18,13 @@
 <ng-container *ngIf="products.length === 0 || products === null">
   <div class="container">
     <h1 class="title">Cart</h1>
-    <p>Total: {{totalPrice | hryvniaPipe}}</p>
+    <p>Total: {{ totalPrice | hryvniaPipe }}</p>
     <div class="products-cards">
       <div>
         <h1 class="title">Your Cart is Empty</h1>
-        <br>
-        <h1 class="title">Go to All
+        <br />
+        <h1 class="title">
+          Go to All
           <span class="link" routerLink="/products">Products</span>
           ?;)
         </h1>
