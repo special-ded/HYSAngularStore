@@ -8,10 +8,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
 import { RouterModule } from '@angular/router';
 import { ColorPriceDirective } from '../shared/directives/color-price.directive';
-import { ProductsComponent } from './products.component';
+import { ShopComponent } from './shop.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { CartComponent } from './components/cart/cart.component';
-import { ProductsRoutingModule } from './products-routing.module';
+import { ProductsRoutingModule } from './shop-routing.module';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { AdministrationModule } from '../administration/administration.module';
 import { HryvniaPipe } from '../shared/pipes/hryvnia.pipe';
@@ -29,7 +29,7 @@ import { ShortPipe } from '../shared/pipes/short.pipe';
     HryvniaPipe,
     ShortPipe,
     ColorPriceDirective,
-    ProductsComponent,
+    ShopComponent,
     ProductsListComponent,
     CartComponent,
     TooltipComponent,
@@ -41,4 +41,4 @@ import { ShortPipe } from '../shared/pipes/short.pipe';
     AdministrationModule,
   ],
 })
-export class ProductsModule {}
+export class ShopModule {}
