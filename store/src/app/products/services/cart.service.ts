@@ -18,10 +18,11 @@ export class CartService implements OnInit {
     this.updateTotalPrice();
   }
 
-  addToCart(product: Product) {
+  addToCart(product: Product): Product[] | undefined {
     if (!product) {
       return;
     }
+
     this.cartList.push(product);
     this.lsService.setToLocalStorage(this.cartList);
     this.updateTotalPrice();
@@ -29,16 +30,17 @@ export class CartService implements OnInit {
     return this.cartList;
   }
 
-  removeFromCart(id: number) {
-    let index = this.cartList.findIndex((val) => val.id == id);
-    this.cartList.splice(index, 1);
-
+  removeFromCart(id: number): void {
+    this.cartList.splice(
+      this.cartList.findIndex((val) => val.id == id),
+      1
+    );
     this.updateTotalPrice();
     this.lsService.setToLocalStorage(this.cartList);
     this.cartList$.next(this.cartList);
   }
 
-  updateTotalPrice() {
+  updateTotalPrice(): void {
     this.cartTotal$.next(
       this.cartList.reduce(
         (acc: number, curV: Product) => (acc += curV.price * curV.quantity),
@@ -56,19 +58,20 @@ export class CartService implements OnInit {
     return this.cartList;
   }
 
-  addQuantity(id: number) {
+  addQuantity(id: number): void {
     this.cartList.find((x) => x.id === id)!.quantity++;
     this.updateTotalPrice();
     this.lsService.setToLocalStorage(this.cartList);
   }
 
-  subtractQuantity(id: number) {
+  subtractQuantity(id: number): void {
     this.cartList.find((x) => x.id === id)!.quantity--;
 
     if (this.cartList.find((x) => x.id === id)!.quantity === 0) {
       this.removeFromCart(id);
       return;
     }
+
     this.updateTotalPrice();
     this.lsService.setToLocalStorage(this.cartList);
   }

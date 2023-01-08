@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ProductsService } from 'src/app/shared/services/products.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-products-list',
@@ -9,18 +10,22 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 })
 export class ProductsListComponent implements OnInit {
   products: Product[] = [];
+  loading$ = new BehaviorSubject<boolean>(true);
 
   constructor(private productsService: ProductsService) {}
 
   ngOnInit(): void {
-    this.products = this.productsService.generatedProducts;
-    if (this.products.length === 0) {
-      this.initProducts(8);
-    }
+    this.productsService.getProductsList().subscribe((data) => {
+      data.length === 0 ? this.initProducts(10) : null,
+        data.length !== 0 ? this.loading$.next(false) : null,
+        (this.products = data);
+    });
   }
 
   initProducts(n: number): void {
     this.productsService.generateProducts(n);
-    this.products = this.productsService.getGeneratedProducts();
+    this.productsService
+      .getProductsList()
+      .subscribe((data) => (this.products = data));
   }
 }

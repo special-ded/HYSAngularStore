@@ -15,13 +15,13 @@
 
     .filters {
       display: flex;
-      gap: 30px;
+      gap: 120px;
       align-items: center;
     }
 
     .search,
     .select,
-    .date {
+    .price-input {
       width: 480px;
       height: 60px;
       border-radius: 5px;
@@ -30,11 +30,12 @@
     }
 
     .select {
-      width: 271px;
+      width: 200px;
+      margin-right: 20px;
     }
 
-    .date {
-      width: 233px;
+    .price-input {
+      width: 80px;
     }
 
     .apply-btn {
@@ -63,9 +64,8 @@
     margin-top: 27px;
     display: flex;
     flex-direction: column;
-    gap: 32px;
-    height: 470px;
-    overflow-y: scroll;
+    gap: 25px;
+    height: 540px;
   }
 
   .table-row {
@@ -90,11 +90,11 @@
   }
 
   .footer {
-    margin-top: 30px;
-    padding-right: 30px;
+    margin-top: 10px;
+    padding-right: 0px;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
+    align-items: baseline;
     gap: 30px;
   }
 
@@ -111,10 +111,24 @@
     display: flex;
     justify-content: flex-end;
     gap: 50px;
-    padding-right: 38px;
+    padding-right: 28px;
 
     .arrow-link {
       display: block;
+      cursor: pointer;
+
+      &:active {
+        .arrow-left {
+          position: relative;
+          top: 0px;
+          right: 5px;
+        }
+        .arrow-right {
+          position: relative;
+          top: 0px;
+          left: 5px;
+        }
+      }
     }
   }
 }

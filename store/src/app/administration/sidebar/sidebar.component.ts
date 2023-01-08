@@ -3,10 +3,6 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
 })
-export class SidebarComponent {
-
-  @Input() active: boolean = false
-
-}
+export class SidebarComponent {}

@@ -10,7 +10,7 @@ const administrationRoutes: Routes = [
   {
     path: '',
     redirectTo: 'users',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: '',
@@ -19,26 +19,24 @@ const administrationRoutes: Routes = [
       {
         path: 'login',
         pathMatch: 'full',
-        component: LoginComponent
+        component: LoginComponent,
       },
       {
         path: 'users',
         pathMatch: 'full',
-        component: UsersComponent
+        component: UsersComponent,
       },
       {
         path: 'products',
         pathMatch: 'full',
-        component: ProductsComponent
-      }
-    ]
-  }]
+        component: ProductsComponent,
+      },
+    ],
+  },
+];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(administrationRoutes)
-  ]
+  imports: [CommonModule, RouterModule.forChild(administrationRoutes)],
 })
-export class AdministrationRoutingModule { }
+export class AdministrationRoutingModule {}
