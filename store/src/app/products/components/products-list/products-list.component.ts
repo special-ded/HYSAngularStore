@@ -12,15 +12,23 @@ import { ProductHttpService } from 'src/app/shared/services/product-http.service
 export class ProductsListComponent implements OnInit {
   constructor(private productsService: ProductsService) {}
 
-  products: Product[] = [];
+  allProducts: Product[] = [];
+  slicedProducts$ = new BehaviorSubject<Product[]>([]);
   loading$ = new BehaviorSubject<boolean>(true);
+  productsOnPage: number = 8;
 
   ngOnInit(): void {
     this.productsService.generateProducts();
 
     this.productsService.productsList$.subscribe((data) => {
       data.length !== 0 ? this.loading$.next(false) : null,
-        (this.products = data);
+        (this.allProducts = data);
+      this.slicedProducts$.next(data.slice(0, this.productsOnPage));
     });
+  }
+
+  loadMore(): void {
+    this.productsOnPage += 8;
+    this.slicedProducts$.next(this.allProducts.slice(0, this.productsOnPage));
   }
 }
