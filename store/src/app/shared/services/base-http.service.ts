@@ -19,7 +19,7 @@ export class BaseHttpService {
   }
 
   getById<I>(id: string): Observable<I> {
-    return this.http.get<I>(this.getURL());
+    return this.http.get<I>(this.getURL() + '/' + id);
   }
 
   update<U>(data: U, id: string): Observable<Object> {

@@ -29,10 +29,11 @@ export class ProductInfoComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id')!;
+      console.log(this.id);
 
       this.productService
         .getProductById(this.id)
-        .subscribe((data) => (this.product = data));
+        .subscribe((data) => (console.log(data), (this.product = data)));
     });
 
     this.setButtonName();
