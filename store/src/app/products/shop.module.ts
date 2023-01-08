@@ -16,7 +16,7 @@ import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { AdministrationModule } from '../administration/administration.module';
 import { HryvniaPipe } from '../shared/pipes/hryvnia.pipe';
 import { ShortPipe } from '../shared/pipes/short.pipe';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   providers: [],
