@@ -21,7 +21,7 @@ export class ModalComponent {
     if (!this.data.login) {
       this.ls.deleteToken();
       this.dialogRef.close();
-      this.router.navigate(['login']);
+      this.router.navigate(['administartion']);
       return;
     }
 
