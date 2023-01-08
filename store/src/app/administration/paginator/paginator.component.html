@@ -1,7 +1,9 @@
 <div class="footer">
   <div class="footer__item">
     <p class="footer__page">
-      {{ currentPage }}/{{ this.paginatorService.totalPages$ | async }}
+      {{ this.paginatorService.currentPage$ | async }}/{{
+        this.paginatorService.totalPages$ | async
+      }}
     </p>
   </div>
   <div class="footer__arrows">

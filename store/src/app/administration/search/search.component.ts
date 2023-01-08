@@ -26,7 +26,7 @@ export class SearchComponent implements OnDestroy {
     const searchQuery = (val.target as HTMLInputElement).value;
 
     this.searchSubscription = this.searchSubject$
-      .pipe(debounceTime(300), distinctUntilChanged())
+      .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe((text) => this.filterService.filterByText(text!));
 
     this.searchSubject$.next(searchQuery?.trim());

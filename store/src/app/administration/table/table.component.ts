@@ -8,6 +8,7 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 import { PaginatorService } from '../services/paginator.service';
 import {
   CreateProduct,
+  Product,
   UpdateProduct,
 } from 'src/app/shared/interfaces/products.interface';
 
@@ -18,7 +19,6 @@ import {
 })
 export class TableComponent implements OnInit {
   startIndex: number = 0;
-  isIdAscending: boolean = true;
   isPriceAscending: boolean = true;
   isNameAscending: boolean = true;
   loading$ = new BehaviorSubject<boolean>(true);
@@ -34,15 +34,12 @@ export class TableComponent implements OnInit {
     this.resetFilter();
     this.productService.generateProducts();
     this.filterService.filteredByPrice$.subscribe((data) => {
-      data.length !== 0 ? this.loading$.next(false) : null,
-        this.paginatorService.currentPageProducts$.next(data.slice(0, 5));
+      data.length !== 0 ? this.loading$.next(false) : null;
+
       this.arrowHandler();
     });
   }
 
-  sortById(): void {
-    this.filterService.sortById();
-  }
   sortByPrice(): void {
     this.filterService.sortByPrice();
   }
@@ -51,17 +48,9 @@ export class TableComponent implements OnInit {
   }
 
   arrowHandler(): void {
-    this.isIdAscending = this.filterService.ascendingId;
     this.isPriceAscending = this.filterService.ascendingPrice;
     this.isNameAscending = this.filterService.ascendingName;
   }
-
-  // pageHandler(data: User[]): void {
-  //   (this.totalPages = Math.ceil(data.length / 5)),
-  //     (this.currentPageUsers = this.users.slice(0, 5)),
-  //     (this.currentPage = 1),
-  //     (this.startIndex = 0);
-  // }
 
   resetFilter(): void {
     this.filterService.filterByText('');
@@ -97,7 +86,7 @@ export class TableComponent implements OnInit {
 
   editProduct(id: string) {
     let editDialog = this.modal.open(ProductModalComponent, {
-      height: '447px',
+      height: '347px',
       width: '570px',
       data: {
         title: ' Edit Product',
@@ -134,9 +123,11 @@ export class TableComponent implements OnInit {
       },
     });
 
-    deleteDialog.afterClosed().subscribe((data) => {
-      if (data) {
-        this.http.delete(data).subscribe((data) => {
+    deleteDialog.afterClosed().subscribe((id) => {
+      if (id) {
+        console.log(id);
+
+        this.http.delete(id).subscribe(() => {
           this.ngOnInit();
         });
       }

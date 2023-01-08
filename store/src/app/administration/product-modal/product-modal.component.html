@@ -22,7 +22,7 @@
       />
     </div>
 
-    <div class="form__item">
+    <div *ngIf="!data.edit" class="form__item">
       <label>Description</label>
       <input
         formControlName="description"

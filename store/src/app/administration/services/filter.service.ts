@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { BehaviorSubject } from 'rxjs';
@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class FilterService {
+export class FilterService implements OnDestroy {
   ascendingId: boolean = false;
   ascendingPrice: boolean = false;
   ascendingName: boolean = false;
@@ -16,6 +16,12 @@ export class FilterService {
   priceSelectOption$ = new BehaviorSubject<string>('More than');
 
   constructor(private productsService: ProductsService) {}
+
+  ngOnDestroy(): void {
+    this.filteredByPrice$.unsubscribe();
+    this.priceInput$.unsubscribe();
+    this.priceSelectOption$.unsubscribe();
+  }
 
   filterByText(text: string): void {
     let priceInput = 0;
@@ -61,16 +67,16 @@ export class FilterService {
     });
   }
 
-  sortById(): void {
-    this.ascendingId = !this.ascendingId;
-    this.filteredByPrice$.subscribe((data) => (this.sortedProducts = data));
+  // sortById(): void {
+  //   this.ascendingId = !this.ascendingId;
+  //   this.filteredByPrice$.subscribe((data) => (this.sortedProducts = data));
 
-    // this.ascendingId
-    //   ? this.sortedProducts.sort((a, b): number => a.id - b.id)
-    //   : this.sortedProducts.sort((a, b): number => b.id - a.id);
+  //   // this.ascendingId
+  //   //   ? this.sortedProducts.sort((a, b): number => a.id - b.id)
+  //   //   : this.sortedProducts.sort((a, b): number => b.id - a.id);
 
-    this.filteredByPrice$.next(this.sortedProducts);
-  }
+  //   this.filteredByPrice$.next(this.sortedProducts);
+  // }
 
   sortByPrice(): void {
     this.ascendingPrice = !this.ascendingPrice;

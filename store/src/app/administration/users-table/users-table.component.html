@@ -6,20 +6,8 @@
     </div>
 
     <div class="header">
-      <div (click)="sortById()" class="header__item">
+      <div class="header__item">
         <p class="sortID">ID</p>
-        <img
-          *ngIf="isIdAscending"
-          class="arrow-up"
-          src="/assets/img/sort-down.png"
-          alt="arrow"
-        />
-        <img
-          *ngIf="!isIdAscending"
-          class="arrow-down"
-          src="/assets/img/sort-up.png"
-          alt="arrow"
-        />
       </div>
       <div (click)="sortByName()" class="header__item">
         <p class="sortName">Name</p>

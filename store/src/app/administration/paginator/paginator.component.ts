@@ -9,49 +9,22 @@ import { PaginatorService } from '../services/paginator.service';
   styleUrls: ['./paginator.component.scss'],
 })
 export class PaginatorComponent implements OnInit {
-  products: Product[] = [];
-  currentPage: number = 1;
-  startIndex: number = 0;
-  productsOnPage: number = 5;
-
   constructor(
     private filterService: FilterService,
     public paginatorService: PaginatorService
   ) {}
 
   ngOnInit(): void {
-    this.filterService.filteredByPrice$.subscribe((data) => {
-      this.products = data;
+    this.filterService.filteredByPrice$.subscribe(() => {
+      this.paginatorService.ngOnInit();
     });
   }
 
   nextPage(): void {
-    if (
-      this.currentPage >= Math.ceil(this.products.length / this.productsOnPage)
-    ) {
-      return;
-    }
-
-    this.currentPage++;
-    this.paginatorService.currentPageProducts$.next(
-      this.products.slice(
-        (this.startIndex += this.productsOnPage),
-        this.productsOnPage * this.currentPage
-      )
-    );
+    this.paginatorService.nextPage();
   }
 
   prevPage(): void {
-    if (this.currentPage === 1) {
-      return;
-    }
-
-    this.currentPage--;
-    this.paginatorService.currentPageProducts$.next(
-      this.products.slice(
-        (this.startIndex -= this.productsOnPage),
-        this.productsOnPage * this.currentPage
-      )
-    );
+    this.paginatorService.prevPage();
   }
 }

@@ -21,7 +21,6 @@ export class UsersTableComponent implements OnInit {
   currentPage: number = 1;
   totalPages: number = 0;
   startIndex: number = 0;
-  isIdAscending: boolean = true;
   isPriceAscending: boolean = true;
   isNameAscending: boolean = true;
   loading$ = new BehaviorSubject<boolean>(true);
@@ -44,9 +43,6 @@ export class UsersTableComponent implements OnInit {
     });
   }
 
-  sortById(): void {
-    this.filterService.sortById();
-  }
   sortByPrice(): void {
     this.filterService.sortByPrice();
   }
@@ -62,7 +58,6 @@ export class UsersTableComponent implements OnInit {
   }
 
   arrowHandler(): void {
-    this.isIdAscending = this.filterService.ascendingId;
     this.isPriceAscending = this.filterService.ascendingPrice;
     this.isNameAscending = this.filterService.ascendingName;
   }
