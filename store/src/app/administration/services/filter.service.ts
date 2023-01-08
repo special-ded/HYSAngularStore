@@ -24,10 +24,6 @@ export class FilterService implements OnDestroy {
   }
 
   filterByText(text: string): void {
-    let priceInput = 0;
-    let priceSelectOption = 'More than';
-    this.priceInput$.subscribe((price) => (priceInput = price));
-    this.priceSelectOption$.subscribe((option) => (priceSelectOption = option));
     this.productsService.productsList$.subscribe((data) => {
       this.sortedProducts = data;
 
@@ -41,7 +37,10 @@ export class FilterService implements OnDestroy {
         []
       );
       this.productsService.filteredByText$.next(arr);
-      this.filterByPrice(priceSelectOption, priceInput);
+      this.filterByPrice(
+        this.priceSelectOption$.getValue(),
+        this.priceInput$.getValue()
+      );
     });
   }
 
@@ -66,17 +65,6 @@ export class FilterService implements OnDestroy {
       this.filteredByPrice$.next(arr);
     });
   }
-
-  // sortById(): void {
-  //   this.ascendingId = !this.ascendingId;
-  //   this.filteredByPrice$.subscribe((data) => (this.sortedProducts = data));
-
-  //   // this.ascendingId
-  //   //   ? this.sortedProducts.sort((a, b): number => a.id - b.id)
-  //   //   : this.sortedProducts.sort((a, b): number => b.id - a.id);
-
-  //   this.filteredByPrice$.next(this.sortedProducts);
-  // }
 
   sortByPrice(): void {
     this.ascendingPrice = !this.ascendingPrice;
