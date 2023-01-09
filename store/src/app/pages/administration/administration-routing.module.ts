@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { UsersComponent } from './components/users/users.component';
 import { ProductsComponent } from './components/products/products.component';
-import { AuthGuardService } from './services/auth-guard.service';
+import { AuthGuardService } from '../../shared/guard/auth-guard.service';
 import { AdministrationComponent } from './components/administration/administration.component';
 import { PageNotFoundComponent } from '../errors/components/page-not-found/page-not-found.component';
 
