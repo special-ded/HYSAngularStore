@@ -32,33 +32,36 @@ export class PaginatorService implements OnInit, OnDestroy {
     this.currentPageProducts$.unsubscribe();
   }
 
+  get currentPage(): number {
+    return this.currentPage$.getValue();
+  }
+
   nextPage(): void {
     if (
-      this.currentPage$.getValue() >=
-      Math.ceil(this.products.length / this.productsOnPage)
+      this.currentPage >= Math.ceil(this.products.length / this.productsOnPage)
     ) {
       return;
     }
-    this.currentPage$.next(this.currentPage$.getValue() + 1);
+    this.currentPage$.next(this.currentPage + 1);
 
     this.currentPageProducts$.next(
       this.products.slice(
         (this.startIndex += this.productsOnPage),
-        this.productsOnPage * this.currentPage$.getValue()
+        this.productsOnPage * this.currentPage
       )
     );
   }
 
   prevPage(): void {
-    if (this.currentPage$.getValue() === 1) {
+    if (this.currentPage === 1) {
       return;
     }
 
-    this.currentPage$.next(this.currentPage$.getValue() - 1);
+    this.currentPage$.next(this.currentPage - 1);
     this.currentPageProducts$.next(
       this.products.slice(
         (this.startIndex -= this.productsOnPage),
-        this.productsOnPage * this.currentPage$.getValue()
+        this.productsOnPage * this.currentPage
       )
     );
   }
