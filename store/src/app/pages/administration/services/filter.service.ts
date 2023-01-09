@@ -2,6 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { BehaviorSubject } from 'rxjs';
+import { UsersService } from 'src/app/shared/services/users.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,10 @@ export class FilterService implements OnDestroy {
   priceInput$ = new BehaviorSubject<number>(0);
   priceSelectOption$ = new BehaviorSubject<string>('More than');
 
-  constructor(private productsService: ProductsService) {}
+  constructor(
+    private productsService: ProductsService,
+    private userService: UsersService
+  ) {}
 
   ngOnDestroy(): void {
     this.filteredByPrice$.unsubscribe();
@@ -25,8 +29,9 @@ export class FilterService implements OnDestroy {
 
   filterByText(text: string): void {
     console.log(text);
+    // this.productsService.productsList$
 
-    this.productsService.productsList$.subscribe((data) => {
+    this.userService.productsList$.subscribe((data) => {
       this.sortedProducts = data;
 
       const arr = this.sortedProducts.reduce(
