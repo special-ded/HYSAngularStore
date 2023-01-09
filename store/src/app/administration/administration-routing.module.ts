@@ -5,6 +5,7 @@ import { UsersComponent } from './components/users/users.component';
 import { ProductsComponent } from './components/products/products.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AdministrationComponent } from './components/administration/administration.component';
+import { PageNotFoundComponent } from '../errors/components/page-not-found/page-not-found.component';
 
 const administrationRoutes: Routes = [
   {
@@ -26,6 +27,11 @@ const administrationRoutes: Routes = [
         path: 'products',
         pathMatch: 'full',
         component: ProductsComponent,
+      },
+      {
+        path: '**',
+        pathMatch: 'full',
+        component: PageNotFoundComponent,
       },
     ],
   },

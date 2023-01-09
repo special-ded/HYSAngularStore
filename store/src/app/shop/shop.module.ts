@@ -5,7 +5,6 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ProductInfoComponent } from './components/product-info/product-info.component';
 import { ButtonComponent } from './components/button/button.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { PageNotFoundComponent } from '../errors/components/page-not-found/page-not-found.component';
 import { RouterModule } from '@angular/router';
 import { ColorPriceDirective } from '../shared/directives/color-price.directive';
 import { ProductsListComponent } from './components/products-list/products-list.component';
@@ -26,7 +25,6 @@ import { ShopComponent } from './components/shop/shop.component';
     ProductCardComponent,
     ProductInfoComponent,
     ButtonComponent,
-    PageNotFoundComponent,
     HryvniaPipe,
     ShortPipe,
     ColorPriceDirective,
@@ -42,5 +40,6 @@ import { ShopComponent } from './components/shop/shop.component';
     ProductsRoutingModule,
     AdministrationModule,
   ],
+  exports: [],
 })
 export class ShopModule {}
