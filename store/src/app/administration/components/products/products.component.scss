@@ -1,7 +1,7 @@
-@import "../../../scss/main-colors.scss";
+@import "../../../../scss/main-colors.scss";
 
-.users-wrapper {
-  background-color: rgb(202, 93, 35);
+.products-wrapper {
+  background-color: rgb(93, 178, 211);
 }
 
 .header {
@@ -10,7 +10,7 @@
   display: block;
 }
 
-.link {
+.header__item-link {
   padding-top: 33px;
   padding-left: 53px;
   font-weight: 400;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
-import { FilterService } from '../services/filter.service';
-import { PaginatorService } from '../services/paginator.service';
+import { FilterService } from '../../services/filter.service';
+import { PaginatorService } from '../../services/paginator.service';
 
 @Component({
   selector: 'app-paginator',

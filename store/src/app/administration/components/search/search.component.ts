@@ -5,7 +5,7 @@ import {
   distinctUntilChanged,
   Subscription,
 } from 'rxjs';
-import { FilterService } from '../services/filter.service';
+import { FilterService } from '../../services/filter.service';
 
 @Component({
   selector: 'app-search',

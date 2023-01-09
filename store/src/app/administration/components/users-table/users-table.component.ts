@@ -6,8 +6,8 @@ import {
   UpdateUser,
   User,
 } from 'src/app/shared/interfaces/user.interface';
-import { FilterService } from '../services/filter.service';
-import { UserHttpService } from '../../shared/services/user-http.service';
+import { FilterService } from '../../services/filter.service';
+import { UserHttpService } from '../../../shared/services/user-http.service';
 import { UserModalComponent } from '../user-modal/user-modal.component';
 
 @Component({

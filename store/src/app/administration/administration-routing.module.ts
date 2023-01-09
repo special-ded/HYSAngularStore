@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { AdministrationComponent } from './administration.component';
-import { UsersComponent } from './users/users.component';
-import { ProductsComponent } from './products/products.component';
+import { UsersComponent } from './components/users/users.component';
+import { ProductsComponent } from './components/products/products.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { AdministrationComponent } from './components/administration/administration.component';
 
 const administrationRoutes: Routes = [
   {

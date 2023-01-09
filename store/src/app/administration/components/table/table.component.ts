@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
 import { ProductModalComponent } from '../product-modal/product-modal.component';
-import { ProductHttpService } from '../../shared/services/product-http.service';
-import { FilterService } from '../services/filter.service';
+import { ProductHttpService } from '../../../shared/services/product-http.service';
+import { FilterService } from '../../services/filter.service';
 import { ProductsService } from 'src/app/shared/services/products.service';
-import { PaginatorService } from '../services/paginator.service';
+import { PaginatorService } from '../../services/paginator.service';
 import {
   CreateProduct,
   Product,
