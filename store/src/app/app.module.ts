@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ErrorsModule } from './errors/errors.module';
+import { ErrorsModule } from './pages/errors/errors.module';
 
 @NgModule({
   declarations: [AppComponent],
