@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { BehaviorSubject, tap } from 'rxjs';
 import { ProductsService } from 'src/app/shared/services/products.service';
+import { ButtonEnum } from 'src/app/shared/enums/button.enum';
 
 @Component({
   selector: 'app-product-info',
@@ -11,7 +12,7 @@ import { ProductsService } from 'src/app/shared/services/products.service';
   styleUrls: ['./product-info.component.scss'],
 })
 export class ProductInfoComponent implements OnInit {
-  buttonName: string = 'Add to cart';
+  buttonName: string = ButtonEnum.add;
   id: string = '';
 
   product: Product = {
@@ -49,20 +50,20 @@ export class ProductInfoComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
-    if (this.buttonName === 'Add to cart') {
+    if (this.buttonName === ButtonEnum.add) {
       this.cartService.addToCart({ ...product, quantity: 1 });
-      this.buttonName = 'In cart';
+      this.buttonName = ButtonEnum.inCart;
       return;
     }
 
-    if (this.buttonName === 'In cart') {
+    if (this.buttonName === ButtonEnum.inCart) {
       return;
     }
   }
 
   setButtonName(): void {
     if (this.cartService.getCartList().some((el) => el.id === this.id)) {
-      this.buttonName = 'In cart';
+      this.buttonName = ButtonEnum.inCart;
       return;
     }
   }

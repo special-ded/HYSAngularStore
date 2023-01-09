@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ButtonEnum } from 'src/app/shared/enums/button.enum';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { CartService } from '../../services/cart.service';
 
@@ -27,13 +28,13 @@ export class ProductCardComponent implements OnInit {
   }
 
   handleCart(product: Product, button: string): void {
-    if (button === 'Add to cart') {
+    if (button === ButtonEnum.add) {
       this.cartService.addToCart({ ...product, quantity: 1 });
-      this.buttonName = 'In cart';
+      this.buttonName = ButtonEnum.inCart;
       return;
     }
 
-    if (button === 'In cart') {
+    if (button === ButtonEnum.inCart) {
       return;
     }
 
@@ -45,12 +46,12 @@ export class ProductCardComponent implements OnInit {
       this.cartButtonName === '' &&
       this.cartService.getCartList().some((el) => el.id === this.product.id)
     ) {
-      this.buttonName = 'In cart';
+      this.buttonName = ButtonEnum.inCart;
       return;
     }
 
     if (this.cartButtonName === '') {
-      this.buttonName = 'Add to cart';
+      this.buttonName = ButtonEnum.add;
       return;
     }
     this.buttonName = this.cartButtonName;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ButtonEnum } from 'src/app/shared/enums/button.enum';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { CartService } from '../../services/cart.service';
 
@@ -16,7 +17,7 @@ export class CartComponent implements OnInit {
     );
   }
 
-  cartButtonName: string = 'Remove from cart';
+  cartButtonName: string = ButtonEnum.removeFromCart;
   totalPrice: number = 0;
   products: Product[] = this.cartService.getCartList();
 }

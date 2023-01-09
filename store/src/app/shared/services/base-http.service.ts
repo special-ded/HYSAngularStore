@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BaseHttpService {
-  URL = 'https://hys-fe-course-api.vercel.app/';
+  protected readonly URL = 'https://hys-fe-course-api.vercel.app/';
 
   constructor(private http: HttpClient) {}
 
