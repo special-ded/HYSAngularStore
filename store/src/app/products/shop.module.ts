@@ -8,7 +8,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from '../errors/components/page-not-found/page-not-found.component';
 import { RouterModule } from '@angular/router';
 import { ColorPriceDirective } from '../shared/directives/color-price.directive';
-import { ShopComponent } from './shop.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductsRoutingModule } from './shop-routing.module';
@@ -17,6 +16,7 @@ import { AdministrationModule } from '../administration/administration.module';
 import { HryvniaPipe } from '../shared/pipes/hryvnia.pipe';
 import { ShortPipe } from '../shared/pipes/short.pipe';
 import { HomeComponent } from './components/home/home.component';
+import { ShopComponent } from './components/shop/shop.component';
 
 @NgModule({
   providers: [],
