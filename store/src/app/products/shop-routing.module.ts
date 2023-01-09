@@ -5,7 +5,7 @@ import { ProductInfoComponent } from './components/product-info/product-info.com
 import { ShopComponent } from './shop.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { CartComponent } from './components/cart/cart.component';
-import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from '../errors/components/page-not-found/page-not-found.component';
 import { HomeComponent } from './components/home/home.component';
 
 const productsRoutes: Routes = [
