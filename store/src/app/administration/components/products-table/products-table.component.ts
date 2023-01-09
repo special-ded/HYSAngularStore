@@ -13,11 +13,11 @@ import {
 } from 'src/app/shared/interfaces/products.interface';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss'],
+  selector: 'app-products-table',
+  templateUrl: './products-table.component.html',
+  styleUrls: ['./products-table.component.scss'],
 })
-export class TableComponent implements OnInit {
+export class ProductsTableComponent implements OnInit {
   startIndex: number = 0;
   isPriceAscending: boolean = true;
   isNameAscending: boolean = true;

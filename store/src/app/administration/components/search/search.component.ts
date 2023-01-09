@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   Subject,
   debounceTime,
@@ -12,11 +12,19 @@ import { FilterService } from '../../services/filter.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent implements OnDestroy {
+export class SearchComponent implements OnDestroy, OnInit {
   searchSubject$ = new Subject<string | undefined>();
   private searchSubscription?: Subscription;
 
   constructor(private filterService: FilterService) {}
+
+  ngOnInit(): void {
+    this.searchSubscription = this.searchSubject$
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((text) => {
+        this.filterService.filterByText(text!);
+      });
+  }
 
   ngOnDestroy(): void {
     this.searchSubscription?.unsubscribe();
@@ -24,10 +32,6 @@ export class SearchComponent implements OnDestroy {
 
   searchInput(val: Event): void {
     const searchQuery = (val.target as HTMLInputElement).value;
-
-    this.searchSubscription = this.searchSubject$
-      .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe((text) => this.filterService.filterByText(text!));
 
     this.searchSubject$.next(searchQuery?.trim());
   }
