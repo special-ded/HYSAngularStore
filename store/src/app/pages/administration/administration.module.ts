@@ -15,7 +15,7 @@ import { UsersTableComponent } from './components/users-table/users-table.compon
 import { UserModalComponent } from './components/user-modal/user-modal.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { AdministrationComponent } from './components/administration/administration.component';
-import { SpinnerComponent } from 'src/app/shared/components/spinner/spinner.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,6 @@ import { SpinnerComponent } from 'src/app/shared/components/spinner/spinner.comp
     SidebarComponent,
     ProductsTableComponent,
     UsersTableComponent,
-    SpinnerComponent,
     SearchComponent,
     PriceFilterComponent,
     ProductModalComponent,
@@ -38,7 +37,8 @@ import { SpinnerComponent } from 'src/app/shared/components/spinner/spinner.comp
     RouterModule,
     MatDialogModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
-  exports: [SpinnerComponent],
+  exports: [],
 })
 export class AdministrationModule {}

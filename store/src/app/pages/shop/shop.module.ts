@@ -13,9 +13,7 @@ import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { AdministrationModule } from '../administration/administration.module';
 import { HomeComponent } from './components/home/home.component';
 import { ShopComponent } from './components/shop/shop.component';
-import { HryvniaPipe } from 'src/app/shared/pipes/hryvnia.pipe';
-import { ShortPipe } from 'src/app/shared/pipes/short.pipe';
-import { ColorPriceDirective } from 'src/app/shared/directives/color-price.directive';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   providers: [],
@@ -25,9 +23,6 @@ import { ColorPriceDirective } from 'src/app/shared/directives/color-price.direc
     ProductCardComponent,
     ProductInfoComponent,
     ButtonComponent,
-    HryvniaPipe,
-    ShortPipe,
-    ColorPriceDirective,
     ShopComponent,
     ProductsListComponent,
     CartComponent,
@@ -39,6 +34,7 @@ import { ColorPriceDirective } from 'src/app/shared/directives/color-price.direc
     RouterModule,
     ProductsRoutingModule,
     AdministrationModule,
+    SharedModule,
   ],
   exports: [],
 })
