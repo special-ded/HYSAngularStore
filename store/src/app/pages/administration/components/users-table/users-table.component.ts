@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject, debounceTime } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import {
   CreateUser,
   UpdateUser,
@@ -35,11 +35,9 @@ export class UsersTableComponent implements OnInit {
     this.resetFilter();
 
     this.userHttp.getList<User[]>().subscribe((data) => {
-      data.length !== 0 ? this.loading$.next(false) : null,
-        (this.users = data),
-        this.pageHandler(data),
-        this.arrowHandler();
-      console.log(data);
+      this.loading$.next(!data.length), console.log(data);
+
+      (this.users = data), this.pageHandler(data), this.arrowHandler();
     });
   }
 

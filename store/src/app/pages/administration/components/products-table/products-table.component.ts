@@ -7,7 +7,6 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 import { PaginatorService } from '../../services/paginator.service';
 import {
   CreateProduct,
-  Product,
   UpdateProduct,
 } from 'src/app/shared/interfaces/products.interface';
 import { ProductHttpService } from 'src/app/shared/services/product-http.service';

@@ -25,7 +25,7 @@
         />
       </div>
       <div (click)="sortByPrice()" class="header__item">
-        <p class="sortPrice">Password</p>
+        <p class="sortPrice">Created At</p>
         <img
           *ngIf="isPriceAscending"
           class="arrow-up"
@@ -48,7 +48,9 @@
         <div class="table-row">
           <p class="table-row__item">{{ user.id }}</p>
           <p class="table-row__item">{{ user.username }}</p>
-          <p class="table-row__item">{{ user.password }}</p>
+          <p class="table-row__item">
+            {{ user.createdAt | date : "dd/MM/yyyy" }}
+          </p>
           <div class="table-row__buttons">
             <img
               (click)="editProduct(user.id)"

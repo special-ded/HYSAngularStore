@@ -24,6 +24,8 @@ export class FilterService implements OnDestroy {
   }
 
   filterByText(text: string): void {
+    console.log(text);
+
     this.productsService.productsList$.subscribe((data) => {
       this.sortedProducts = data;
 
