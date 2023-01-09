@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../../../shared/services/products.service';
 import { CartService } from '../../services/cart.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 
 @Component({
   selector: 'app-product-info',
@@ -25,7 +25,8 @@ export class ProductInfoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductsService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +35,13 @@ export class ProductInfoComponent implements OnInit {
 
       this.productService
         .getProductById(this.id)
+        .pipe(
+          tap((product) => {
+            if (!product) {
+              this.router.navigate(['shop', '404']);
+            }
+          })
+        )
         .subscribe((data) => (this.product = data));
     });
 

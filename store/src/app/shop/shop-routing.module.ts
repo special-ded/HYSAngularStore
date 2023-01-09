@@ -29,14 +29,14 @@ const productsRoutes: Routes = [
         component: CartComponent,
       },
       {
+        path: '404',
+        pathMatch: 'full',
+        component: PageNotFoundComponent,
+      },
+      {
         path: ':id',
         pathMatch: 'full',
         component: ProductInfoComponent,
-      },
-      {
-        path: '**',
-        pathMatch: 'full',
-        component: PageNotFoundComponent,
       },
     ],
   },

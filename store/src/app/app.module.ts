@@ -5,10 +5,17 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ErrorsModule } from './errors/errors.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, MatDialogModule],
+  imports: [
+    ErrorsModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatDialogModule,
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
