@@ -28,10 +28,7 @@ export class FilterService implements OnDestroy {
   }
 
   filterByText(text: string): void {
-    console.log(text);
-    // this.productsService.productsList$
-
-    this.userService.productsList$.subscribe((data) => {
+    this.productsService.productsList$.subscribe((data) => {
       this.sortedProducts = data;
 
       const arr = this.sortedProducts.reduce(
