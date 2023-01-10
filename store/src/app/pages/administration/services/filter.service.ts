@@ -1,8 +1,7 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { BehaviorSubject } from 'rxjs';
-import { UsersService } from 'src/app/shared/services/users.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,10 +15,7 @@ export class FilterService implements OnDestroy {
   priceInput$ = new BehaviorSubject<number>(0);
   priceSelectOption$ = new BehaviorSubject<string>('More than');
 
-  constructor(
-    private productsService: ProductsService,
-    private userService: UsersService
-  ) {}
+  constructor(private productsService: ProductsService) {}
 
   ngOnDestroy(): void {
     this.filteredByPrice$.unsubscribe();
@@ -30,22 +26,18 @@ export class FilterService implements OnDestroy {
   filterByText(text: string): void {
     this.productsService.productsList$.subscribe((data) => {
       this.sortedProducts = data;
-
-      const arr = this.sortedProducts.reduce(
-        (acc: Product[], curV: Product) => {
-          curV.name.toLowerCase().search(text!.toLowerCase()) !== -1
-            ? acc.push(curV)
-            : null;
-          return acc;
-        },
-        []
-      );
-      this.productsService.filteredByText$.next(arr);
-      this.filterByPrice(
-        this.priceSelectOption$.getValue(),
-        this.priceInput$.getValue()
-      );
     });
+    const arr = this.sortedProducts.reduce((acc: Product[], curV: Product) => {
+      curV.name.toLowerCase().search(text!.toLowerCase()) !== -1
+        ? acc.push(curV)
+        : null;
+      return acc;
+    }, []);
+    this.productsService.filteredByText$.next(arr);
+    this.filterByPrice(
+      this.priceSelectOption$.getValue(),
+      this.priceInput$.getValue()
+    );
   }
 
   filterByPrice(option: string, price: number): void {
