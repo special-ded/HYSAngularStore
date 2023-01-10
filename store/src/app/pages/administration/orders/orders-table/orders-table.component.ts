@@ -8,7 +8,7 @@ import {
   UpdateOrder,
 } from 'src/app/shared/interfaces/order.interface';
 import { OrderHttpService } from 'src/app/shared/services/order-http.service';
-import { UserModalComponent } from '../user-modal/user-modal.component';
+import { UserModalComponent } from '../../components/user-modal/user-modal.component';
 
 @Component({
   selector: 'app-orders-table',
@@ -35,9 +35,10 @@ export class OrdersTableComponent implements OnInit {
     this.resetFilter();
 
     this.orderHttp.getList<Order[]>().subscribe((data) => {
-      this.loading$.next(!data.length), console.log(data);
-
-      (this.orders = data), this.pageHandler(data), this.arrowHandler();
+      this.loading$.next(!data.length),
+        (this.orders = data),
+        this.pageHandler(data),
+        this.arrowHandler();
     });
   }
 

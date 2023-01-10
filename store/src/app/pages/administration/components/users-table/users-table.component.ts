@@ -35,9 +35,10 @@ export class UsersTableComponent implements OnInit {
     this.resetFilter();
 
     this.userHttp.getList<User[]>().subscribe((data) => {
-      this.loading$.next(!data.length), console.log(data);
-
-      (this.users = data), this.pageHandler(data), this.arrowHandler();
+      this.loading$.next(!data.length),
+        (this.users = data),
+        this.pageHandler(data),
+        this.arrowHandler();
     });
   }
 

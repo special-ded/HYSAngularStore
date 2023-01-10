@@ -16,8 +16,6 @@ import { UserModalComponent } from './components/user-modal/user-modal.component
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { AdministrationComponent } from './components/administration/administration.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { OrdersComponent } from './components/orders/orders.component';
-import { OrdersTableComponent } from './components/orders-table/orders-table.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +30,6 @@ import { OrdersTableComponent } from './components/orders-table/orders-table.com
     ProductModalComponent,
     UserModalComponent,
     PaginatorComponent,
-    OrdersComponent,
-    OrdersTableComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +39,6 @@ import { OrdersTableComponent } from './components/orders-table/orders-table.com
     ReactiveFormsModule,
     SharedModule,
   ],
-  exports: [],
+  exports: [SearchComponent, PriceFilterComponent],
 })
 export class AdministrationModule {}
