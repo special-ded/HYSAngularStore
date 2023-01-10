@@ -25,7 +25,7 @@
         />
       </div>
       <div (click)="sortByPrice()" class="header__item">
-        <p class="sortPrice">Price</p>
+        <p class="sortPrice">Products</p>
         <img
           *ngIf="isPriceAscending"
           class="arrow-up"
@@ -44,23 +44,23 @@
 
     <div class="table-row-wrapper">
       <app-spinner *ngIf="loading$ | async"></app-spinner>
-      <ng-container
-        *ngFor="
-          let product of this.paginatorService.currentPageProducts$ | async
-        "
-      >
+      <ng-container *ngFor="let order of currentPageOrders">
         <div class="table-row">
-          <p class="table-row__item">{{ product.id }}</p>
-          <p class="table-row__item">{{ product.name }}</p>
-          <p class="table-row__item">{{ product.price }}</p>
+          <p class="table-row__item">{{ order.id }}</p>
+          <p class="table-row__item">{{ order.name }}</p>
+
+          <div class="table-row__item" *ngFor="let item of order.products">
+            <p>{{ item.name }} {{ item.quantity }}</p>
+          </div>
+
           <div class="table-row__buttons">
             <img
-              (click)="editProduct(product.id)"
+              (click)="editProduct(order.id)"
               class="edit-btn"
               src="../../../assets/img/edit.png"
             />
             <img
-              (click)="deleteProduct(product.id, product.name)"
+              (click)="deleteProduct(order.id, order.name)"
               class="delete-btn"
               src="../../../assets/img/trash.png"
             />
@@ -69,6 +69,22 @@
       </ng-container>
     </div>
 
-    <app-paginator></app-paginator>
+    <div class="footer">
+      <div class="footer__item">
+        <p class="footer__page">{{ currentPage }}/{{ totalPages }}</p>
+      </div>
+      <div class="footer__arrows">
+        <a (click)="prevPage()" class="arrow-link">
+          <img class="arrow-left" src="/assets/img/page-left.png" alt="arrow" />
+        </a>
+        <a (click)="nextPage()" class="arrow-link">
+          <img
+            class="arrow-right"
+            src="/assets/img/page-right.png"
+            alt="arrow"
+          />
+        </a>
+      </div>
+    </div>
   </div>
 </div>

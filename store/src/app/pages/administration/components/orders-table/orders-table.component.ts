@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
-import { ProductModalComponent } from '../product-modal/product-modal.component';
 import { FilterService } from '../../services/filter.service';
-import { ProductsService } from 'src/app/shared/services/products.service';
-import { PaginatorService } from '../../services/paginator.service';
 import {
-  CreateProduct,
-  UpdateProduct,
-} from 'src/app/shared/interfaces/products.interface';
-import { ProductHttpService } from 'src/app/shared/services/product-http.service';
+  CreateOrder,
+  Order,
+  UpdateOrder,
+} from 'src/app/shared/interfaces/order.interface';
+import { OrderHttpService } from 'src/app/shared/services/order-http.service';
+import { UserModalComponent } from '../user-modal/user-modal.component';
 
 @Component({
   selector: 'app-orders-table',
@@ -17,25 +16,28 @@ import { ProductHttpService } from 'src/app/shared/services/product-http.service
   styleUrls: ['./orders-table.component.scss'],
 })
 export class OrdersTableComponent implements OnInit {
+  orders: Order[] = [];
+  currentPageOrders: Order[] = [];
+  currentPage: number = 1;
+  totalPages: number = 0;
   startIndex: number = 0;
   isPriceAscending: boolean = true;
   isNameAscending: boolean = true;
   loading$ = new BehaviorSubject<boolean>(true);
+
   constructor(
     private filterService: FilterService,
     private modal: MatDialog,
-    private http: ProductHttpService,
-    private productService: ProductsService,
-    public paginatorService: PaginatorService
+    private orderHttp: OrderHttpService
   ) {}
 
   ngOnInit(): void {
     this.resetFilter();
-    this.productService.generateProducts();
-    this.filterService.filteredByPrice$.subscribe((data) => {
-      data.length !== 0 ? this.loading$.next(false) : null;
 
-      this.arrowHandler();
+    this.orderHttp.getList<Order[]>().subscribe((data) => {
+      this.loading$.next(!data.length), console.log(data);
+
+      (this.orders = data), this.pageHandler(data), this.arrowHandler();
     });
   }
 
@@ -44,6 +46,13 @@ export class OrdersTableComponent implements OnInit {
   }
   sortByName(): void {
     this.filterService.sortByName();
+  }
+
+  pageHandler(data: Order[]): void {
+    (this.totalPages = Math.ceil(data.length / 5)),
+      (this.currentPageOrders = this.orders.slice(0, 5)),
+      (this.currentPage = 1),
+      (this.startIndex = 0);
   }
 
   arrowHandler(): void {
@@ -55,40 +64,59 @@ export class OrdersTableComponent implements OnInit {
     this.filterService.filterByText('');
   }
 
+  nextPage(): void {
+    if (this.currentPage >= Math.ceil(this.orders.length / 5)) {
+      return;
+    }
+
+    this.currentPage++;
+    this.currentPageOrders = this.orders.slice(
+      (this.startIndex += 5),
+      5 * this.currentPage
+    );
+  }
+
+  prevPage(): void {
+    if (this.currentPage === 1) {
+      return;
+    }
+
+    this.currentPage--;
+    this.currentPageOrders = this.orders.slice(
+      (this.startIndex -= 5),
+      5 * this.currentPage
+    );
+  }
+
   add() {
-    let addDialog = this.modal.open(ProductModalComponent, {
-      height: '547px',
+    let addDialog = this.modal.open(UserModalComponent, {
+      height: '447px',
       width: '570px',
       data: {
-        title: 'Add Product ',
+        title: 'Add User ',
         delete: false,
       },
     });
 
     addDialog.afterClosed().subscribe((data) => {
-      if (data) {
-        let createdProduct: CreateProduct = {
-          name: data.name,
-          price: data.price,
-          description: data.description,
-          extraInfo: {
-            ololo: 1,
-            image: 'https://d13o3tuo14g2wf.cloudfront.net/',
-          },
-        };
-        this.http.create<CreateProduct>(createdProduct).subscribe((data) => {
-          this.ngOnInit();
-        });
-      }
+      let createdUser: CreateOrder = {
+        name: data,
+        phone: data,
+        message: data,
+        products: data,
+      };
+      this.orderHttp.create<CreateOrder>(createdUser).subscribe(() => {
+        this.ngOnInit();
+      });
     });
   }
 
   editProduct(id: string) {
-    let editDialog = this.modal.open(ProductModalComponent, {
+    let editDialog = this.modal.open(UserModalComponent, {
       height: '347px',
       width: '570px',
       data: {
-        title: ' Edit Product',
+        title: ' Edit User',
         delete: false,
         edit: true,
         id: id,
@@ -96,40 +124,35 @@ export class OrdersTableComponent implements OnInit {
     });
 
     editDialog.afterClosed().subscribe((data) => {
-      if (data) {
-        let updatedProduct: UpdateProduct = {
-          price: data.price,
-          extraInfo: {
-            Bluetooth: 'Y',
-            image: 'Y',
-          },
-        };
-        this.http.update<UpdateProduct>(updatedProduct, id).subscribe(() => {
-          this.ngOnInit();
-        });
-      }
+      console.log(data);
+      let updatedUser: UpdateOrder = {
+        name: data,
+        phone: data,
+        message: data,
+        products: data,
+      };
+
+      this.orderHttp.update<UpdateOrder>(updatedUser, id).subscribe(() => {
+        this.ngOnInit();
+      });
     });
   }
 
   deleteProduct(id: string, name: string) {
-    let deleteDialog = this.modal.open(ProductModalComponent, {
+    let deleteDialog = this.modal.open(UserModalComponent, {
       height: '200px',
       width: '570px',
       data: {
-        title: `Delete product "${name.slice(0, 10)}" ?`,
+        title: `Delete User "${name}" ?`,
         delete: true,
         id: id,
       },
     });
 
-    deleteDialog.afterClosed().subscribe((id) => {
-      if (id) {
-        console.log(id);
-
-        this.http.delete(id).subscribe(() => {
-          this.ngOnInit();
-        });
-      }
+    deleteDialog.afterClosed().subscribe((data) => {
+      this.orderHttp.delete(data).subscribe(() => {
+        this.ngOnInit();
+      });
     });
   }
 }

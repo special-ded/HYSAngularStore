@@ -4,7 +4,7 @@ import { BaseHttpService } from './base-http.service';
 @Injectable({
   providedIn: 'root',
 })
-export class OrdersHttpService extends BaseHttpService {
+export class OrderHttpService extends BaseHttpService {
   override getURL(): string {
     return this.URL + 'orders';
   }
