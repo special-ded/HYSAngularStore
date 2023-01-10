@@ -73,9 +73,31 @@
     align-items: center;
     background-color: aliceblue;
     border-radius: 5px;
+    text-overflow: ellipsis;
 
     .table-row__item {
       width: 150px;
+      height: 60px;
+
+      .table-row__orders {
+        h4 {
+          display: inline;
+        }
+      }
+    }
+    .orders {
+      width: 250px;
+      height: 78px;
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      margin: 0 5px 0 5px;
+      text-align: center;
+      text-decoration: none;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #000;
     }
 
     .table-row__buttons {
