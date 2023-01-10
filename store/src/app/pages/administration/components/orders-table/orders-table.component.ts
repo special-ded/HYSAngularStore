@@ -8,7 +8,7 @@ import {
   UpdateOrder,
 } from 'src/app/shared/interfaces/order.interface';
 import { OrderHttpService } from 'src/app/shared/services/order-http.service';
-import { UserModalComponent } from '../../components/user-modal/user-modal.component';
+import { UserModalComponent } from '../user-modal/user-modal.component';
 
 @Component({
   selector: 'app-orders-table',

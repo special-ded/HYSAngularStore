@@ -6,7 +6,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { AuthGuardService } from '../../shared/guard/auth-guard.service';
 import { AdministrationComponent } from './components/administration/administration.component';
 import { PageNotFoundComponent } from '../errors/components/page-not-found/page-not-found.component';
-import { OrdersComponent } from './orders/orders/orders.component';
+import { OrderComponent } from './components/order/order.component';
 
 const administrationRoutes: Routes = [
   {
@@ -32,7 +32,7 @@ const administrationRoutes: Routes = [
       {
         path: 'orders',
         pathMatch: 'full',
-        component: OrdersComponent,
+        component: OrderComponent,
       },
       {
         path: '**',
