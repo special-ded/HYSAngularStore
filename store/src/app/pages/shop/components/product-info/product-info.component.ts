@@ -3,7 +3,7 @@ import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { BehaviorSubject, tap } from 'rxjs';
-import { ProductsService } from 'src/app/shared/services/products.service';
+import { ProductsService } from 'src/app/pages/shop/components/services/products.service';
 import { ButtonEnum } from 'src/app/shared/enums/button.enum';
 
 @Component({

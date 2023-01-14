@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ProductHttpService } from 'src/app/shared/services/product-http.service';
+import { ProductHttpService } from 'src/app/pages/shop/components/services/product-http.service';
 
 @Component({
   selector: 'app-product-modal',

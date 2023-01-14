@@ -3,9 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
+import { AuthInterceptorService } from './pages/shop/components/services/auth-interceptor.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorsModule } from './pages/errors/errors.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { ErrorsModule } from './pages/errors/errors.module';
     AppRoutingModule,
     HttpClientModule,
     MatDialogModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {

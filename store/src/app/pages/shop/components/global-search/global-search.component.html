@@ -1,0 +1,25 @@
+<form class="global-search__form">
+  <mat-form-field class="global-search__wrapper" appearance="fill">
+    <input
+      class="global-search__input"
+      matInput
+      aria-label="Solutions"
+      [matAutocomplete]="auto"
+      placeholder="Search a product"
+      [formControl]="searchControl"
+    />
+    <!-- <mat-autocomplete
+      #auto="matAutocomplete"
+      class="global-search__autocomplete"
+    >
+      <mat-option
+        *ngFor="let num of [1, 2, 3, 4, 5]"
+        [value]="num"
+        class="global-search__option"
+      >
+        <span>{{ num }}</span>
+      </mat-option>
+    </mat-autocomplete> -->
+  </mat-form-field>
+  <!-- <button matButton class="global-search__button" type="submit">Submit</button> -->
+</form>

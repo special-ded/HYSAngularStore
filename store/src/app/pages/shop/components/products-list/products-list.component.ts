@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { BehaviorSubject } from 'rxjs';
-import { ProductsService } from 'src/app/shared/services/products.service';
+import { ProductsService } from 'src/app/pages/shop/components/services/products.service';
 
 @Component({
   selector: 'app-products-list',

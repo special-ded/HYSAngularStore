@@ -9,11 +9,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { ModalComponent } from 'src/app/pages/login/modal/modal.component';
-import { AuthMsgEnum } from '../enums/auth.enum';
+import { AuthMsgEnum } from '../../../../shared/enums/auth.enum';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
 export class AuthInterceptorService {
+  protected readonly LOGIN_URL =
+    'https://hys-fe-course-api.vercel.app/auth/login';
   constructor(
     private localStorageService: LocalStorageService,
     private router: Router,
@@ -41,9 +43,7 @@ export class AuthInterceptorService {
           if (error.status === 401) {
             console.log(error);
 
-            if (
-              error.url === 'https://hys-fe-course-api.vercel.app/auth/login'
-            ) {
+            if (error.url === this.LOGIN_URL) {
               this.showModal(AuthMsgEnum.incorrectPasswordLogin);
               return;
             }

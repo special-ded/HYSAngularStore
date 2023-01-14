@@ -7,7 +7,7 @@ import {
   Order,
   UpdateOrder,
 } from 'src/app/shared/interfaces/order.interface';
-import { OrderHttpService } from 'src/app/shared/services/order-http.service';
+import { OrderHttpService } from 'src/app/pages/shop/components/services/order-http.service';
 import { UserModalComponent } from '../user-modal/user-modal.component';
 
 @Component({

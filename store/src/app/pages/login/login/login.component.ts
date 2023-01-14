@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Token } from 'src/app/shared/interfaces/token.interface';
-import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { LocalStorageService } from 'src/app/pages/shop/components/services/local-storage.service';
 
 @Component({
   selector: 'app-login',
