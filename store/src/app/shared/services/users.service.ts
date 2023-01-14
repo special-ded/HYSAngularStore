@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Product } from '../../../../shared/interfaces/products.interface';
-import { User } from '../../../../shared/interfaces/user.interface';
+import { Product } from '../interfaces/products.interface';
+import { User } from '../interfaces/user.interface';
 import { ProductHttpService } from './product-http.service';
 
 @Injectable({

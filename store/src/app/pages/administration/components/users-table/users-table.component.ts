@@ -6,7 +6,7 @@ import {
   UpdateUser,
   User,
 } from 'src/app/shared/interfaces/user.interface';
-import { UserHttpService } from 'src/app/pages/shop/components/services/user-http.service';
+import { UserHttpService } from 'src/app/shared/services/user-http.service';
 import { FilterService } from '../../services/filter.service';
 import { UserModalComponent } from '../user-modal/user-modal.component';
 

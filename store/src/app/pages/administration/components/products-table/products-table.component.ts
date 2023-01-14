@@ -3,13 +3,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
 import { ProductModalComponent } from '../product-modal/product-modal.component';
 import { FilterService } from '../../services/filter.service';
-import { ProductsService } from 'src/app/pages/shop/components/services/products.service';
+import { ProductsService } from 'src/app/shared/services/products.service';
 import { PaginatorService } from '../../services/paginator.service';
 import {
   CreateProduct,
   UpdateProduct,
 } from 'src/app/shared/interfaces/products.interface';
-import { ProductHttpService } from 'src/app/pages/shop/components/services/product-http.service';
+import { ProductHttpService } from 'src/app/shared/services/product-http.service';
 
 @Component({
   selector: 'app-products-table',

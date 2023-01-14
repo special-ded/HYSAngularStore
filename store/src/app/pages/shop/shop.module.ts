@@ -15,8 +15,13 @@ import { HomeComponent } from './components/home/home.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { GlobalSearchComponent } from './components/global-search/global-search.component';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import {
+  MatFormFieldModule,
+  MAT_FORM_FIELD_DEFAULT_OPTIONS,
+} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   providers: [
@@ -39,6 +44,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     GlobalSearchComponent,
   ],
   imports: [
+    MatAutocompleteModule,
+    MatInputModule,
+    MatFormFieldModule,
     ReactiveFormsModule,
     CommonModule,
     RouterModule,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { localStorageEnum } from '../../../../shared/enums/localStorage.enum';
-import { Product } from '../../../../shared/interfaces/products.interface';
-import { Token } from '../../../../shared/interfaces/token.interface';
+import { localStorageEnum } from '../enums/localStorage.enum';
+import { Product } from '../interfaces/products.interface';
+import { Token } from '../interfaces/token.interface';
 
 @Injectable({
   providedIn: 'root',

@@ -1,5 +1,9 @@
 <section class="section-products">
-  <h1 class="main-title">Products</h1>
+  <div class="title-wrapper">
+    <app-global-search></app-global-search>
+    <h1 class="main-title">Products</h1>
+  </div>
+
   <div class="product-cards">
     <app-spinner *ngIf="loading$ | async"></app-spinner>
     <app-product-card

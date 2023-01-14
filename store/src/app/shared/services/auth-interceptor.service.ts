@@ -9,7 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { ModalComponent } from 'src/app/pages/login/modal/modal.component';
-import { AuthMsgEnum } from '../../../../shared/enums/auth.enum';
+import { AuthMsgEnum } from '../enums/auth.enum';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
