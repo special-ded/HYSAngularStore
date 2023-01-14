@@ -33,8 +33,7 @@ export class ProductsTableComponent implements OnInit {
     this.resetFilter();
     this.productService.generateProducts();
     this.filterService.filteredByPrice$.subscribe((data) => {
-      data.length !== 0 ? this.loading$.next(false) : null;
-
+      this.loading$.next(!data.length);
       this.arrowHandler();
     });
   }

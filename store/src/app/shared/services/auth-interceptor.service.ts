@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { ModalComponent } from 'src/app/pages/login/modal/modal.component';
+import { AuthMsgEnum } from '../enums/auth.enum';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
@@ -33,7 +34,7 @@ export class AuthInterceptorService {
       tap(
         (event) => {
           if (event instanceof HttpResponse) {
-            console.log('Server Response');
+            console.log(AuthMsgEnum.response);
           }
         },
         (error) => {
@@ -43,14 +44,12 @@ export class AuthInterceptorService {
             if (
               error.url === 'https://hys-fe-course-api.vercel.app/auth/login'
             ) {
-              this.showModal('Login or Password is incorrect!');
+              this.showModal(AuthMsgEnum.incorrectPasswordLogin);
               return;
             }
 
             this.localStorageService.deleteToken();
-            this.showModal(
-              'You are Logged out and will be redirected to Login page!'
-            );
+            this.showModal(AuthMsgEnum.logout);
           }
           console.log(error);
         }
