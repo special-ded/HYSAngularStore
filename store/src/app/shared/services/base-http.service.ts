@@ -6,12 +6,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BaseHttpService {
-  protected readonly URL = 'https://hys-fe-course-api.vercel.app/';
+  protected readonly BASE_URL = 'https://hys-fe-course-api.vercel.app/';
+  protected readonly FILTER_BY_NAME_URL =
+    'https://hys-fe-course-api.vercel.app/products?filter=name;';
 
   constructor(private http: HttpClient) {}
 
   getURL(): string {
-    return this.URL;
+    return this.BASE_URL;
   }
 
   getList<T>(): Observable<T> {
@@ -19,11 +21,11 @@ export class BaseHttpService {
   }
 
   getById<I>(id: string): Observable<I> {
-    return this.http.get<I>(this.getURL() + '/' + id);
+    return this.http.get<I>(this.getURL() + id);
   }
 
   update<U>(data: U, id: string): Observable<Object> {
-    return this.http.put(this.getURL() + '/' + id, data);
+    return this.http.put(this.getURL() + id, data);
   }
 
   create<C>(data: C): Observable<Object> {
@@ -31,6 +33,10 @@ export class BaseHttpService {
   }
 
   delete(id: string): Observable<Object> {
-    return this.http.delete(this.getURL() + '/' + id);
+    return this.http.delete(this.getURL() + id);
+  }
+
+  filterByName<T>(name: string): Observable<T> {
+    return this.http.get<T>(this.FILTER_BY_NAME_URL + name);
   }
 }

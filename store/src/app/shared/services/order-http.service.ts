@@ -6,6 +6,6 @@ import { BaseHttpService } from './base-http.service';
 })
 export class OrderHttpService extends BaseHttpService {
   override getURL(): string {
-    return this.URL + 'orders';
+    return this.BASE_URL + 'orders/';
   }
 }

@@ -11,8 +11,9 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
-  URL = 'https://hys-fe-course-api.vercel.app/auth/login';
+export class LoginComponent {
+  protected readonly LOGIN_URL =
+    'https://hys-fe-course-api.vercel.app/auth/login';
   form: FormGroup = this.fb.group({
     username: null,
     password: null,
@@ -25,8 +26,6 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
-
   send() {
     this.toLogIn().subscribe((data) => {
       this.localStorageService.setToken(data),
@@ -35,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   toLogIn(): Observable<Token> {
-    return this.http.post(this.URL, {
+    return this.http.post(this.LOGIN_URL, {
       username: this.form.getRawValue().username,
       password: this.form.getRawValue().password,
     });
