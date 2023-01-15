@@ -15,7 +15,7 @@ import { LocalStorageService } from './local-storage.service';
 @Injectable()
 export class AuthInterceptorService {
   protected readonly LOGIN_URL =
-    'https://hys-fe-course-api.vercel.app/auth/login';
+    'https://hys-fe-course-api-omega.vercel.app/auth/login';
   constructor(
     private localStorageService: LocalStorageService,
     private router: Router,

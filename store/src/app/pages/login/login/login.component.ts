@@ -13,7 +13,7 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 })
 export class LoginComponent {
   protected readonly LOGIN_URL =
-    'https://hys-fe-course-api.vercel.app/auth/login';
+    'https://hys-fe-course-api-omega.vercel.app/auth/login';
   form: FormGroup = this.fb.group({
     username: null,
     password: null,

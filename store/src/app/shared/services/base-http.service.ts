@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BaseHttpService {
-  protected readonly BASE_URL = 'https://hys-fe-course-api.vercel.app/';
+  protected readonly BASE_URL = 'https://hys-fe-course-api-omega.vercel.app/';
   protected readonly FILTER_BY_NAME_URL =
-    'https://hys-fe-course-api.vercel.app/products?filter=name;';
+    'https://hys-fe-course-api-omega.vercel.app/products?filter=name;';
 
   constructor(private http: HttpClient) {}
 
