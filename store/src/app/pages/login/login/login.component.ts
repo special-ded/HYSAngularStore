@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Token } from 'src/app/shared/interfaces/token.interface';
@@ -11,13 +11,31 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   protected readonly LOGIN_URL =
     'https://hys-fe-course-api-omega.vercel.app/auth/login';
+  formStatus: string = 'INVALID';
 
   form: FormGroup = this.fb.group({
-    username: null,
-    password: null,
+    username: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern('[a-zA-Z,0-9]*'),
+        Validators.minLength(3),
+        Validators.maxLength(30),
+      ],
+    ],
+
+    password: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern('[a-zA-Z,0-9]*'),
+        Validators.minLength(6),
+        Validators.maxLength(30),
+      ],
+    ],
   });
 
   constructor(
@@ -27,7 +45,16 @@ export class LoginComponent {
     private router: Router
   ) {}
 
-  send() {
+  ngOnInit(): void {
+    this.form.statusChanges.subscribe((status) => (this.formStatus = status));
+  }
+
+  send(): void {
+    if (this.formStatus === 'INVALID') {
+      alert('Invalid Usrename or Password input');
+      return;
+    }
+
     this.toLogIn().subscribe((data) => {
       this.localStorageService.setToken(data),
         this.router.navigate(['administration']);

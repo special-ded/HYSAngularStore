@@ -41,7 +41,6 @@ export class BaseHttpService {
     searchString: string | null
   ): Observable<T> {
     const queryParams = `?filter=${filterKey};${searchString}`;
-    console.log(searchString);
 
     return this.http.get<T>(this.BASE_URL + this.path + queryParams);
   }

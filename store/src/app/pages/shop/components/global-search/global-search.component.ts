@@ -11,7 +11,7 @@ import { ProductHttpService } from 'src/app/shared/services/product-http.service
   styleUrls: ['./global-search.component.scss'],
 })
 export class GlobalSearchComponent implements OnInit {
-  searchControl = new FormControl<string>('', Validators.requiredTrue);
+  searchControl = new FormControl<string>('');
   products$: Observable<Product[] | null> = new Observable<Product[]>();
 
   constructor(private http: ProductHttpService, private router: Router) {}
