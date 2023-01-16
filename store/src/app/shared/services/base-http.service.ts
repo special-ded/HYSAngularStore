@@ -7,8 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class BaseHttpService {
   protected readonly BASE_URL = 'https://hys-fe-course-api-omega.vercel.app/';
-  protected readonly FILTER_BY_NAME_URL =
-    'https://hys-fe-course-api-omega.vercel.app/products?filter=name;';
 
   constructor(private http: HttpClient) {}
 
@@ -37,6 +35,6 @@ export class BaseHttpService {
   }
 
   filterByName<T>(name: string): Observable<T> {
-    return this.http.get<T>(this.FILTER_BY_NAME_URL + name);
+    return this.http.get<T>(this.BASE_URL + 'products?filter=name;' + name);
   }
 }
