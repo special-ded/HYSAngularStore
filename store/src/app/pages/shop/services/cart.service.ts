@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
@@ -15,7 +15,10 @@ export class CartService implements OnInit {
   constructor(private lsService: LocalStorageService) {}
 
   ngOnInit(): void {
+    console.log('aaaa');
+
     this.updateTotalPrice();
+    this.cartList$.next(this.lsService.checkLocalStorage());
   }
 
   addToCart(product: Product) {
@@ -63,6 +66,7 @@ export class CartService implements OnInit {
     this.cartList.find((x) => x.id === id)!.quantity++;
     this.updateTotalPrice();
     this.lsService.setToLocalStorage(this.cartList);
+    this.cartList$.next(this.cartList);
   }
 
   subtractQuantity(id: string) {
@@ -75,5 +79,6 @@ export class CartService implements OnInit {
 
     this.updateTotalPrice();
     this.lsService.setToLocalStorage(this.cartList);
+    this.cartList$.next(this.cartList);
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/shared/interfaces/products.interface';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { CartService } from '../../services/cart.service';
 
