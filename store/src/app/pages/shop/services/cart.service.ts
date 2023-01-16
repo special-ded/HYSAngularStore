@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
@@ -8,7 +8,7 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 })
 export class CartService implements OnInit {
   cartTotal$ = new BehaviorSubject<number>(0);
-  cartList$ = new Subject<Product[]>();
+  cartList$ = new BehaviorSubject<Product[]>([]);
   cartList: Product[] = [];
   total: number = 0;
 
@@ -24,6 +24,7 @@ export class CartService implements OnInit {
     }
 
     this.cartList.push(product);
+    this.cartList$.next(this.cartList);
     this.lsService.setToLocalStorage(this.cartList);
     this.updateTotalPrice();
 

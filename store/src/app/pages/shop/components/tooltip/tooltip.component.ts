@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/shared/interfaces/products.interface';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { CartService } from '../../services/cart.service';
 
 @Component({
@@ -8,14 +8,13 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./tooltip.component.scss'],
 })
 export class TooltipComponent implements OnInit {
-  constructor(private cartService: CartService) {}
-
-  products: Product[] = [];
-  total: number = 0;
+  constructor(
+    public cartService: CartService,
+    private lsService: LocalStorageService
+  ) {}
 
   ngOnInit(): void {
-    this.products = this.cartService.cartList;
-    this.cartService.cartTotal$.subscribe((number) => (this.total = number));
+    this.cartService.cartList$.next(this.lsService.checkLocalStorage());
   }
 
   deleteFromCart(id: string): void {

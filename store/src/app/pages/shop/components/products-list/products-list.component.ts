@@ -20,8 +20,7 @@ export class ProductsListComponent implements OnInit {
     this.productsService.generateProducts();
 
     this.productsService.productsList$.subscribe((data) => {
-      data.length !== 0 ? this.loading$.next(false) : null,
-        (this.allProducts = data);
+      this.loading$.next(!data.length), (this.allProducts = data);
       this.slicedProducts$.next(data.slice(0, this.productsOnPage));
     });
   }
