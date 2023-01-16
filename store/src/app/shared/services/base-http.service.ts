@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class BaseHttpService {
   protected readonly BASE_URL = 'https://hys-fe-course-api-omega.vercel.app/';
+  path = 'products';
 
   constructor(private http: HttpClient) {}
 
@@ -36,5 +37,13 @@ export class BaseHttpService {
 
   filterByName<T>(name: string): Observable<T> {
     return this.http.get<T>(this.BASE_URL + 'products?filter=name;' + name);
+  }
+
+  getDataBySearch<T>(
+    filterKey: string,
+    searchString: string | null
+  ): Observable<T> {
+    const queryParams = `?filter=${filterKey};${searchString}`;
+    return this.http.get<T>(this.BASE_URL + this.path + queryParams);
   }
 }

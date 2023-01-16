@@ -14,11 +14,12 @@
       class="global-search__autocomplete"
     >
       <mat-option
+        (click)="redirect(product.id)"
         *ngFor="let product of products$ | async"
         [value]="product.name"
         class="global-search__option"
       >
-        <span (click)="redirect(product.id)">{{ product.name }}</span>
+        <span>{{ product.name }}</span>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
