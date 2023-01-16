@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { debounceTime, filter, Observable, switchMap } from 'rxjs';
+import { debounceTime, filter, Observable, of, switchMap, tap } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { ProductHttpService } from 'src/app/shared/services/product-http.service';
 
@@ -11,15 +11,28 @@ import { ProductHttpService } from 'src/app/shared/services/product-http.service
   styleUrls: ['./global-search.component.scss'],
 })
 export class GlobalSearchComponent implements OnInit {
+  searchControl = new FormControl<string>('', Validators.requiredTrue);
+  products$: Observable<Product[] | null> = new Observable<Product[]>();
+
   constructor(private http: ProductHttpService, private router: Router) {}
-  searchControl = new FormControl<string>('');
-  products$: Observable<Product[]> = new Observable<Product[]>();
 
   ngOnInit(): void {
+    this.searchControl.setValidators([
+      Validators.pattern('[a-zA-Z,0-9]*'),
+      Validators.minLength(1),
+      Validators.maxLength(30),
+    ]);
+
     this.products$ = this.searchControl.valueChanges.pipe(
       debounceTime(250),
-      filter(Boolean),
-      switchMap((value) => this.http.getDataBySearch<Product[]>('name', value))
+      switchMap((value) => {
+        if (this.searchControl.invalid) {
+          return of(null);
+        }
+
+        return this.http.getDataBySearch<Product[]>('name', value);
+      }),
+      filter(Boolean)
     );
   }
 

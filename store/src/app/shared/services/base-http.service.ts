@@ -6,8 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BaseHttpService {
-  protected readonly BASE_URL = 'https://hys-fe-course-api-omega.vercel.app/';
-  path = 'products';
+  protected readonly BASE_URL: string =
+    'https://hys-fe-course-api-omega.vercel.app/';
+  path: string = 'products';
 
   constructor(private http: HttpClient) {}
 
@@ -35,15 +36,13 @@ export class BaseHttpService {
     return this.http.delete(this.getURL() + id);
   }
 
-  filterByName<T>(name: string): Observable<T> {
-    return this.http.get<T>(this.BASE_URL + 'products?filter=name;' + name);
-  }
-
   getDataBySearch<T>(
     filterKey: string,
     searchString: string | null
   ): Observable<T> {
     const queryParams = `?filter=${filterKey};${searchString}`;
+    console.log(searchString);
+
     return this.http.get<T>(this.BASE_URL + this.path + queryParams);
   }
 }
