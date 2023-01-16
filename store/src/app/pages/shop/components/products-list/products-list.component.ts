@@ -17,7 +17,7 @@ export class ProductsListComponent implements OnInit {
   productsOnPage: number = 8;
 
   ngOnInit(): void {
-    this.productsService.generateProducts();
+    this.productsService.getProducts();
 
     this.productsService.productsList$.subscribe((data) => {
       this.loading$.next(!data.length), (this.allProducts = data);

@@ -31,7 +31,7 @@ export class ProductsTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetFilter();
-    this.productService.generateProducts();
+    this.productService.getProducts();
     this.filterService.filteredByPrice$.subscribe((data) => {
       this.loading$.next(!data.length);
       this.arrowHandler();

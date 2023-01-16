@@ -14,7 +14,7 @@ export class HomeComponent {
   constructor(private productsService: ProductsService) {}
 
   ngOnInit(): void {
-    this.productsService.generateProducts();
+    this.productsService.getProducts();
 
     this.productsService.productsList$.subscribe((data) => {
       this.loading$.next(!data.length);

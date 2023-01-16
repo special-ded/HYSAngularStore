@@ -15,7 +15,7 @@ export class ProductsService implements OnInit {
 
   ngOnInit(): void {}
 
-  generateProducts(): void {
+  getProducts(): void {
     this.http.getList<Product[]>().subscribe((data) => {
       (this.generatedProducts = data), console.log(data);
       this.productsList$.next(this.generatedProducts);

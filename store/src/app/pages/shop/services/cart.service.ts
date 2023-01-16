@@ -1,24 +1,36 @@
-import { Injectable, OnInit } from '@angular/core';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Injectable, OnInit, OnDestroy } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Product } from 'src/app/shared/interfaces/products.interface';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CartService implements OnInit {
+export class CartService implements OnInit, OnDestroy {
   cartTotal$ = new BehaviorSubject<number>(0);
   cartList$ = new BehaviorSubject<Product[]>([]);
   cartList: Product[] = [];
-  total: number = 0;
+  arr: any[] = [];
 
   constructor(private lsService: LocalStorageService) {}
 
   ngOnInit(): void {
-    console.log('aaaa');
-
-    this.updateTotalPrice();
+    this.cartList = this.lsService.checkLocalStorage();
     this.cartList$.next(this.lsService.checkLocalStorage());
+    this.cartList$.subscribe((data) => {
+      console.log(data);
+      this.cartTotal$.next(
+        data.reduce(
+          (acc: number, curV: Product) => (acc += curV.price * curV.quantity),
+          0
+        )
+      );
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.cartList$.unsubscribe();
+    this.cartTotal$.unsubscribe();
   }
 
   addToCart(product: Product) {
@@ -26,12 +38,9 @@ export class CartService implements OnInit {
       return;
     }
 
-    this.cartList.push(product);
+    this.cartList = [...this.cartList, product];
     this.cartList$.next(this.cartList);
     this.lsService.setToLocalStorage(this.cartList);
-    this.updateTotalPrice();
-
-    return this.cartList;
   }
 
   removeFromCart(id: string) {
@@ -39,18 +48,9 @@ export class CartService implements OnInit {
       this.cartList.findIndex((val) => val.id == id),
       1
     );
-    this.updateTotalPrice();
+
     this.lsService.setToLocalStorage(this.cartList);
     this.cartList$.next(this.cartList);
-  }
-
-  updateTotalPrice() {
-    this.cartTotal$.next(
-      this.cartList.reduce(
-        (acc: number, curV: Product) => (acc += curV.price * curV.quantity),
-        0
-      )
-    );
   }
 
   getCartList(): Product[] {
@@ -58,13 +58,11 @@ export class CartService implements OnInit {
       this.cartList = this.lsService.checkLocalStorage();
     }
 
-    this.updateTotalPrice();
     return this.cartList;
   }
 
   addQuantity(id: string) {
     this.cartList.find((x) => x.id === id)!.quantity++;
-    this.updateTotalPrice();
     this.lsService.setToLocalStorage(this.cartList);
     this.cartList$.next(this.cartList);
   }
@@ -77,7 +75,6 @@ export class CartService implements OnInit {
       return;
     }
 
-    this.updateTotalPrice();
     this.lsService.setToLocalStorage(this.cartList);
     this.cartList$.next(this.cartList);
   }

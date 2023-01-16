@@ -45,9 +45,7 @@
     <div class="table-row-wrapper">
       <app-spinner *ngIf="loading$ | async"></app-spinner>
       <ng-container
-        *ngFor="
-          let product of this.paginatorService.currentPageProducts$ | async
-        "
+        *ngFor="let product of paginatorService.currentPageProducts$ | async"
       >
         <div class="table-row">
           <p class="table-row__item">{{ product.id }}</p>
